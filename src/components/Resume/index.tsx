@@ -72,11 +72,11 @@ function Resume(){
                     Resume
                 </Modal.Title>
                 <div className="ms-auto" id='download-button'>
-                <Link to="/files/resume.pdf" target="_blank" download>
+                <a href="files/resume.pdf" target="_blank" download>
                         <Button>
                             <Download />
                         </Button>
-                    </Link>
+                </a>
                 </div>
             </ModalHeader>
             <ModalBody>
