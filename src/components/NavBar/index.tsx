@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { Hexagon, Dot, Dash } from "react-bootstrap-icons";
+import Resume from "../Resume";
 import './styles.css';
 
 
@@ -52,12 +53,12 @@ function NavBar(){
                             <span style={{color:'lightgreen', paddingRight: '5px'}}>4.</span>
                             <span>Contact</span>
                         </Nav.Link>
-                        <Nav.Link href="/Resume">
-                            <Button variant="success">
-                                Resume
-                            </Button>
-                        </Nav.Link>
+                        <div style={{paddingLeft: '40px'}}>
+                            <Resume />
+                        </div>
                     </Nav>
+
+
                 </Navbar.Collapse>
             </Container>
         </Navbar>

@@ -1,0 +1,49 @@
+.button-container button {
+    background-color: transparent;
+    outline: 2px solid lightgreen !important;
+    color: lightblue;
+    border: none;
+    transition: all 0.3s ease;
+
+}
+
+.button-container button:hover {
+    color: #050e2f;
+    background-color: lightgreen;
+    border: none;
+    outline: 2px solid lightgreen !important;
+
+
+}
+
+.resume-modal-header {
+    background-color: #050e2f;
+    color: lightgreen;
+}
+
+.resume-modal-header a {
+    color: lightgreen;
+}
+
+.btn-close {
+    background-color: lightgreen;
+    opacity: 1;
+}
+
+#download-button button {
+    background-color: transparent;
+    outline: 2px solid lightgreen;
+    color: lightblue;
+    border: none;
+    transition: all 0.3s ease;
+
+}
+
+#download-button button:hover {
+    color: #050e2f;
+    background-color: lightgreen;
+    border: none;
+    outline: 2px solid lightgreen;
+
+
+}

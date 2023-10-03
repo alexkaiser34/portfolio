@@ -31,20 +31,7 @@
 
 }
 
-.navbar-container button {
-    background-color: transparent;
-    outline: 2px solid lightgreen;
-    border: none;
-    color: lightblue;
-    transition: all 0.3s ease;
 
-}
-
-.navbar-container button:hover {
-    color: #050e2f;
-    background-color: lightgreen;
-    outline: 2px solid lightgreen;
-}
 
 #navbar-links a {
     padding-left: 40px;
