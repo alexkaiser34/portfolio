@@ -1,14 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { Button } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import NavBar from './components/NavBar';
+import SocialMediaBar from './components/SocialMediaBar';
+import HomePage from './components/HomePage';
 
 function App() {
   return (
-    <div className="App">
-      <Button variant="success">Bootstrap Button</Button>
-    </div>
+    <Router>
+      <div className="App">
+        <div className='App-navbar'>
+          <NavBar />
+        </div>
+        <div className="App-sidebar">
+            <SocialMediaBar />
+        </div>
+        <div className='App-content'>
+          <Routes>
+              <Route path='/About' Component={HomePage} />
+              <Route path='/portfolio' Component={HomePage} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
+
   );
 }
 

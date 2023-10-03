@@ -1,0 +1,77 @@
+
+.navbar-wrapper {
+    background-color: #050e2f;
+}
+
+.navbar-container {
+    color: lightblue;
+    font-family: Trebuchet MS,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Tahoma,sans-serif;
+    font-size: large;
+    padding-left: 0px;
+}
+
+.icon-div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-name{
+    font-size: larger;
+    font-weight: bold;
+}
+
+.navbar-container a {
+    color: lightblue;
+}
+
+.navbar-container a:hover {
+    color: lightgreen;
+
+}
+
+.navbar-container button {
+    background-color: transparent;
+    outline: 2px solid lightgreen;
+    border: none;
+    color: lightblue;
+    transition: all 0.3s ease;
+
+}
+
+.navbar-container button:hover {
+    color: #050e2f;
+    background-color: lightgreen;
+    outline: 2px solid lightgreen;
+}
+
+#navbar-links a {
+    padding-left: 40px;
+}
+
+#navbar-brand {
+    padding-left: 20px;
+}
+
+
+.brand-container {
+    position: relative;
+    text-align: center;
+}
+
+.initials {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.hex-icon {
+    scale: 2.3
+}
+
+.horizontalDivider {
+    width: 60px;
+    height: 3px;
+    background-color: lightblue;
+}
