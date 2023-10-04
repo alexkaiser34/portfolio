@@ -34,7 +34,7 @@ function NavBar(){
                         </div>
                     </Navbar.Brand>
                 </div>
-                <Navbar.Toggle onClick={handleClick} aria-controls="basic-navbar-nav" className="ms-auto"/>
+                <Navbar.Toggle onClick={handleClick} aria-controls="basic-navbar-nav" className="ms-auto" id="toggle-bar"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="align-items-center ms-auto" id="navbar-links">
                         <Nav.Link href="#/portfolio" className="d-flex flex-row" >
