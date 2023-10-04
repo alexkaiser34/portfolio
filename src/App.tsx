@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import NavBar from './components/NavBar';
 import SocialMediaBar from './components/SocialMediaBar';
 import HomePage from './components/HomePage';
@@ -11,7 +11,7 @@ import ContactPage from './components/ContactPage';
 
 function App() {
   return (
-    <Router>
+    <HashRouter>
       <div className="App">
         <div className='App-navbar'>
           <NavBar />
@@ -22,6 +22,7 @@ function App() {
         <div className='App-content'>
           <Routes>
               <Route path="/portfolio" Component={HomePage} />
+              <Route path="/" Component={HomePage} />
               <Route path='/portfolio/About' Component={AboutPage} />
               <Route path='/portfolio/Projects' Component={ProjectsPage} />
               <Route path='/portfolio/Experience' Component={ExperiencePage} />
@@ -29,7 +30,7 @@ function App() {
           </Routes>
         </div>
       </div>
-    </Router>
+    </HashRouter>
 
   );
 }
