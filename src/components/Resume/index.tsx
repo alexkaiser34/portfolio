@@ -23,8 +23,17 @@ function Resume(){
   	useEffect(() => {
         const updateDimension = () => {
             setScreenSize(getCurrentDimension())
-            if (screenSize.width < 1000){
+            if (screenSize.width < 1000 && screenSize.width > 560){
                 setScale(0.8);
+            }
+            else if (screenSize.width <= 560 && screenSize.width > 475){
+                setScale(0.7);
+            }
+            else if (screenSize.width <= 475 && screenSize.width > 425){
+                setScale(0.58);
+            }
+            else if (screenSize.width <= 425){
+                setScale(0.48);
             }
             else{
                 setScale(1.2);

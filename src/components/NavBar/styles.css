@@ -1,6 +1,8 @@
 
 .navbar-wrapper {
-    background-color: #050e2f;
+    /* background-color: #252937; */
+  background-color: #050e2f;
+
 }
 
 .navbar-container {
@@ -38,6 +40,7 @@
     box-shadow: none;
 }
 
+
 .navbar-toggler:active{
     border: none;
     outline: none;
@@ -55,11 +58,9 @@
 }
 
 .navbar-container a:hover {
-    color: lightgreen;
+    color: white;
 
 }
-
-
 
 #navbar-links a {
     padding-left: 40px;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
-import { Hexagon, Dot, Dash } from "react-bootstrap-icons";
+import { Hexagon } from "react-bootstrap-icons";
 import Resume from "../Resume";
 import './styles.css';
 
@@ -21,7 +21,7 @@ function NavBar(){
 
 
     return (
-        <Navbar expand="lg" fixed="top" className="navbar-wrapper" style={{
+        <Navbar expand="lg" fixed="top" className="navbar-dark navbar-wrapper" style={{
             height: !click ? 'max(calc(40px + 3vh), 60px)' : 'inherit'
         }}>
             <Container fluid className="navbar-container">

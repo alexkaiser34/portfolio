@@ -19,6 +19,7 @@ function App() {
         <div className="App-sidebar">
             <SocialMediaBar />
         </div>
+        <div className="static-background"></div>
         <div className='App-content'>
           <Routes>
               <Route path="/portfolio" Component={HomePage} />

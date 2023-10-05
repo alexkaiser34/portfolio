@@ -1,112 +1,42 @@
 
 .HomePage-container {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    /* flex-grow: 1; */
-    height: inherit;
-    width: inherit;
+    flex-direction: column;
+    height: max(calc(100vh - max(calc(40px + 3vh), 60px)), 500px);
+    width: max(calc(100vw - max(calc(20px + 2vw), 50px)), 800px);
     overflow: auto;
-    justify-content: space-evenly;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 20px;
 }
 
+.HomePage-Info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 100%;
+}
+
 .HomePage-text {
     display: flex;
-    max-width: 25%;
+    width: max(50%, 200px);
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
 }
 
-.intro {
+.intro-homepage {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
-
-.short-description {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-evenly;
-}
-
 
 .hi-intro {
-    font-size: calc(10px + 1vw);
+    font-size: max(calc(10px + 1vw), 20px);
     color: lightblue;
-}
-
-.name-intro {
-    font-size: calc(10px + 3vw);
-    color: lightgreen;
-}
-
-.title-intro {
-    color: lightgreen;
-    font-size: calc(10px + 2vw);
-}
-
-.description-intro {
-    text-overflow: wrap;
-    font-size: calc(10px + 0.5vw);
-    color: lightblue;
-    padding-top: 20px;
-}
-
-.touch-button {
-    align-self: flex-start;
-    margin-top: 20px;
-    background-color: transparent;
-    outline: 2px solid lightgreen;
-    border: none;
-    color: lightblue;
-    transition: all 0.3s ease;
-    font-size: calc(10px + 0.5vw);
-
-}
-
-.touch-button:hover {
-    color: #050e2f;
-    background-color: lightgreen;
-    outline: 2px solid lightgreen;
-
-}
-
-.HomePage-image {
-    display: flex;
-    padding: 20px 20px;
-}
-
-.headshot-image {
-    scale: 0.8;
-    max-width: 50%;
-    border-radius: 40px;
-}
-
-
-
-.descriptions-extended {
-    max-width: 25%;
-    display: flex;
-    font-size: calc(10px + 0.5vw);
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    color: lightblue;
-}
-
-.descriptions-extended span {
-    max-width: 45%;
-}
-.descriptions-extended h1 {
-    color: lightgreen;
-    font-size: calc(10px + 1vw);
-
 }
 
 .wave {
@@ -128,3 +58,87 @@
     60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
     100% { transform: rotate( 0.0deg) }
 }
+
+.name-intro {
+    font-size: max(calc(10px + 3vw), 30px);
+    color: lightgreen;
+}
+
+.title-intro {
+    color: lightgreen;
+    font-size: max(calc(10px + 2vw), 25px);
+}
+
+.description-intro {
+    text-overflow: wrap;
+    font-size: max(calc(10px + 0.5vw), 15px);
+    color: lightblue;
+    align-content: center;
+    padding-top: 20px;
+    max-width: 70%;
+}
+
+.touch-button {
+    align-self: center;
+    margin-top: 20px;
+    background-color: transparent;
+    outline: 2px solid lightgreen;
+    border: none;
+    color: lightblue;
+    transition: all 0.3s ease;
+    font-size: max(calc(10px + 0.5vw), 15px);
+}
+
+.touch-button:hover {
+    color: #050e2f;
+    background-color: lightgreen;
+    outline: 2px solid lightgreen;
+
+}
+
+.descriptions-extended {
+    width: max(50%, 200px);
+    height: 100%;
+    display: flex;
+    font-size: max(calc(10px + 0.5vw), 15px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    color: lightblue;
+}
+
+.descriptions-extended span {
+    max-width: 45%;
+}
+.descriptions-extended h1 {
+    color: lightgreen;
+    font-size: max(calc(10px + 1vw), 20px);
+    align-self: center;
+}
+
+.centered-descriptions{
+    display: flex;
+    flex-direction: column;
+    height: max(60%, 300px);
+    justify-content: space-between;
+}
+
+
+.program-icons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    padding-top: 20px;
+}
+
+.programming-icon {
+    scale: 3.0;
+    align-self: center;
+    transition: all 0.5s ease;
+    justify-self: center;
+}
+
+.programming-icon:hover{
+    scale: 4.0;
+}
+
