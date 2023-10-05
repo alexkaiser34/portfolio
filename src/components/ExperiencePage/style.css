@@ -10,3 +10,43 @@
     padding-bottom: 50px;
     padding-top: 30px;
 }
+
+.button-div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 50px;
+
+}
+
+.button-group-experience {
+    width: max(90%, 600px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid lightgreen;
+}
+
+
+.button-group-experience button {
+    border: none;
+    flex: 1;
+    color: lightblue;
+    background-color: transparent;
+    padding: 10px 10px;
+    transition: all 0.3s ease;
+
+}
+
+.button-group-experience button:hover {
+    border: none;
+    color: lightgreen;
+    background-color: #050e2f;
+}
+
+.experience-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

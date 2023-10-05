@@ -27,7 +27,7 @@ function NavBar(){
             <Container fluid className="navbar-container">
                 <div className="icon-div">
                     <hr className="horizontalDivider" />
-                    <Navbar.Brand href="#/portfolio" id="navbar-brand">
+                    <Navbar.Brand href="/#/portfolio" id="navbar-brand">
                         <div className="brand-container">
                             <Hexagon className="hex-icon" />
                             <div className="initials">AK</div>
@@ -37,19 +37,19 @@ function NavBar(){
                 <Navbar.Toggle onClick={handleClick} aria-controls="basic-navbar-nav" className="ms-auto" id="toggle-bar"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="align-items-center ms-auto" id="navbar-links">
-                        <Nav.Link href="#/portfolio" className="d-flex flex-row" >
+                        <Nav.Link href="#/Home" className="d-flex flex-row" >
                             <span style={{color:'lightgreen', paddingRight: '5px'}}>1.</span>
                             <span>Home</span>
                         </Nav.Link>
-                        <Nav.Link href="#/portfolio/About" className="d-flex flex-row" >
+                        <Nav.Link href="#/About"  className="d-flex flex-row" >
                             <span style={{color:'lightgreen', paddingRight: '5px'}}>2.</span>
                             <span>About</span>
                         </Nav.Link>
-                        <Nav.Link href="#/portfolio/Experience" className="d-flex flex-row" >
+                        <Nav.Link href="#/Experience"  className="d-flex flex-row" >
                             <span style={{color:'lightgreen', paddingRight: '5px'}}>3.</span>
                             <span>Experience</span>
                         </Nav.Link>
-                        <Nav.Link href="#/portfolio/Contact" className="d-flex flex-row" >
+                        <Nav.Link href="#/Contact" className="d-flex flex-row" >
                             <span style={{color:'lightgreen', paddingRight: '5px'}}>4.</span>
                             <span>Contact</span>
                         </Nav.Link>

@@ -21,11 +21,11 @@ function App() {
         <div className="static-background"></div>
         <div className='App-content'>
           <Routes>
-              <Route path="/portfolio" Component={HomePage} />
+              <Route path="/Home" Component={HomePage} />
               <Route path="/" Component={HomePage} />
-              <Route path='/portfolio/About' Component={AboutPage} />
-              <Route path='/portfolio/Experience' Component={ExperiencePage} />
-              <Route path='/portfolio/Contact' Component={ContactPage} />
+              <Route path='/About' Component={AboutPage} />
+              <Route path='/Experience' Component={ExperiencePage} />
+              <Route path='/Contact' Component={ContactPage} />
           </Routes>
         </div>
       </div>
