@@ -5,7 +5,6 @@ import NavBar from './components/NavBar';
 import SocialMediaBar from './components/SocialMediaBar';
 import HomePage from './components/HomePage';
 import AboutPage from './components/AboutPage';
-import ProjectsPage from './components/ProjectsPage';
 import ExperiencePage from './components/ExperiencePage';
 import ContactPage from './components/ContactPage';
 
@@ -25,7 +24,6 @@ function App() {
               <Route path="/portfolio" Component={HomePage} />
               <Route path="/" Component={HomePage} />
               <Route path='/portfolio/About' Component={AboutPage} />
-              <Route path='/portfolio/Projects' Component={ProjectsPage} />
               <Route path='/portfolio/Experience' Component={ExperiencePage} />
               <Route path='/portfolio/Contact' Component={ContactPage} />
           </Routes>

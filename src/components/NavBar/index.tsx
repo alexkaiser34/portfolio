@@ -49,12 +49,8 @@ function NavBar(){
                             <span style={{color:'lightgreen', paddingRight: '5px'}}>3.</span>
                             <span>Experience</span>
                         </Nav.Link>
-                        <Nav.Link href="#/portfolio/Projects" className="d-flex flex-row" >
-                            <span style={{color:'lightgreen', paddingRight: '5px'}}>4.</span>
-                            <span>Projects</span>
-                        </Nav.Link>
                         <Nav.Link href="#/portfolio/Contact" className="d-flex flex-row" >
-                            <span style={{color:'lightgreen', paddingRight: '5px'}}>5.</span>
+                            <span style={{color:'lightgreen', paddingRight: '5px'}}>4.</span>
                             <span>Contact</span>
                         </Nav.Link>
                         <div style={{paddingLeft: '40px'}}>

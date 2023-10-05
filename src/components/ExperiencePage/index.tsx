@@ -1,10 +1,12 @@
 
 
+import './style.css';
+
 
 function ExperiencePage(){
 
     return (
-        <div>
+        <div className='ExperiencePage-container'>
             This is the experience page
         </div>
     )
