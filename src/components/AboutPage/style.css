@@ -1,0 +1,264 @@
+
+
+.AboutPage-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: max(100%, 600px);
+    color: lightblue;
+    justify-content: space-evenly;
+    padding-bottom: 50px;
+    padding-top: 30px;
+}
+
+.about-headline {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.horizontal-divide-header{
+    background-color: lightgreen;
+    opacity: 0.7;
+    width: 90%;
+    height: 8px;
+}
+
+
+
+.AboutMe {
+    display: flex;
+    flex-direction: row;
+    /* height: max(70vh, 300px); */
+    width: 100%;
+    /* background-color: aliceblue; */
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.profile-image {
+    padding-right: 20px;
+    width: 40%;
+    margin: auto;
+
+}
+.profile-image img {
+    border-radius: 30px;
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin: auto;
+}
+
+.about-profile {
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* width: max(60%, 600px); */
+    width: 60%;
+    align-items: flex-start;
+    /* width: max(60%, 250px); */
+
+    /* justify-content: center; */
+    /* height: 100%; */
+    /* width: 50%; */
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: flex-start; */
+}
+
+.about-header {
+    /* width: 100%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 20%;
+
+}
+
+.about-header h1 {
+    color: lightgreen;
+    font-size: max(calc(10px + 2vw), 20px);
+
+}
+
+
+
+.horizontal-divide{
+    background-color: lightgreen;
+    opacity: 0.7;
+    width: 12%;
+    height: 8px;
+}
+
+.AboutPage-container p {
+    font-size: max(calc(10px + 1vw), 12px);
+}
+
+.about-intro h2 {
+    font-size: max(calc(10px + 1.5vw), 17px);
+    color:lightgreen;
+}
+
+.AboutPage-container li {
+    padding-top: 15px;
+    font-size: max(calc(10px + 0.6vw), 10px);
+    max-width: 90%;
+
+}
+
+.AboutSkills{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 40px 40px;
+    justify-content: space-evenly;
+}
+
+.skills-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.AboutPage-container h1 {
+    color: lightgreen;
+    font-size: max(calc(10px + 2vw), 20px);
+}
+
+.horizontal-skills {
+    background-color: lightgreen;
+    opacity: 0.7;
+    width: 12%;
+    height: 8px;
+}
+
+.skills-table{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-self: center;
+    width: 90%;
+    /* border: 2px solid lightgreen; */
+}
+
+.skills-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.skills-table h2 {
+    font-size: max(calc(10px + 1.8vw), 18px);
+    font-weight: bolder;
+}
+.skills-table h3 {
+    font-size: max(calc(10px + 1vw), 12px);
+    opacity: 0.8;
+}
+.skills-divide {
+    width: 100%;
+    align-self: center;
+    opacity: 0.8;
+    height: 4px;
+    background-color: lightgreen;
+    border-radius: 10px;
+}
+
+.PM-image {
+    display: flex;
+    width: 40%;
+    justify-content: center;
+}
+
+.skills-table img {
+    max-width: 40%;
+}
+
+.skills-row-image {
+    width: 30%;
+    margin: auto;
+}
+
+.skills-row-image img {
+    display: block;
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+    margin: auto;
+}
+
+.AboutEducation {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    padding: 40px 40px;
+
+}
+
+.education-info {
+    width: 60%;
+    align-items: flex-start;
+}
+.education-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 20%;
+}
+
+
+.education-header-divide {
+    background-color: lightgreen;
+    opacity: 0.7;
+    width: 12%;
+    height: 8px;
+}
+
+.education-img {
+    width: 40%;
+    margin: auto;
+}
+
+.education-img img {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    min-width: 300px;
+    height: auto;
+    margin: auto;
+    background-color: #ffffff;
+    padding: 20px 20px;
+    border-radius: 20px;
+}
+
+.AboutEducation a {
+    text-decoration: none;
+    color: lightgreen;
+    transition: all 0.3s ease;
+}
+
+.AboutEducation a:hover {
+    color: rgb(2, 127, 2);
+}
+
+.education-profile h2 {
+    font-size: max(calc(10px + 1.5vw), 17px);
+    color:lightgreen;
+}
+
+.headline-header {
+    color: lightblue;
+    font-size: max(calc(10px + 1vw), 10px);
+
+}

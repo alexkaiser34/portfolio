@@ -39,7 +39,7 @@ function HomePage(){
                         </ul>
                     </div>
                     <div className='programming-languages'>
-                        <h1>Programming in</h1>
+                        <h1>Developing in</h1>
                         <div className='program-icons'>
                             <div title='Python' className='programming-icon'><PythonOriginal /></div>
                             <div title='React' className='programming-icon'><ReactOriginal /></div>

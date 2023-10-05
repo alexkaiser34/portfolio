@@ -7,19 +7,19 @@
   z-index: -1;
   background-color: #050e2f;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: max(calc(40px + 3vh), 60px);
+  height: 150vh;
+  width: 150vw;
 }
 
 .App-content {
-  left: max(calc(20px + 2vw), 50px);
-  top: max(calc(40px + 3vh), 60px);
+  margin-left: max(calc(20px + 2vw), 50px);
+  margin-top: max(calc(40px + 3vh), 60px);
   background-color: #050e2f;
-  position: absolute;
-  min-height: calc(100vh - max(calc(40px + 3vh), 60px));
-  min-width: calc(100vw - max(calc(20px + 2vw), 50px));
+  position: relative;
+  /* height: 100%; */
+  /* width: 100%; */
+  /* min-height: calc(100vh - max(calc(40px + 3vh), 60px)); */
+  /* min-width: calc(100vw - max(calc(20px + 2vw), 50px)); */
 }
 
 .App-sidebar{
