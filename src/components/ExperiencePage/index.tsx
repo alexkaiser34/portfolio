@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
 import './style.css';
 import HomeExperience from './HomeExperience';
-import EducationExperience from './EducationExperience';
+import PersonalExperience from './PersonalExperience';
 import ProfessionalExperience from './ProfessionalExperience';
 
 
@@ -28,14 +28,14 @@ function ExperiencePage(){
                     <button style={{
                         backgroundColor: toggle == 2 ? 'lightgreen' : '',
                         color: toggle == 2 ? '#050e2f' : ''
-                    }}className="education-button" onClick={() => setToggle(2)}>Educational</button>
+                    }}className="personal-button" onClick={() => setToggle(2)}>Personal</button>
                 </ButtonGroup>
             </div>
             <div className='experience-content'>
                 {
                     toggle == 0 ? <HomeExperience /> :
                     toggle == 1 ? <ProfessionalExperience /> :
-                    <EducationExperience />
+                    <PersonalExperience />
                 }
 
             </div>
