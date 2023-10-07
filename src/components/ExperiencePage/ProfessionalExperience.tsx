@@ -19,11 +19,15 @@ function ProfessionalExperience(){
 
     return (
         <div className="professional-page-wrapper">
-            <div className="professional-page-dropdown">
-                <h2 style={{paddingRight: '20px'}}>
-                {activeProject === "seL4 Doom Pendulum Demo" ? "Project: " : "Projects: "}
-                </h2>
-                <ProjectDropDown activeProject={activeProject} setActiveProject={setActiveProject} projectList={ProjectList} />
+            <div className="flex-dropdown-wrapper">
+                <div className="page-dropdown-wrapper">
+                    <div className="professional-page-dropdown">
+                        <h2 style={{paddingRight: '20px'}}>
+                        {activeProject === "seL4 Doom Pendulum Demo" ? "Project: " : "Projects: "}
+                        </h2>
+                        <ProjectDropDown activeProject={activeProject} setActiveProject={setActiveProject} projectList={ProjectList} />
+                    </div>
+                </div>
             </div>
             <div className="professional-project-content">
             {

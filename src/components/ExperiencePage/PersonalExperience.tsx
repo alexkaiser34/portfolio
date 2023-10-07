@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Dropdown, DropdownButton } from "react-bootstrap";
 import DroneProject from "./PersonalProjects/DroneProject";
 import MLStocks from "./PersonalProjects/MLStocks";
 import NBAapp from "./PersonalProjects/NBAapp";
@@ -23,9 +22,13 @@ function PersonalExperience(){
 
     return (
         <div className="personal-page-wrapper">
-            <div className="personal-page-dropdown">
-                <h2 style={{paddingRight: '20px'}}>Project: </h2>
-                <ProjectDropDown activeProject={activeProject} setActiveProject={setActiveProject} projectList={ProjectList} />
+            <div className="flex-dropdown-wrapper">
+                <div className="page-dropdown-wrapper">
+                    <div className="personal-page-dropdown">
+                        <h2 style={{paddingRight: '20px'}}>Project: </h2>
+                        <ProjectDropDown activeProject={activeProject} setActiveProject={setActiveProject} projectList={ProjectList} />
+                    </div>
+                </div>
             </div>
             <div className="personal-project-content">
             {

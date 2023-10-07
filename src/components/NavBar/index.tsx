@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { Hexagon } from "react-bootstrap-icons";
+import { NavLinks } from "../../App";
 import Resume from "../Resume";
 import './styles.css';
 
 
+interface NavBarProps {
+    linkActive: NavLinks,
+    setLinkActive: React.Dispatch<React.SetStateAction<NavLinks>>
+}
 
-function NavBar(){
+
+function NavBar(props: NavBarProps){
 
     const [click, setClicked] = useState(false);
+
 
     const handleClick = () => {
         if (click){
@@ -37,19 +44,19 @@ function NavBar(){
                 <Navbar.Toggle onClick={handleClick} aria-controls="basic-navbar-nav" className="ms-auto" id="toggle-bar"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="align-items-center ms-auto" id="navbar-links">
-                        <Nav.Link href="#/Home" className="d-flex flex-row" >
+                        <Nav.Link onClick={() => {window.scrollTo(0,0); props.setLinkActive("Home")}} active={props.linkActive === "Home"} href="#/Home" className="d-flex flex-row" >
                             <span style={{color:'lightgreen', paddingRight: '5px'}}>1.</span>
                             <span>Home</span>
                         </Nav.Link>
-                        <Nav.Link href="#/About"  className="d-flex flex-row" >
+                        <Nav.Link onClick={() => {window.scrollTo(0,0); props.setLinkActive("About")}} active={props.linkActive === "About"} href="#/About"  className="d-flex flex-row" >
                             <span style={{color:'lightgreen', paddingRight: '5px'}}>2.</span>
                             <span>About</span>
                         </Nav.Link>
-                        <Nav.Link href="#/Experience"  className="d-flex flex-row" >
+                        <Nav.Link onClick={() => {window.scrollTo(0,0); props.setLinkActive("Experience")}} active={props.linkActive === "Experience"} href="#/Experience"  className="d-flex flex-row" >
                             <span style={{color:'lightgreen', paddingRight: '5px'}}>3.</span>
                             <span>Experience</span>
                         </Nav.Link>
-                        <Nav.Link href="#/Contact" className="d-flex flex-row" >
+                        <Nav.Link onClick={() => {window.scrollTo(0,0); props.setLinkActive("Contact")}} active={props.linkActive === "Contact"} href="#/Contact" className="d-flex flex-row" >
                             <span style={{color:'lightgreen', paddingRight: '5px'}}>4.</span>
                             <span>Contact</span>
                         </Nav.Link>

@@ -1,9 +1,16 @@
-import { Button } from 'react-bootstrap';
+import { Button, Nav } from 'react-bootstrap';
 import './styles.css';
 import Headshot from '../../images/Headshot.png';
 import { AmazonwebservicesOriginal, AmazonwebservicesOriginalWordmark, AmazonwebservicesPlainWordmark, BashOriginal, BashPlain, COriginal, CplusplusOriginal, CsharpOriginal, DockerOriginal, DotnetcoreOriginal, DotNetOriginal, JavaOriginal, JavascriptOriginal, PythonOriginal, ReactOriginal, TypescriptOriginal } from 'devicons-react';
+import { NavLinks } from '../../App';
 
-function HomePage(){
+
+interface HomePageProps {
+    linkActive: NavLinks,
+    setLinkActive: React.Dispatch<React.SetStateAction<NavLinks>>
+}
+
+function HomePage(props: HomePageProps){
 
     return (
         <div className="HomePage-container">
@@ -22,7 +29,9 @@ function HomePage(){
                             I am a software engineer with a passion for full-stack engineering,
                             embedded system design, FPGA's, and project management.
                         </span>
-                    <Button className="touch-button">Get in Touch</Button>
+                    <Button className="touch-button" href="#/Contact" onClick={() => {window.scrollTo(0,0); props.setLinkActive("Contact");}}>
+                        Get in Touch
+                    </Button>
                     </div>
 
                 </div>

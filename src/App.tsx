@@ -7,13 +7,19 @@ import HomePage from './components/HomePage';
 import AboutPage from './components/AboutPage';
 import ExperiencePage from './components/ExperiencePage';
 import ContactPage from './components/ContactPage';
+import { useState } from 'react';
+
+export type NavLinks = "Home" | "About" | "Experience" | "Contact";
 
 function App() {
+
+  const [linkActive, setLinkActive] = useState<NavLinks>("Home");
+
   return (
     <HashRouter>
       <div className="App">
         <div className='App-navbar'>
-          <NavBar />
+          <NavBar linkActive={linkActive} setLinkActive={setLinkActive} />
         </div>
         <div className="App-sidebar">
             <SocialMediaBar />
@@ -21,8 +27,8 @@ function App() {
         <div className="static-background"></div>
         <div className='App-content'>
           <Routes>
-              <Route path="/Home" Component={HomePage} />
-              <Route path="/" Component={HomePage} />
+              <Route path="/Home" element={<HomePage linkActive={linkActive} setLinkActive={setLinkActive} />} />
+              <Route path="/" element={<HomePage linkActive={linkActive} setLinkActive={setLinkActive} />} />
               <Route path='/About' Component={AboutPage} />
               <Route path='/Experience' Component={ExperiencePage} />
               <Route path='/Contact' Component={ContactPage} />

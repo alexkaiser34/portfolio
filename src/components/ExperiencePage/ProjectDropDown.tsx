@@ -1,5 +1,4 @@
 import { Dropdown } from "react-bootstrap";
-import { professionalProjects } from "./ProfessionalExperience";
 
 
 interface ProjectDropDownProps {
@@ -19,7 +18,10 @@ function ProjectDropDown(props: ProjectDropDownProps){
                         props.projectList.map((project) => {
                             return (
                                 <Dropdown.Item
-                                    onClick={() => props.setActiveProject(project as string)}
+                                    onClick={() => {
+                                        window.scrollTo(0,0);
+                                        props.setActiveProject(project as string);
+                                    }}
                                     active={props.activeProject === project ? true : false}
                                     style ={{
                                         backgroundColor: props.activeProject === project ? 'lightblue' : '#050e2f',
