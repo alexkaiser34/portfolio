@@ -1,20 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Hexagon } from "react-bootstrap-icons";
+import { useLocation } from "react-router-dom";
 import { NavLinks } from "../../App";
 import Resume from "../Resume";
 import './styles.css';
 
 
 interface NavBarProps {
-    linkActive: NavLinks,
-    setLinkActive: React.Dispatch<React.SetStateAction<NavLinks>>
+    linkActive: NavLinks | undefined,
+    setLinkActive: React.Dispatch<React.SetStateAction<NavLinks | undefined>>
 }
 
 
 function NavBar(props: NavBarProps){
 
     const [click, setClicked] = useState(false);
+
+    const location = useLocation();
+
+    useEffect(() => {
+        const routeName = location.pathname.slice(1);
+        if (routeName.length > 1){
+            props.setLinkActive(routeName as NavLinks);
+        }
+        else {
+            props.setLinkActive("Home");
+        }
+    }, [location.pathname, props]);
 
 
     const handleClick = () => {
@@ -28,7 +41,7 @@ function NavBar(props: NavBarProps){
 
 
     return (
-        <Navbar expand="lg" fixed="top" className="navbar-dark navbar-wrapper" style={{
+        <Navbar collapseOnSelect expand="lg" fixed="top" className="navbar-dark" id="navbar-wrapper" style={{
             height: !click ? 'max(calc(40px + 3vh), 60px)' : 'inherit'
         }}>
             <Container fluid className="navbar-container">
@@ -41,8 +54,8 @@ function NavBar(props: NavBarProps){
                         </div>
                     </Navbar.Brand>
                 </div>
-                <Navbar.Toggle onClick={handleClick} aria-controls="basic-navbar-nav" className="ms-auto" id="toggle-bar"/>
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Toggle onClick={handleClick} aria-controls="responsive-navbar-nav" className="ms-auto" id="toggle-bar"/>
+                <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="align-items-center ms-auto" id="navbar-links">
                         <Nav.Link onClick={() => {window.scrollTo(0,0); props.setLinkActive("Home")}} active={props.linkActive === "Home"} href="#/Home" className="d-flex flex-row" >
                             <span style={{color:'lightgreen', paddingRight: '5px'}}>1.</span>

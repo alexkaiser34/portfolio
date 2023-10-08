@@ -6,6 +6,7 @@ import './style.css';
 import validator from 'validator';
 import emailjs from '@emailjs/browser';
 
+
 import { motion } from 'framer-motion';
 import FadeAnimate from '../FadeAnimate';
 import { ToastContainer, toast } from 'react-toastify';
@@ -17,6 +18,8 @@ type resultButton = "Success" | "Danger";
 function ContactPage(){
 
     const myForm = useRef<HTMLFormElement>();
+
+    const [loading, setLoading] = useState(false);
 
     const notify = (s:resultButton) => {
 
@@ -93,16 +96,33 @@ function ContactPage(){
             event.stopPropagation();
         }
 
+        setLoading(true);
         emailjs.sendForm("service_w25fpau","template_qqlvfre",myForm.current as HTMLFormElement, 'oGwhiciNhFAOwztGo')
         .then((result) => {
             console.log(result.text);
             notify("Success");
+            myForm.current?.reset();
+
+            setFormValue({
+                body: '',
+                user_email: '',
+                subject: ''
+            });
+
+            setFormValid({
+                body: false,
+                user_email: false,
+                subject: true
+            });
+
+            setLoading(false);
+
         }, (error) => {
             console.log(error.text);
             notify("Danger");
+            setLoading(false);
         });
 
-        myForm.current?.reset();
     };
 
 
@@ -160,9 +180,12 @@ function ContactPage(){
                             placeholder="We are prepared to offer you 1 billion dollars..."
                              />
                     </Form.Group>
+                    {!loading ?
                     <Button type="submit" disabled={!(formValid.body && formValid.subject && formValid.user_email)} className="submit-button">
                         Send Email
-                    </Button>
+                    </Button> :
+                    <Form.Label style={{justifySelf: 'center', alignSelf: 'center'}}>Loading...</Form.Label>
+                    }
                 </Form>
                 </>
             })}

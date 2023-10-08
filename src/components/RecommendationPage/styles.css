@@ -1,33 +1,33 @@
 
 .RecommendationPage-container {
     height: 100%;
-    width: 100%;
+    width: max(100%, 600px);
+    display: flex;
+    position: relative;
     /* padding-top: 30px; */
     padding-bottom: 50px;
-}
 
-.rec-header-wrapper {
-    display: flex;
-    background-color: #050e2f;
-    width: 100%;
-    height: max(20%, 100px);
-    z-index: 10;
-}
 
+}
 
 .rec-header {
+    background-color: #050e2f;
     width: 100%;
-    position: fixed;
-    margin-top: 0px;
+    top: max(calc(40px + 3vh), 60px);
+    height: max(15%, 100px);
     padding-top: 30px;
+    z-index: 12;
+    position: fixed;
+    border-bottom: 5px solid lightgreen;
+
+}
+
+.rec-header-flex {
     display: flex;
+    width: 100%;
     align-items: center;
     background-color: #050e2f;
     justify-content: center;
-    padding-bottom: 20px;
-    border-bottom: 5px solid lightgreen;
-    z-index: 10;
-
 }
 
 .rec-header h1 {
@@ -36,8 +36,12 @@
 
 .letter-wrapper{
     margin-top: calc(max(10%, 100px) + 30px);
-    width: max(100%, 1500px);
+    height: 100%;
+    width: 100%;
+    min-width: 1500px;
     display: flex;
+    padding-top: max(15vh, 100px);
+
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
@@ -53,7 +57,6 @@
 }
 
 .school-rec {
-    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -63,7 +66,6 @@
 
 
 .fpga-rec{
-    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;

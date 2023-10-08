@@ -7,14 +7,14 @@ import HomePage from './components/HomePage';
 import AboutPage from './components/AboutPage';
 import ExperiencePage from './components/ExperiencePage';
 import ContactPage from './components/ContactPage';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import RecommendationPage from './components/RecommendationPage';
 
 export type NavLinks = "Home" | "About" | "Experience" | "Contact" | "Recommendations";
 
 function App() {
 
-  const [linkActive, setLinkActive] = useState<NavLinks>("Home");
+  const [linkActive, setLinkActive] = useState<NavLinks | undefined>();
 
   return (
     <HashRouter>

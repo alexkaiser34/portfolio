@@ -7,8 +7,8 @@ import { NavLinks } from '../../App';
 import { motion } from 'framer-motion';
 
 interface HomePageProps {
-    linkActive: NavLinks,
-    setLinkActive: React.Dispatch<React.SetStateAction<NavLinks>>
+    linkActive: NavLinks | undefined,
+    setLinkActive: React.Dispatch<React.SetStateAction<NavLinks | undefined>>
 }
 
 function HomePage(props: HomePageProps){
