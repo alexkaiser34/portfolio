@@ -13,7 +13,7 @@ function ProjectDropDown(props: ProjectDropDownProps){
         <div className="project-drop-down-wrapper">
             <Dropdown>
                 <Dropdown.Toggle id="custom-dropdown">{props.activeProject}</Dropdown.Toggle>
-                <Dropdown.Menu className="dropdown-menu">
+                <Dropdown.Menu className="dropdown-menu" style={{backgroundColor: '#050e2f'}}>
                     {
                         props.projectList.map((project) => {
                             return (
