@@ -4,6 +4,7 @@ import Headshot from '../../images/Headshot.png';
 import { AmazonwebservicesOriginal, AmazonwebservicesOriginalWordmark, AmazonwebservicesPlainWordmark, BashOriginal, BashPlain, COriginal, CplusplusOriginal, CsharpOriginal, DockerOriginal, DotnetcoreOriginal, DotNetOriginal, JavaOriginal, JavascriptOriginal, PythonOriginal, ReactOriginal, TypescriptOriginal } from 'devicons-react';
 import { NavLinks } from '../../App';
 
+import { motion } from 'framer-motion';
 
 interface HomePageProps {
     linkActive: NavLinks,
@@ -15,7 +16,11 @@ function HomePage(props: HomePageProps){
     return (
         <div className="HomePage-container">
             <div className='HomePage-Info'>
-                <div className="HomePage-text">
+                <motion.div
+                    className='HomePage-text'
+                    animate={{x: [-500, 0]}}
+                    transition={{ ease: "easeIn", duration: 0.5 }}
+                    >
                     <div className='intro-homepage'>
                         <div>
                             <h2 className='hi-intro'>
@@ -34,20 +39,28 @@ function HomePage(props: HomePageProps){
                     </Button>
                     </div>
 
-                </div>
+                </motion.div>
                 <div className='descriptions-extended'>
                     <div className='centered-descriptions'>
 
-                    <div className='experience-home'>
-                        <h1>2+ years experience designing</h1>
-                        <ul>
-                            <li>Full-stack web applications</li>
-                            <li>Embedded systems</li>
-                            <li>FPGA (field programmable gate array) applications</li>
-                            <li>Printed circuit boards (PCB)</li>
-                        </ul>
-                    </div>
-                    <div className='programming-languages'>
+                        <motion.div
+                        className='experience-home'
+                        animate={{y: [-500, 0]}}
+                        transition={{ ease: "easeIn", duration: 0.5 }}
+                        >
+                            <h1>2+ years experience designing</h1>
+                            <ul>
+                                <li>Full-stack web applications</li>
+                                <li>Embedded systems</li>
+                                <li>FPGA (field programmable gate array) applications</li>
+                                <li>Printed circuit boards (PCB)</li>
+                            </ul>
+                        </motion.div>
+                        <motion.div
+                        className='programming-languages'
+                        animate={{y: [500, 0]}}
+                        transition={{ ease: "easeIn", duration: 0.5 }}
+                        >
                         <h1>Developing with</h1>
                         <div className='program-icons'>
                             <div title='Python' className='programming-icon'><PythonOriginal /></div>
@@ -63,7 +76,7 @@ function HomePage(props: HomePageProps){
                             <div title='Amazon Web Services' className='programming-icon'><AmazonwebservicesOriginal /></div>
                             <div title='Docker' className='programming-icon'><DockerOriginal /></div>
                         </div>
-                    </div>
+                    </motion.div>
 
                     </div>
                 </div>

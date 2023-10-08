@@ -136,6 +136,15 @@
     /* margin: auto; */
 }
 
+.template-pic-wrapper {
+    width: 100%;
+}
+
+.template-desc-wrapper {
+    width: 100%;
+}
+
+
 .template-project-img {
     width: max(40%, 800px);
 
@@ -198,6 +207,7 @@
     flex-direction: column;
     width: max(100%, 1000px);
     justify-content: space-evenly;
+    /* align-items: center; */
 }
 
 .project-divider {

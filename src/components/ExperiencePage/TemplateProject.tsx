@@ -1,3 +1,4 @@
+import FadeAnimate from "../FadeAnimate";
 
 type alignmentType = "right" | "left";
 
@@ -85,13 +86,15 @@ function TemplateProject(props: TemplateProjectProps){
 
     return (
         <div className="template-project" id={`template-project-${props.projectTitle}`}>
-            <div className="template-project-title">
-                <h1>{props.projectTitle}</h1>
-                <h2>{props.projectTimeline}</h2>
-            </div>
+            {FadeAnimate({className: 'template-project-title', children:
+                <>
+                    <h1>{props.projectTitle}</h1>
+                    <h2>{props.projectTimeline}</h2>
+                </>
+            })}
             <div className="template-project-content">
-                <PictureElement />
-                <DescriptionElement />
+                {FadeAnimate({className: 'template-pic-wrapper', children: <PictureElement />})}
+                {FadeAnimate({className: 'template-desc-wrapper', children: <DescriptionElement />})}
             </div>
         </div>
     );

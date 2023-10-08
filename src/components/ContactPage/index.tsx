@@ -6,6 +6,9 @@ import './style.css';
 import validator from 'validator';
 import emailjs from '@emailjs/browser';
 
+import { motion } from 'framer-motion';
+import FadeAnimate from '../FadeAnimate';
+
 function ContactPage(){
 
     const myForm = useRef<HTMLFormElement>();
@@ -79,10 +82,22 @@ function ContactPage(){
     return (
         <div className="ContactPage-container">
             <div className='contact-header'>
-                <h1>Get in Touch</h1>
-                <h2>Want to get in touch? Click on one of the sidebar icons or send me an email!</h2>
+                <motion.h1
+                animate={{x: [-2000, 0]}}
+                transition={{ ease: "easeIn", duration: 0.5 }}
+                >
+                    Get in Touch
+                </motion.h1>
+
+                <motion.h2
+                animate={{x: [2000, 0]}}
+                transition={{ delay: 0.4, ease: "easeIn", duration: 0.5 }}
+                >
+                    Want to get in touch? Click on one of the sidebar icons or send me an email!
+                </motion.h2>
             </div>
-            <div className='contact-form'>
+            {FadeAnimate({className: 'contact-form', delay: 1, children:
+                <>
                 <Form ref={myForm as any} className="email-form" onSubmit={handleSubmit}>
                     <Form.Group className="mb-3">
                         <Form.Label>Email address</Form.Label>
@@ -120,7 +135,8 @@ function ContactPage(){
                         Send Email
                     </Button>
                 </Form>
-            </div>
+                </>
+            })}
         </div>
     )
 }

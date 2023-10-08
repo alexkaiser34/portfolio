@@ -3,6 +3,7 @@ import './styles.css';
 import fpgaLetter from './fpga-letter-of-rec.pdf';
 import schoolLetter from './school-letter-of-reec.pdf';
 import { Document, Page, pdfjs } from 'react-pdf';
+import FadeAnimate from '../FadeAnimate';
 
 
 function RecommendationPage(){
@@ -33,16 +34,22 @@ function RecommendationPage(){
                 </div>
             </div>
             <div className="letter-wrapper">
-                <div className='school-rec'>
-                    <h1>Professor Brian Krug</h1>
-                    <h2>GVSU Professor</h2>
-                    <SchoolFile />
-                </div>
-                <div className='fpga-rec'>
-                    <h1>Jake Vande Brake (PMP,ACP)</h1>
-                    <h2>DornerWorks Engineering Project Manager</h2>
-                    <FpgaFile />
-                </div>
+                {FadeAnimate({className: 'school-rec', children:
+                    <>
+                        <h1>Professor Brian Krug</h1>
+                        <h2>GVSU Professor</h2>
+                        <SchoolFile />
+                    </>
+                })}
+
+                {FadeAnimate({className: 'fpga-rec', children:
+                    <>
+                        <h1>Jake Vande Brake (PMP,ACP)</h1>
+                        <h2>DornerWorks Engineering Project Manager</h2>
+                        <FpgaFile />
+                    </>
+
+                })}
             </div>
         </div>
     );
