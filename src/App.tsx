@@ -8,8 +8,9 @@ import AboutPage from './components/AboutPage';
 import ExperiencePage from './components/ExperiencePage';
 import ContactPage from './components/ContactPage';
 import { useState } from 'react';
+import RecommendationPage from './components/RecommendationPage';
 
-export type NavLinks = "Home" | "About" | "Experience" | "Contact";
+export type NavLinks = "Home" | "About" | "Experience" | "Contact" | "Recommendations";
 
 function App() {
 
@@ -29,9 +30,10 @@ function App() {
           <Routes>
               <Route path="/Home" element={<HomePage linkActive={linkActive} setLinkActive={setLinkActive} />} />
               <Route path="/" element={<HomePage linkActive={linkActive} setLinkActive={setLinkActive} />} />
-              <Route path='/About' Component={AboutPage} />
-              <Route path='/Experience' Component={ExperiencePage} />
-              <Route path='/Contact' Component={ContactPage} />
+              <Route path='/About' element={<AboutPage />} />
+              <Route path='/Experience' element={<ExperiencePage />} />
+              <Route path='/Contact' element={<ContactPage />} />
+              <Route path='/Recommendations' element={<RecommendationPage />} />
           </Routes>
         </div>
       </div>

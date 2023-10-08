@@ -60,6 +60,10 @@ function NavBar(props: NavBarProps){
                             <span style={{color:'lightgreen', paddingRight: '5px'}}>4.</span>
                             <span>Contact</span>
                         </Nav.Link>
+                        <Nav.Link onClick={() => {window.scrollTo(0,0); props.setLinkActive("Recommendations")}} active={props.linkActive === "Recommendations"} href="#/Recommendations" className="d-flex flex-row" >
+                            <span style={{color:'lightgreen', paddingRight: '5px'}}>5.</span>
+                            <span>Recommendations</span>
+                        </Nav.Link>
                         <div style={{paddingLeft: '40px'}}>
                             <Resume />
                         </div>

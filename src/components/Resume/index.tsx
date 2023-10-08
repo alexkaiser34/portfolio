@@ -50,7 +50,7 @@ function Resume(){
         pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
         return(
             <Document file={resume}>
-                <Page scale={scale} pageNumber={1} renderTextLayer={false} />
+                <Page scale={scale} pageNumber={1} renderTextLayer={false} renderAnnotationLayer={false} />
             </Document>
         );
     }
@@ -82,9 +82,9 @@ function Resume(){
                 </Modal.Title>
                 <div className="ms-auto" id='download-button'>
                 <a href="files/resume.pdf" target="_blank" download>
-                        <Button>
-                            <Download />
-                        </Button>
+                    <Button>
+                        <Download />
+                    </Button>
                 </a>
                 </div>
             </ModalHeader>
