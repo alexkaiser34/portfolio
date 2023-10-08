@@ -14,8 +14,8 @@ function SeniorProject(){
     project.projectTimeline = "January 2023 - August 2023";
 
     project.projectDescription = `
-        This was my senior project at Grand Valley State University.  For this project,
-        I was working with a team of engineers, and DornerWorks Ltd. was the project customer.
+        This was my senior project at Grand Valley State University.  I worked with a team
+        of engineers to support the project customer: DornerWorks Ltd.
         The goal of this project was to provide DornerWorks Ltd with a visually
         appealing application to customers that shows off the isolation and security features of a hypervisor,
         specifically the seL4 hypervisor. The demo consisted of two virtual machines running
@@ -33,18 +33,18 @@ function SeniorProject(){
         "Lead software and hardware engineer",
         "Led and managed a team of engineers to meet a variety of customer needs",
         "Organized and planned project timeline",
-        "Preformed one on one and team meetings with the customer to better understand their needs",
+        "Preformed one-on-one and team meetings with the customer to better understand their needs",
         "Delegated tasks to the team to ensure project deadlines would be met",
         "Held numerous design presentations with various faculty and industry customers"
     ]
 
     project.projectContributions = [
-        "Designed and researched a control algorithm to balance inverted pendulum effectively",
+        "Designed and researched a control algorithm to balance inverted pendulum",
         "Designed and prototyped a custom printed circuit board to add signal processing circuitry",
-        "Configured the hardware description of the MPSoC (multiprocessor system on chip)",
+        "Configured the hardware description of an MPSoC (multiprocessor system on chip)",
         "Designed hardware drivers in VHDL and Verilog to communicate with various sensors using the AXI communication protocol",
         "Designed software drivers to communicate to the hardware drivers from a freeRTOS and linux virtual machine",
-        "Created bootloader patches to add some application functionality",
+        "Created bootloader patches to add application functionality",
         "Configured an seL4 application to allow seL4 to manage a freeRTOS and linux virtual machine",
         "Completed project a month early and greatly satisfied the customer"
     ]

@@ -14,9 +14,9 @@ function FlightDemo(){
     project.projectTimeline = "January 2022 - May 2022";
 
     project.projectDescription = `
-        For this project, I worked with a team of engineers in the Secure Technologies
+        For this project, I worked with one engineer in the Secure Technologies
         group at DornerWorks Ltd.  The goal of the first phase of this project was to implement
-        a demo simulating a vulnerability in a flight software application.  This demo would
+        a demo simulating a vulnerability in a flight software application.  This demo was intended to
         show what could happen if applications run directly on hardware without a hypervisor. The next
         phase of the project was to integrate an application onto a hypervisor`;
 
@@ -28,7 +28,7 @@ function FlightDemo(){
         "Collaborate with team to determine the best course of action",
         "Participate in daily status meetings with the customer and the team",
         "Develop a visual demo to simulate a vulnerability in flight software",
-        "Develop using a tool called VxWorks"
+        "Develop using software called VxWorks"
     ]
 
     project.projectContributions = [

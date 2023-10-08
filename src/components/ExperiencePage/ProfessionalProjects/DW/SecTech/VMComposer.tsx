@@ -38,7 +38,8 @@ function VMComposer(){
         "Added unit tests for both the front-end and back-end",
         "Designed and created front-end components to improve layout and user interaction",
         "Helped configure a GitLab CI/CD pipeline",
-        "Improved styling of various front-end components"
+        "Improved styling of various front-end components",
+        "Wrote numerous unit tests for front-end components"
     ]
 
 

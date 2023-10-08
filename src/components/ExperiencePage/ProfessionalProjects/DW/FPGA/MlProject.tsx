@@ -29,8 +29,8 @@ function MlProject(){
 
     project.projectResponsibilities = [
         "Lead engineer on translation of specific algorithms",
-        "Communicate with team and customer to provide status updates",
-        "Led team in specific areas of software development using a linux machine",
+        "Communicate with team and customer to provide project status updates",
+        "Led team in specific areas of software development",
         "Increase speed and performance of various algorithms"
     ]
 

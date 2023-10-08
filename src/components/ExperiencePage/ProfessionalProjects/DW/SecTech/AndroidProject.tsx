@@ -27,14 +27,14 @@ function AndroidProject(){
         "Collaborate with a large team of engineers to solve complex issues",
         "Participate in daily status meetings with the customer and the team",
         "Develop custom applications to satisfy customers needs",
-        "Help develop webserver"
+        "Design various webserver components"
     ]
 
     project.projectContributions = [
-        "Created custom application to control color of device LEDs by communicated with the webserver to show device statistics",
+        "Created custom application to control the color of device LEDs which communicated with the webserver to show device statistics",
         "Created multiple components in webserver (C#, ASP.NET)",
         "Created various documentation for the customer",
-        "Helped the team plan best course of action for completing the project"
+        "Helped the team plan the best course of action for completing the project"
     ]
 
 

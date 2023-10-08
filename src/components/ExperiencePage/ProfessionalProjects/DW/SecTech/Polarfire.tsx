@@ -30,10 +30,10 @@ function Polarfire(){
     ]
 
     project.projectContributions = [
-        "Created a docker environment to build and run test application",
+        "Created a development environment for the team with Docker to build and run test applications",
         "Helped implement sections of ethernet driver code",
         "Hosted individual meetings with the customer to help them debug issues",
-        "Wrote numerous bash/shell scripts for building the application"
+        "Wrote numerous bash/shell scripts for building and testing the application"
     ]
 
 

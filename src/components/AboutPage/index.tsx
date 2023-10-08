@@ -7,8 +7,8 @@ import DesignThinking from '../../images/design-thinking.png';
 import DiverseBackground from '../../images/diverse-background.png';
 import SoftwareDesign from '../../images/software-design.png';
 import GVLogo from '../../images/gv-logo.png';
+import CustomerService from '../../images/CustomerService.png';
 
-import { motion, inView } from 'framer-motion';
 import FadeAnimate from '../FadeAnimate';
 
 
@@ -147,6 +147,26 @@ function AboutPage(){
                             </div>
                         </>
                     })}
+
+                    {FadeAnimate({className: 'divide-wrapper', children: <hr className='skills-divide' />})}
+
+                    {FadeAnimate({className: 'skills-row', children:
+                        <>
+                            <div className='skills-row'>
+                                <div className='skills-row-image'>
+                                    <img src={CustomerService}></img>
+                                </div>
+                                <div style={{width: '80%'}}>
+                                    <h2>Client Interaction</h2>
+                                    <h3>Making use of considerable experience
+                                        interacting and communicating with clients to
+                                        establish and build professional relationships
+                                    </h3>
+                                </div>
+                            </div>
+                        </>
+                    })}
+
                 </div>
             </div>
 

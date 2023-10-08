@@ -28,7 +28,7 @@ function NBAapp(){
 
     project.projectResponsibilities = [
         "Plan the flow of communication throughout the application",
-        "Design data structures to be used by front-end, back-end, and database",
+        "Design data structures to be used by the front-end, back-end, and database",
         "Host application using Amazon Web Services",
         "Design and communicate with an AWS hosted mySQL database",
         "Design and test the front-end of the application",
@@ -39,7 +39,7 @@ function NBAapp(){
         "Created and configured AWS to host a mySQL database",
         "Created and configured AWS to host the back-end of the application",
         "Designed the back-end to preform API requests daily to store new data in the database",
-        "Designed and created RESTful API for front-end to database communication",
+        "Designed and created a RESTful API for front-end to database communication",
         "Designed and tested various components for the front-end",
         "Implemented some advanced capabilities of ReactJS"
     ]

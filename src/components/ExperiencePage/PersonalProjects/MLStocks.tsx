@@ -15,7 +15,7 @@ function MLStocks(){
 
     project.projectDescription = `
         I worked on this project individually.  The goal of this project was to
-        better familiarize myself with react and TypeScript.  This project is a
+        better familiarize myself with React and TypeScript.  This project is a
         cross-platform desktop application that is supported for download
         on macOS, Ubuntu, and Windows.  It shows real time stock metrics for up
         to 50 stocks, along with machine learning price predictions for each. The project
@@ -28,11 +28,11 @@ function MLStocks(){
 
     project.projectResponsibilities = [
         "Plan the flow of communication throughout the application",
-        "Design data structures to be used by front-end, back-end, and database",
+        "Design data structures to be used by the front-end, back-end, and database",
         "Design the application layout best suited for user interaction",
         "Develop all components and containers for the front-end",
-        "Research which machine learning model is most effective for available data",
-        "Design the backend to preform machine learning and store external data in a database"
+        "Research which machine learning model are most effective for available data",
+        "Design the back-end to preform machine learning and store external data in a database"
     ]
 
     project.projectContributions = [
