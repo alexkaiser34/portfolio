@@ -81,7 +81,7 @@ function Resume(){
                     Resume
                 </Modal.Title>
                 <div className="ms-auto" id='download-button'>
-                <a href="files/resume.pdf" target="_blank" download>
+                <a href="files/Alexander_Kaiser_resume.pdf" target="_blank" download>
                     <Button>
                         <Download />
                     </Button>
