@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import { useState } from "react";
+import { Navbar, Container, Nav } from "react-bootstrap";
 import { Hexagon } from "react-bootstrap-icons";
 import { NavLinks } from "../../App";
 import Resume from "../Resume";
@@ -34,7 +34,7 @@ function NavBar(props: NavBarProps){
             <Container fluid className="navbar-container">
                 <div className="icon-div">
                     <hr className="horizontalDivider" />
-                    <Navbar.Brand href="/#/portfolio" id="navbar-brand">
+                    <Navbar.Brand href="#/Home" id="navbar-brand">
                         <div className="brand-container">
                             <Hexagon className="hex-icon" />
                             <div className="initials">AK</div>

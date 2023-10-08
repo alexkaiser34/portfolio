@@ -8,10 +8,35 @@ import emailjs from '@emailjs/browser';
 
 import { motion } from 'framer-motion';
 import FadeAnimate from '../FadeAnimate';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+type resultButton = "Success" | "Danger";
 
 function ContactPage(){
 
     const myForm = useRef<HTMLFormElement>();
+
+    const notify = (s:resultButton) => {
+
+        if (s === "Success"){
+            toast("Email sent successfully!", {
+                theme: 'colored',
+                style: {backgroundColor: 'lightgreen', color: 'black'},
+                position: 'top-left',
+                autoClose: 3000
+            });
+        }
+        else {
+            toast("Email failed! Please ensure you have correctly entered an email, subject, and body", {
+                theme: 'colored',
+                style: {backgroundColor: '#ff6868', color: 'black'},
+                position: 'top-left',
+                autoClose: 5000
+            });
+        }
+    }
 
     const [formValue, setFormValue] = useState({
         user_email: '',
@@ -71,8 +96,10 @@ function ContactPage(){
         emailjs.sendForm("service_w25fpau","template_qqlvfre",myForm.current as HTMLFormElement, 'oGwhiciNhFAOwztGo')
         .then((result) => {
             console.log(result.text);
+            notify("Success");
         }, (error) => {
             console.log(error.text);
+            notify("Danger");
         });
 
         myForm.current?.reset();
@@ -80,7 +107,9 @@ function ContactPage(){
 
 
     return (
+
         <div className="ContactPage-container">
+            <ToastContainer />
             <div className='contact-header'>
                 <motion.h1
                 animate={{x: [-2000, 0]}}

@@ -26,7 +26,7 @@ function TemplateProject(props: TemplateProjectProps){
                     <p>{props.projectDescription}</p>
                 </div>
                 <div className="template-project-img">
-                    <img src={props.projectImage} />
+                    <img src={props.projectImage} alt={props.projectTitle} />
                 </div>
             </div>
         ) : (
@@ -34,7 +34,7 @@ function TemplateProject(props: TemplateProjectProps){
                 paddingLeft: props.alignment === "left" ? '40px' : ''
             }}>
                 <div className="template-project-img">
-                    <img src={props.projectImage} />
+                    <img src={props.projectImage} alt={props.projectTitle} />
                 </div>
                 <div className="template-project-about">
                     <h1>About the project...</h1>
@@ -53,13 +53,13 @@ function TemplateProject(props: TemplateProjectProps){
                 <div className="template-project-role">
                     <h1>Role: {props.projectRole}</h1>
                     <ul>
-                        {props.projectResponsibilities.map(item => <li>{item}</li>)}
+                        {props.projectResponsibilities.map(item => <li key={`resp-${item as string}`}>{item}</li>)}
                     </ul>
                 </div>
                 <div className="template-project-contributions">
                     <h1>Technical Accomplishments</h1>
                     <ul>
-                        {props.projectContributions.map(item => <li>{item}</li>)}
+                        {props.projectContributions.map(item => <li key={`cont-${item as string}`}>{item}</li>)}
                     </ul>
                 </div>
             </div>
@@ -70,13 +70,13 @@ function TemplateProject(props: TemplateProjectProps){
                 <div className="template-project-contributions">
                     <h1>Technical Accomplishments</h1>
                     <ul>
-                        {props.projectContributions.map(item => <li>{item}</li>)}
+                        {props.projectContributions.map(item => <li key={`cont-${item as string}`}>{item}</li>)}
                     </ul>
                 </div>
                 <div className="template-project-role">
                     <h1>Role: {props.projectRole}</h1>
                     <ul>
-                        {props.projectResponsibilities.map(item => <li>{item}</li>)}
+                        {props.projectResponsibilities.map(item => <li key={`resp-${item as string}`}>{item}</li>)}
                     </ul>
                 </div>
             </div>

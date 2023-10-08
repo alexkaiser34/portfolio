@@ -22,6 +22,7 @@ function ProjectDropDown(props: ProjectDropDownProps){
                                         window.scrollTo(0,0);
                                         props.setActiveProject(project as string);
                                     }}
+                                    key={"dropdown-item-" + project}
                                     active={props.activeProject === project ? true : false}
                                     style ={{
                                         backgroundColor: props.activeProject === project ? 'lightblue' : '#050e2f',
