@@ -66,17 +66,6 @@ function HomePage(props: HomePageProps){
                     </div>
 
                     </div>
-                    {/* <div>
-                        <h1 className='align-items-center'>Engineering Education</h1>
-                        <ul>
-                            <li>Grand Valley State University</li>
-                            <li>Bachelors of Science in Electrical Engineering</li>
-                            <li>Bachelors of Science in Computer Engineering</li>
-                            <li>Minor in Business Administration</li>
-                            <li>Honors College</li>
-                            <li>3.85 GPA</li>
-                        </ul>
-                    </div> */}
                 </div>
             </div>
 
