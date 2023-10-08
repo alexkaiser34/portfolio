@@ -45,6 +45,7 @@ function ExperiencePage(){
                                 }}className="professional-button" onClick={() => {
                                     window.scrollTo(0,0);
                                     setToggle(0);
+                                    setActiveProject("seL4 Doom Pendulum Demo");
                                 }}>Professional</button>
                                 <button style={{
                                     backgroundColor: toggle == 1 ? 'lightgreen' : '',
@@ -52,6 +53,7 @@ function ExperiencePage(){
                                 }}className="personal-button" onClick={() => {
                                     window.scrollTo(0,0);
                                     setToggle(1);
+                                    setActiveProject("Machine Learning Stock App");
                                 }}>Personal</button>
                             </ButtonGroup>
                         </div>
