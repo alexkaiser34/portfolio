@@ -43,10 +43,24 @@
     height: 100%;
     width: 100%;
     display: flex;
-    padding-top: 50px;
     flex-direction: row;
-    align-items: center;
+    flex-wrap: wrap;
+
+    /* display: grid;
+    padding-top: 50px;
+    /* align-items: center; */
     justify-content: space-evenly;
+
+    /* row-gap: 30px;
+    grid-template-columns: repeat(auto-fit, 50%);
+    place-items: center; */
+    /* justify-content: center; */
+    /* justify-items: center; */
+    /* grid-auto-columns: 50%; */
+    /* grid-auto-flow: column; */
+    /* flex-direction: row; */
+    /* align-items: center; */
+    /* justify-content: space-evenly; */
     z-index: 1;
 }
 
@@ -60,19 +74,17 @@
     font-size: max(calc(10px + 0.8vw), 18px);
 }
 
-.school-rec {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-
-
-.fpga-rec{
+.letter-grid {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
+
 }
+
+.letter-grid-wrapper{
+    padding: 30px;
+    margin: 10px;
+}
+

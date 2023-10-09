@@ -1,7 +1,9 @@
 
 import './styles.css';
 import fpgaLetter from './fpga-letter-of-rec.pdf';
-import schoolLetter from './school-letter-of-reec.pdf';
+import schoolLetter from './school-letter-of-rec.pdf';
+import secTechLetter from './secure-tech-letter-of-rec.pdf';
+
 import { Document, Page, pdfjs } from 'react-pdf';
 import FadeAnimate from '../FadeAnimate';
 import { useEffect, useMemo, useState } from 'react';
@@ -39,14 +41,8 @@ function RecommendationPage(){
         else if (screenSize.width <= 1300 && screenSize.width > 1150){
             setScale(0.8);
         }
-        else if (screenSize.width <= 1150 && screenSize.width > 850){
+        else {
             setScale(0.6);
-        }
-        else if (screenSize.width <= 850 && screenSize.width > 650){
-            setScale(0.45);
-        }
-        else{
-            setScale(0.3);
         }
 
     },[screenSize.width])
@@ -70,8 +66,19 @@ function RecommendationPage(){
         );
     }
 
+
+    const SecTechFile = () => {
+        pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+        return(
+            <Document file={secTechLetter}>
+                <Page scale={scale} pageNumber={1} renderTextLayer={false} renderAnnotationLayer={false} />
+            </Document>
+        );
+    }
+
     const MemoFpga = useMemo(() => FpgaFile(), [scale]);
     const MemoSchool = useMemo(() => SchoolFile(), [scale]);
+    const MemoSecTech = useMemo(() => SecTechFile(), [scale]);
 
 
     return (
@@ -80,15 +87,21 @@ function RecommendationPage(){
                 <h1>Recommendations from Colleagues</h1>
             </div>
             <div className="letter-wrapper">
-                {FadeAnimate({className: 'school-rec', children:
+
+                <div className='letter-grid-wrapper'>
+                {FadeAnimate({className: 'letter-grid', children:
                     <>
                         <h1>Professor Brian Krug</h1>
                         <h2>GVSU Professor</h2>
                         {MemoSchool}
                     </>
                 })}
+                </div>
 
-                {FadeAnimate({className: 'fpga-rec', children:
+                <div className='letter-grid-wrapper'>
+
+
+                {FadeAnimate({className: 'letter-grid', children:
                     <>
                         <h1>Jake Vande Brake (PMP,ACP)</h1>
                         <h2>DornerWorks Engineering Project Manager</h2>
@@ -96,6 +109,19 @@ function RecommendationPage(){
                     </>
 
                 })}
+
+                </div>
+
+                <div className='letter-grid-wrapper'>
+                {FadeAnimate({className: 'letter-grid', children:
+                    <>
+                        <h1>David Van Duinen</h1>
+                        <h2>DornerWorks Engineering Project Manager</h2>
+                        {MemoSecTech}
+                    </>
+
+                })}
+                </div>
             </div>
         </div>
     );
