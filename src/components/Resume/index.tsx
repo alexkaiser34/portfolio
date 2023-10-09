@@ -22,29 +22,33 @@ function Resume(){
 
   	useEffect(() => {
         const updateDimension = () => {
-            setScreenSize(getCurrentDimension())
-            if (screenSize.width < 1000 && screenSize.width > 560){
-                setScale(0.8);
-            }
-            else if (screenSize.width <= 560 && screenSize.width > 475){
-                setScale(0.7);
-            }
-            else if (screenSize.width <= 475 && screenSize.width > 425){
-                setScale(0.58);
-            }
-            else if (screenSize.width <= 425){
-                setScale(0.48);
-            }
-            else{
-                setScale(1.2);
-            }
+            setScreenSize(getCurrentDimension());
         }
         window.addEventListener('resize', updateDimension);
 
         return(() => {
             window.removeEventListener('resize', updateDimension);
         })
-  	}, [screenSize])
+  	}, [screenSize]);
+
+
+    useEffect(() => {
+        if (screenSize.width < 1000 && screenSize.width > 560){
+            setScale(0.8);
+        }
+        else if (screenSize.width <= 560 && screenSize.width > 475){
+            setScale(0.7);
+        }
+        else if (screenSize.width <= 475 && screenSize.width > 425){
+            setScale(0.58);
+        }
+        else if (screenSize.width <= 425){
+            setScale(0.48);
+        }
+        else{
+            setScale(1.2);
+        }
+    },[screenSize.width]);
 
     const ResumeFile = () => {
         pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -81,7 +85,7 @@ function Resume(){
                     Resume
                 </Modal.Title>
                 <div className="ms-auto" id='download-button'>
-                <a href="files/Alexander_Kaiser_resume.pdf" target="_blank" download>
+                <a href="files/Alex_Kaiser_Resume.pdf" target="_blank" download>
                     <Button>
                         <Download />
                     </Button>

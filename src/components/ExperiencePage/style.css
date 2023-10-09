@@ -15,9 +15,10 @@
     position: fixed;
     background-color: #050e2f;
     height: max(20%, 100px);
-    top: max(calc(40px + 3vh), 60px);
+    padding-top: calc(max(calc(40px + 3vh), 60px) + 30px);
+    top: 0;
     width: 100%;
-    padding-top: 30px;
+    /* padding-top: 30px; */
     z-index: 12;
 
 }

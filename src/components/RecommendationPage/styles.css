@@ -3,6 +3,8 @@
     height: 100%;
     width: max(100%, 600px);
     display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     position: relative;
     /* padding-top: 30px; */
     padding-bottom: 50px;
@@ -26,22 +28,22 @@
     display: flex;
     width: 100%;
     align-items: center;
+    border-bottom: 5px solid lightgreen;
+    padding-top: 30px;
+    padding-bottom: 30px;
     background-color: #050e2f;
     justify-content: center;
 }
 
-.rec-header h1 {
+.rec-header-flex h1 {
     color: lightgreen;
 }
 
 .letter-wrapper{
-    margin-top: calc(max(10%, 100px) + 30px);
     height: 100%;
     width: 100%;
-    min-width: 1500px;
     display: flex;
-    padding-top: max(15vh, 100px);
-
+    padding-top: 50px;
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
@@ -50,10 +52,12 @@
 
 .letter-wrapper h1 {
     color: lightgreen;
+    font-size: max(calc(10px + 1vw), 20px);
 }
 
 .letter-wrapper h2 {
     color: lightblue;
+    font-size: max(calc(10px + 0.8vw), 18px);
 }
 
 .school-rec {
