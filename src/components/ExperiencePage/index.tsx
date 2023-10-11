@@ -60,7 +60,7 @@ function ExperiencePage(){
                         <div className="page-dropdown-wrapper">
                                 <div className="page-dropdown">
                                     <h2 style={{paddingRight: '20px'}}>
-                                    {activeProject === "seL4 Doom Pendulum Demo" ? "Project: " : "Projects: "}
+                                    {activeProject === "DornerWorks - Secure Technologies" ? "Projects: " : "Project: "}
                                     </h2>
                                     {toggle == 0 ?
                                     <ProjectDropDown activeProject={activeProject} setActiveProject={setActiveProject} projectList={ProjectListProfessional} /> :
