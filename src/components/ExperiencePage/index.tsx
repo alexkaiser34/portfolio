@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
 import './style.css';
 import PersonalExperience from './PersonalExperience';
@@ -31,6 +31,10 @@ function ExperiencePage(){
         'Drone',
         'Slot Machine'
     ];
+
+    useEffect(() => {
+        document.title = "Alex Kaiser - Experience";
+     }, []);
 
 
     return (

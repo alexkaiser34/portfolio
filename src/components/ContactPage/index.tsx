@@ -62,6 +62,10 @@ function ContactPage(){
         checkValid('body');
     }, [formValue.body]);
 
+    useEffect(() => {
+        document.title = "Alex Kaiser - Contact";
+     }, []);
+
 
 
     const onChange = (e: any) => {

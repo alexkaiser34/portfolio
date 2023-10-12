@@ -9,8 +9,11 @@ import ExperiencePage from './components/ExperiencePage';
 import ContactPage from './components/ContactPage';
 import { useEffect, useState } from 'react';
 import RecommendationPage from './components/RecommendationPage';
+import ReactGA from 'react-ga';
 
 export type NavLinks = "Home" | "About" | "Experience" | "Contact" | "Recommendations";
+
+ReactGA.initialize("G-TEM3M1JKC9");
 
 function App() {
 

@@ -5,6 +5,7 @@ import { AmazonwebservicesOriginal, AmazonwebservicesOriginalWordmark, Amazonweb
 import { NavLinks } from '../../App';
 
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 interface HomePageProps {
     linkActive: NavLinks | undefined,
@@ -12,6 +13,11 @@ interface HomePageProps {
 }
 
 function HomePage(props: HomePageProps){
+
+
+    useEffect(() => {
+        document.title = "Alex Kaiser Portfolio";
+     }, []);
 
     return (
         <div className="HomePage-container">

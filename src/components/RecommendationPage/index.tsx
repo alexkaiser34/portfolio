@@ -45,7 +45,12 @@ function RecommendationPage(){
             setScale(0.6);
         }
 
-    },[screenSize.width])
+    },[screenSize.width]);
+
+
+    useEffect(() => {
+        document.title = "Alex Kaiser - Recommendations";
+     }, []);
 
 
     const SchoolFile = () => {

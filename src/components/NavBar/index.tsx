@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { NavLinks } from "../../App";
 import Resume from "../Resume";
 import './styles.css';
+import ReactGA from 'react-ga';
 
 
 interface NavBarProps {
@@ -28,6 +29,10 @@ function NavBar(props: NavBarProps){
             props.setLinkActive("Home");
         }
     }, [location.pathname, props]);
+
+    useEffect(() => {
+        ReactGA.pageview(location.pathname + location.search);
+    }, [location.pathname]);
 
 
     const handleClick = () => {

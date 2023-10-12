@@ -10,9 +10,15 @@ import GVLogo from '../../images/gv-logo.png';
 import CustomerService from '../../images/CustomerService.png';
 
 import FadeAnimate from '../FadeAnimate';
+import { useEffect } from 'react';
 
 
 function AboutPage(){
+
+
+    useEffect(() => {
+        document.title = "Alex Kaiser - About";
+     }, []);
 
     return (
         <div className='AboutPage-container'>
