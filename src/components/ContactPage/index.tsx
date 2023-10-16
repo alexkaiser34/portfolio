@@ -101,7 +101,7 @@ function ContactPage(){
         }
 
         setLoading(true);
-        emailjs.sendForm("service_w25fpau","template_qqlvfre",myForm.current as HTMLFormElement, 'oGwhiciNhFAOwztGo')
+        emailjs.sendForm("service_ccobspo","template_qqlvfre",myForm.current as HTMLFormElement, 'oGwhiciNhFAOwztGo')
         .then((result) => {
             console.log(result.text);
             notify("Success");
