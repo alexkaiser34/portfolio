@@ -12,12 +12,12 @@ function SportsBetApp(){
 
     project.alignment = "right";
 
-    project.projectTimeline = "August 2023 - Present";
+    project.projectTimeline = "August 2023 - December 2023";
 
     project.projectDescription = `
 
         I worked on this project with a team of engineers from Grand Valley
-        State Universtiy. The goal of the project is to create a web application
+        State Universtiy. The goal of the project was to create a web application
         that displays different bets and odds for upcoming NFL games.  The user
         can interact with this application by creating an account and tracknig
         their own bets.  They will be able to see how much profit they can make
