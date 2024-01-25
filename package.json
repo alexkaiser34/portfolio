@@ -28,7 +28,7 @@
     "validator": "^13.11.0",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://alexkaiser34.github.io/portfolio/#",
+  "homepage": "https://www.alexjkaiser.com/",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
