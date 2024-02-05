@@ -12,17 +12,25 @@
 }
 
 .App-content {
-  margin-left: max(calc(20px + 2vw), 50px);
-  margin-top: max(calc(40px + 3vh), 60px);
+  /* margin-left: max(calc(20px + 2vw), 50px);
+  margin-top: max(calc(40px + 3vh), 60px); */
   background-color: #050e2f;
-  position: relative;
-  /* height: 100%; */
-  /* width: 100%; */
-  /* min-height: calc(100vh - max(calc(40px + 3vh), 60px)); */
+  display: flex;
+  /* padding-top: max(calc(40px + 3vh), 60px); */
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  z-index: 1000;
   /* min-width: calc(100vw - max(calc(20px + 2vw), 50px)); */
 }
 
-.App-sidebar{
+/* .App-sidebar {
+  display: fixed;
+  bottom: 0;
+  left: 0;  
+} */
+
+/* .App-sidebar{
   left: 0;
   top: 0;
   bottom: 0;
@@ -32,12 +40,12 @@
   z-index: 5;
   background-color: #050e2f;
   overflow: hidden;
-}
+} */
 
 .App-navbar {
   background-color: #050e2f;
   overflow: hidden;
-  z-index: 10;
+  padding-bottom: 15px;
 }
 
 

@@ -6,6 +6,7 @@ import { NavLinks } from "../../App";
 import Resume from "../Resume";
 import './styles.css';
 import ReactGA from 'react-ga';
+import SocialMediaBar from "../SocialMediaBar";
 
 
 interface NavBarProps {
@@ -17,8 +18,27 @@ interface NavBarProps {
 function NavBar(props: NavBarProps){
 
     const [click, setClicked] = useState(false);
+    const [screenSize, setScreenSize] = useState(getCurrentDimension());
 
     const location = useLocation();
+
+    function getCurrentDimension(){
+        return {
+            width: window.innerWidth,
+            height: window.innerHeight
+        }
+    }
+
+    useEffect(() => {
+        const updateDimension = () => {
+            setScreenSize(getCurrentDimension());
+        }
+        window.addEventListener('resize', updateDimension);
+
+        return(() => {
+            window.removeEventListener('resize', updateDimension);
+        })
+    }, [screenSize]);
 
     useEffect(() => {
         const routeName = location.pathname.slice(1);
@@ -46,9 +66,7 @@ function NavBar(props: NavBarProps){
 
 
     return (
-        <Navbar collapseOnSelect expand="lg" fixed="top" className="navbar-dark" id="navbar-wrapper" style={{
-            height: !click ? 'max(calc(40px + 3vh), 60px)' : 'inherit'
-        }}>
+        <Navbar collapseOnSelect expand="lg" sticky="top" className="navbar-dark" id="navbar-wrapper">
             <Container fluid className="navbar-container">
                 <div className="icon-div">
                     <hr className="horizontalDivider" />
@@ -59,6 +77,7 @@ function NavBar(props: NavBarProps){
                         </div>
                     </Navbar.Brand>
                 </div>
+                <SocialMediaBar isExpanded={screenSize.width >= 992}/>
                 <Navbar.Toggle onClick={handleClick} aria-controls="responsive-navbar-nav" className="ms-auto" id="toggle-bar"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="align-items-center ms-auto" id="navbar-links">
@@ -86,8 +105,6 @@ function NavBar(props: NavBarProps){
                             <Resume />
                         </div>
                     </Nav>
-
-
                 </Navbar.Collapse>
             </Container>
         </Navbar>

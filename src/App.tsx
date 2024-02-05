@@ -25,10 +25,6 @@ function App() {
         <div className='App-navbar'>
           <NavBar linkActive={linkActive} setLinkActive={setLinkActive} />
         </div>
-        <div className="App-sidebar">
-            <SocialMediaBar />
-        </div>
-        <div className="static-background"></div>
         <div className='App-content'>
           <Routes>
               <Route path="/Home" element={<HomePage linkActive={linkActive} setLinkActive={setLinkActive} />} />

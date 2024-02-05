@@ -1,15 +1,13 @@
 
 #navbar-wrapper {
   background-color: #050e2f;
-  z-index: 20;
-
-
+  padding-top: 15px;
 }
 
 .navbar-container {
     color: lightblue;
     font-family: Trebuchet MS,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Tahoma,sans-serif;
-    font-size: large;
+    font-size: medium;
     padding-left: 0px;
     background-color: #050e2f;
 }
@@ -65,7 +63,7 @@
 }
 
 #navbar-links a {
-    padding-left: 40px;
+    padding-left: 20px;
 }
 
 #navbar-brand {
@@ -92,4 +90,10 @@
     width: 60px;
     height: 3px;
     background-color: lightblue;
+}
+
+#nav-social {
+    border-color: aqua;
+    align-content: center;
+    justify-content: center;
 }
