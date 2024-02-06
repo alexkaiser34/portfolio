@@ -138,3 +138,35 @@
     color: lightblue;
 
 }
+
+.project-card {
+    background-color: #050e2f;
+    color: lightblue;
+    outline: 3px solid rgba(144,238,144,0.8);
+    padding: 10px 10px;
+}
+
+#card-button {
+    background-color: transparent;
+    outline: 2px solid lightgreen !important;
+    color: lightblue;
+    border: none;
+    transition: all 0.3s ease;
+
+}
+
+#card-button:hover {
+    color: #050e2f;
+    background-color: lightgreen;
+    border: none;
+    outline: 2px solid lightgreen !important;
+}
+
+.card-modal-header {
+    background-color: #050e2f;
+    color: lightgreen;
+}
+
+.card-modal-body {
+    background-color: #050e2f;
+}

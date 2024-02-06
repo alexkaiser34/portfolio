@@ -1,10 +1,10 @@
 
 import { useEffect, useState } from 'react';
-import { Button, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
+import { Button, Dropdown, DropdownButton, ButtonGroup, Container } from 'react-bootstrap';
 import './style.css';
-import PersonalExperience from './PersonalExperience';
-import ProfessionalExperience from './ProfessionalExperience';
-import ProjectDropDown from './ProjectDropDown';
+import ProjectCard from './ProjectCard';
+import { projectListPersonal, projectListProfessional } from './ProjectDescriptions';
+import FadeAnimate from '../FadeAnimate';
 
 export type professionalProjects = "seL4 Doom Pendulum Demo" | "DornerWorks - Secure Technologies" | "DornerWorks - FPGA";
 export type personalProjects = "Machine Learning Stock App" | "NBA App" | "Sports Betting App" | "Slot Machine" | "Drone";
@@ -12,25 +12,11 @@ export interface ExperiencePageProps {
     activeProject: professionalProjects | personalProjects
 }
 
+type CategorySelect = "Personal" | "Professional";
+
 function ExperiencePage(){
 
-    const [toggle, setToggle] = useState(0);
-
-    const [activeProject, setActiveProject] = useState<professionalProjects | personalProjects>('seL4 Doom Pendulum Demo');
-
-    const ProjectListProfessional:professionalProjects[] = [
-        'seL4 Doom Pendulum Demo',
-        'DornerWorks - Secure Technologies',
-        'DornerWorks - FPGA'
-    ];
-
-    const ProjectListPersonal:personalProjects[] = [
-        'Machine Learning Stock App',
-        'NBA App',
-        'Sports Betting App',
-        'Drone',
-        'Slot Machine'
-    ];
+    const [category, setCategory] = useState<CategorySelect>("Professional");
 
     useEffect(() => {
         document.title = "Alex Kaiser - Experience";
@@ -39,48 +25,63 @@ function ExperiencePage(){
 
     return (
         <div className='ExperiencePage-container'>
-                <div className='button-div-wrapper'>
-                    <div className='fixed-button-wrapper'>
-                        <div className='button-div'>
-                            <ButtonGroup className='button-group-experience'>
-                                <button style={{
-                                    backgroundColor: toggle == 0 ? 'lightgreen' : '',
-                                    color: toggle == 0 ? '#050e2f' : '',
-                                }}className="professional-button" onClick={() => {
-                                    window.scrollTo(0,0);
-                                    setToggle(0);
-                                    setActiveProject("seL4 Doom Pendulum Demo");
-                                }}>Professional</button>
-                                <button style={{
-                                    backgroundColor: toggle == 1 ? 'lightgreen' : '',
-                                    color: toggle == 1 ? '#050e2f' : ''
-                                }}className="personal-button" onClick={() => {
-                                    window.scrollTo(0,0);
-                                    setToggle(1);
-                                    setActiveProject("Machine Learning Stock App");
-                                }}>Personal</button>
-                            </ButtonGroup>
-                        </div>
-                        <div className="page-dropdown-wrapper">
-                                <div className="page-dropdown">
-                                    <h2 style={{paddingRight: '20px'}}>
-                                    {activeProject === "DornerWorks - Secure Technologies" ? "Projects: " : "Project: "}
-                                    </h2>
-                                    {toggle == 0 ?
-                                    <ProjectDropDown activeProject={activeProject} setActiveProject={setActiveProject} projectList={ProjectListProfessional} /> :
-                                    <ProjectDropDown activeProject={activeProject} setActiveProject={setActiveProject} projectList={ProjectListPersonal} />
-                                    }
-                                </div>
-                        </div>
-                    </div>
+            <div className='d-flex justify-content-center flex-column align-items-center'>
+                <h1 style={{paddingBottom: '15px', color: 'lightgreen'}}>{category.toString()} Projects</h1>
+                <div className='d-flex w-75 justify-content-center pb-3'>
+                    <ButtonGroup className='button-group-experience'>
+                        <button style={{
+                            backgroundColor: category === "Professional" ? 'lightgreen' : '',
+                            color: category === "Professional" ? '#050e2f' : '',
+                        }}
+                        className="professional-button" 
+                        onClick={() => {setCategory("Professional")}}>
+                            Professional
+                         </button>
+                         <button style={{
+                            backgroundColor: category === "Personal" ? 'lightgreen' : '',
+                            color: category === "Personal" ? '#050e2f' : ''
+                        }}
+                        className="personal-button" onClick={() => {setCategory('Personal')}}>
+                            Personal
+                        </button>
+                    </ButtonGroup>
                 </div>
-            <div className='experience-content'>
-                {
-                    toggle == 0 ? <ProfessionalExperience activeProject={activeProject} /> :
-                    <PersonalExperience activeProject={activeProject} />
-                }
-
             </div>
+                
+            <Container fluid className='p-5'>
+                <div className='row d-flex align-items-baseline justify-content-center'>
+                        {category === "Professional" ? 
+                            projectListProfessional.map((project) => {
+                                return (
+                                <div className='col-12 col-md-6 col-lg-4 p-3 pb-5'>
+                                    {FadeAnimate({className: `card-${project}-animate`, children:
+                                        <ProjectCard 
+                                            title={project.title}
+                                            image={project.image}
+                                            component={project.component}
+                                            decription={project.shortDescription}
+                                        />
+                                    })}
+                                </div>
+                                )
+                            }) :
+                            projectListPersonal.map((project) => {
+                                return (
+                                <div className='col-12 col-md-6 col-lg-4 p-3 pb-5'>
+                                    {FadeAnimate({className: `card-${project}-animate`, children:
+                                        <ProjectCard 
+                                            title={project.title}
+                                            image={project.image}
+                                            component={project.component}
+                                            decription={project.shortDescription}
+                                        />
+                                    })}
+                                </div>
+                                )
+                            })
+                    }
+                </div>
+            </Container>
         </div>
     )
 }
