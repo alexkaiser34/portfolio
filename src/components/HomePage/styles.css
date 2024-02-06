@@ -1,14 +1,23 @@
 
 .HomePage-container {
-    display: flex;
+    /* display: flex; */
     /* background-color: green; */
-    flex-direction: column;
+    /* flex-direction: column; */
+    overflow: auto;
     min-height: 100%;
     min-width: 100%;
-    justify-content: center;
+    background-color: #050e2f;
+    /* justify-content: space-between; */
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 20px;
+}
+
+.HomePage-wrapper {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    justify-content: center;
 }
 
 .HomePage-Info {
@@ -33,6 +42,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    gap: 10px;
 }
 
 .hi-intro {
@@ -60,24 +70,6 @@
     100% { transform: rotate( 0.0deg) }
 }
 
-.name-intro {
-    font-size: max(calc(10px + 3vw), 30px);
-    color: lightgreen;
-}
-
-.title-intro {
-    color: lightgreen;
-    font-size: max(calc(10px + 2vw), 25px);
-}
-
-.description-intro {
-    text-overflow: wrap;
-    font-size: max(calc(10px + 0.5vw), 15px);
-    color: lightblue;
-    align-content: center;
-    padding-top: 20px;
-    max-width: 70%;
-}
 
 .touch-button {
     align-self: center;
@@ -87,7 +79,6 @@
     border: none;
     color: lightblue;
     transition: all 0.3s ease;
-    font-size: max(calc(10px + 0.5vw), 15px);
 }
 
 .touch-button:hover {
@@ -134,12 +125,42 @@
 
 .programming-icon {
     scale: 3.0;
-    align-self: center;
     transition: all 0.5s ease;
-    justify-self: center;
 }
-
+.program-icon p {
+    font-size: smaller;
+}
 .programming-icon:hover{
     scale: 4.0;
+    content: attr(title);
 }
 
+.programming-languages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scroller {
+    max-width: 70vw;
+    outline: 30px solid green;
+    overflow: hidden;
+    padding-bottom: 10px;
+    -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+}
+
+.scroller__inner {
+    display: flex;
+    gap: 80px;
+    list-style-type: none;
+    width: max-content;
+    padding-block: 30px;
+    animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+    to {
+        transform: translate(calc(-50% - 25px));
+    }
+}
