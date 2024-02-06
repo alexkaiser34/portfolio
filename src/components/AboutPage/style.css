@@ -7,8 +7,9 @@
     width: max(100%, 600px);
     color: lightblue;
     justify-content: space-evenly;
-    padding-bottom: 50px;
-    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
 }
 
 .about-headline {

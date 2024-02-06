@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Hexagon } from "react-bootstrap-icons";
 import { useLocation } from "react-router-dom";
@@ -11,34 +11,16 @@ import SocialMediaBar from "../SocialMediaBar";
 
 interface NavBarProps {
     linkActive: NavLinks | undefined,
-    setLinkActive: React.Dispatch<React.SetStateAction<NavLinks | undefined>>
+    setLinkActive: React.Dispatch<React.SetStateAction<NavLinks | undefined>>,
+    setMarginTop: React.Dispatch<React.SetStateAction<number>>
 }
 
 
 function NavBar(props: NavBarProps){
 
     const [click, setClicked] = useState(false);
-    const [screenSize, setScreenSize] = useState(getCurrentDimension());
-
     const location = useLocation();
-
-    function getCurrentDimension(){
-        return {
-            width: window.innerWidth,
-            height: window.innerHeight
-        }
-    }
-
-    useEffect(() => {
-        const updateDimension = () => {
-            setScreenSize(getCurrentDimension());
-        }
-        window.addEventListener('resize', updateDimension);
-
-        return(() => {
-            window.removeEventListener('resize', updateDimension);
-        })
-    }, [screenSize]);
+    const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const routeName = location.pathname.slice(1);
@@ -54,6 +36,17 @@ function NavBar(props: NavBarProps){
         ReactGA.pageview(location.pathname + location.search);
     }, [location.pathname]);
 
+    useEffect(() => {
+        if (ref.current !== undefined && ref.current !== null ){
+            props.setMarginTop(ref.current?.clientHeight);
+        }
+        else {
+            props.setMarginTop(0);   
+
+        }
+
+    }, [window.innerHeight, window.innerWidth]);
+
 
     const handleClick = () => {
         if (click){
@@ -66,7 +59,7 @@ function NavBar(props: NavBarProps){
 
 
     return (
-        <Navbar collapseOnSelect expand="lg" sticky="top" className="navbar-dark" id="navbar-wrapper">
+        <Navbar ref={ref} collapseOnSelect expand="lg" fixed="top" className="navbar-dark" id="navbar-wrapper">
             <Container fluid className="navbar-container">
                 <div className="icon-div">
                     <hr className="horizontalDivider" />
@@ -77,7 +70,7 @@ function NavBar(props: NavBarProps){
                         </div>
                     </Navbar.Brand>
                 </div>
-                <SocialMediaBar isExpanded={screenSize.width >= 992}/>
+                <SocialMediaBar isExpanded={window.innerWidth >= 992}/>
                 <Navbar.Toggle onClick={handleClick} aria-controls="responsive-navbar-nav" className="ms-auto" id="toggle-bar"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="align-items-center ms-auto" id="navbar-links">

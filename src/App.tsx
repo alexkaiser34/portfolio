@@ -7,7 +7,7 @@ import HomePage from './components/HomePage';
 import AboutPage from './components/AboutPage';
 import ExperiencePage from './components/ExperiencePage';
 import ContactPage from './components/ContactPage';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import RecommendationPage from './components/RecommendationPage';
 import ReactGA from 'react-ga';
 
@@ -18,14 +18,40 @@ ReactGA.initialize("G-TEM3M1JKC9");
 function App() {
 
   const [linkActive, setLinkActive] = useState<NavLinks | undefined>();
+  const [screenSize, setScreenSize] = useState(getCurrentDimension());
+  const [marginTop, setMarginTop] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+
+
+  function getCurrentDimension(){
+      return {
+          width: window.innerWidth,
+          height: window.innerHeight
+      }
+  }
+
+  useEffect(() => {
+      const updateDimension = () => {
+          setScreenSize(getCurrentDimension());
+      }
+      window.addEventListener('resize', updateDimension);
+      return(() => {
+          window.removeEventListener('resize', updateDimension);
+      })
+
+  }, [screenSize]);
+
 
   return (
     <HashRouter>
       <div className="App">
         <div className='App-navbar'>
-          <NavBar linkActive={linkActive} setLinkActive={setLinkActive} />
+          <NavBar linkActive={linkActive} setLinkActive={setLinkActive} setMarginTop={setMarginTop} />
         </div>
-        <div className='App-content'>
+        <div className='App-content' style={{
+          paddingTop: `calc(${marginTop}px + 15px)`,
+          // height: `calc(100vh - ${marginTop}px)`
+          }}>
           <Routes>
               <Route path="/Home" element={<HomePage linkActive={linkActive} setLinkActive={setLinkActive} />} />
               <Route path="/" element={<HomePage linkActive={linkActive} setLinkActive={setLinkActive} />} />

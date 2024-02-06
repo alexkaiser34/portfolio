@@ -3,12 +3,9 @@
     display: flex;
     /* background-color: green; */
     flex-direction: column;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    /* height: max(calc(100vh - max(calc(40px + 3vh), 60px)), 500px);
-    width: max(calc(100vw - max(calc(20px + 2vw), 50px)), 800px); */
-    /* overflow: auto; */
+    min-height: 100%;
+    min-width: 100%;
+    justify-content: center;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 20px;
