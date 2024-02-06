@@ -59,32 +59,42 @@ function HomePage(props: HomePageProps){
                             <div className='d-flex flex-column align-items-center justify-content-evenly pb-5'>
                                 <h2 style={{color: 'lightgreen', paddingBottom: '20px'}}>2+ years experience designing</h2>
                                 
-                                <Carousel style={{maxHeight: '500px', maxWidth: '600px'}}>
+                                <Carousel style={{maxHeight: '500px', maxWidth: '600px', borderRadius: '20px', outline: '3px solid lightgreen'}}>
                                     <Carousel.Item>
-                                        <Image fluid src={SpaceBlue} style={{borderRadius: '10px'}}/>
-                                        <Carousel.Caption style={{position: 'absolute', top: '10%', color: 'white'}}>
+                                        <Image fluid src={SpaceBlue} 
+                                        style={{
+                                            opacity: 0
+                                        }}/>
+                                        <Carousel.Caption style={{position: 'absolute', top: '10%', color: 'lightgreen'}}>
                                         <h3 style={{fontWeight: 'bold'}}>Embedded Software</h3>
-                                        <p style={{marginTop: '20%', fontSize: 'large'}}>
+                                        <p style={{marginTop: '20%', fontSize: 'large', color: 'lightblue'}}>
                                             Created complex embedded applications and firmware for many 
                                             microcontrollers and computer architectures
                                         </p>
                                         </Carousel.Caption>
                                     </Carousel.Item>
                                     <Carousel.Item>
-                                        <Image fluid src={SpaceBlue} style={{borderRadius: '10px'}}/>
-                                        <Carousel.Caption style={{position: 'absolute', top: '10%', color: 'white'}}>
+                                        {/* <Image fluid src={SpaceBlue} style={{borderRadius: '10px'}}/> */}
+                                        <Image fluid src={SpaceBlue} 
+                                        style={{
+                                            opacity: 0
+                                        }}/>
+                                        <Carousel.Caption style={{position: 'absolute', top: '10%', color: 'lightgreen'}}>
                                         <h3 style={{fontWeight: 'bold'}}>Full Stack Apps</h3>
-                                        <p style={{marginTop: '20%', fontSize: 'large'}}>
+                                        <p style={{marginTop: '20%', fontSize: 'large', color: 'lightblue'}}>
                                             Designed the backend, frontend, and infrastructure of web and 
                                             desktop applications from the ground up
                                         </p>
                                         </Carousel.Caption>
                                     </Carousel.Item>
                                     <Carousel.Item>
-                                        <Image fluid src={SpaceBlue} style={{borderRadius: '10px'}}/>
-                                        <Carousel.Caption style={{position: 'absolute', top: '10%', color: 'white'}}>
+                                        <Image fluid src={SpaceBlue} 
+                                        style={{
+                                            opacity: 0
+                                        }}/>
+                                        <Carousel.Caption style={{position: 'absolute', top: '10%', color: 'lightgreen'}}>
                                         <h3 style={{fontWeight: 'bold'}}>FPGA Software</h3>
-                                        <p style={{marginTop: '20%', fontSize: 'large'}}>
+                                        <p style={{marginTop: '20%', fontSize: 'large', color: 'lightblue'}}>
                                             Created hardware drivers for sensors,
                                             accelerated machine learning algorithms, and designed a lightweight
                                             CPU using VHDL and Verilog
@@ -92,10 +102,13 @@ function HomePage(props: HomePageProps){
                                         </Carousel.Caption>
                                     </Carousel.Item>
                                     <Carousel.Item>
-                                        <Image fluid src={SpaceBlue} style={{borderRadius: '10px'}}/>
-                                        <Carousel.Caption style={{position: 'absolute', top: '10%', color: 'white'}}>
+                                        <Image fluid src={SpaceBlue} 
+                                        style={{
+                                            opacity: 0
+                                        }}/>
+                                        <Carousel.Caption style={{position: 'absolute', top: '10%', color: 'lightgreen'}}>
                                         <h3 style={{fontWeight: 'bold'}}>Printed Circuit Boards</h3>
-                                        <p style={{marginTop: '20%', fontSize: 'large'}}>
+                                        <p style={{marginTop: '20%', fontSize: 'large', color: 'lightblue'}}>
                                             Designed sophisticated printed circuit boards to drive various senors and 
                                             run embedded applications 
                                         </p>
