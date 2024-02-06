@@ -89,7 +89,7 @@ function RecommendationPage(){
     return (
         <div className="RecommendationPage-container">
             <div className='rec-header-flex'>
-                <h1>Recommendations from Colleagues</h1>
+                <h1>Recommendations</h1>
             </div>
             <div className="letter-wrapper">
 

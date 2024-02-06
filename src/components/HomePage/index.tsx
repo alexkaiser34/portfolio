@@ -24,7 +24,7 @@ function HomePage(props: HomePageProps){
 
      return (
         <div className='HomePage-container'>
-        <Container fluid className='HomePage-wrapper pb-5'>
+        <Container fluid className='HomePage-wrapper pb-5 pt-5'>
             <div className='row d-flex align-items-center g-0'>
                 <div className='col-12 col-md-6'>
                     <motion.div
@@ -65,9 +65,9 @@ function HomePage(props: HomePageProps){
                                         style={{
                                             opacity: 0
                                         }}/>
-                                        <Carousel.Caption style={{position: 'absolute', top: '20%', color: 'lightgreen'}}>
+                                        <Carousel.Caption style={{position: 'absolute', top: window.innerWidth <= 480 ? '10%' : '20%', color: 'lightgreen'}}>
                                         <h4 style={{fontWeight: 'bold'}}>Embedded Software</h4>
-                                        <p style={{marginTop: '10%', fontSize: 'large', color: 'lightblue'}}>
+                                        <p style={{marginTop: window.innerWidth <= 480 ? '10%' : '15%', fontSize: window.innerWidth <= 480 ? 'medium' : 'large', color: 'lightblue'}}>
                                             Created complex embedded applications and firmware for many 
                                             microcontrollers and computer architectures
                                         </p>
@@ -79,9 +79,9 @@ function HomePage(props: HomePageProps){
                                         style={{
                                             opacity: 0
                                         }}/>
-                                        <Carousel.Caption style={{position: 'absolute', top: '20%', color: 'lightgreen'}}>
+                                        <Carousel.Caption style={{position: 'absolute', top: window.innerWidth <= 480 ? '10%' : '20%', color: 'lightgreen'}}>
                                         <h4 style={{fontWeight: 'bold'}}>Full Stack Apps</h4>
-                                        <p style={{marginTop: '10%', fontSize: 'large', color: 'lightblue'}}>
+                                        <p style={{marginTop: window.innerWidth <= 480 ? '10%' : '15%', fontSize: window.innerWidth <= 480 ? 'medium' : 'large', color: 'lightblue'}}>
                                             Designed the backend, frontend, and infrastructure of web and 
                                             desktop applications from the ground up
                                         </p>
@@ -92,9 +92,9 @@ function HomePage(props: HomePageProps){
                                         style={{
                                             opacity: 0
                                         }}/>
-                                        <Carousel.Caption style={{position: 'absolute', top: '20%', color: 'lightgreen'}}>
+                                        <Carousel.Caption style={{position: 'absolute', top: window.innerWidth <= 480 ? '10%' : '20%', color: 'lightgreen'}}>
                                         <h4 style={{fontWeight: 'bold'}}>FPGA Software</h4>
-                                        <p style={{marginTop: '10%', fontSize: 'large', color: 'lightblue'}}>
+                                        <p style={{marginTop: window.innerWidth <= 480 ? '10%' : '15%', fontSize: window.innerWidth <= 480 ? 'medium' : 'large', color: 'lightblue'}}>
                                             Created hardware drivers,
                                             accelerated machine learning algorithms, and designed a
                                             CPU using VHDL and Verilog
@@ -106,9 +106,9 @@ function HomePage(props: HomePageProps){
                                         style={{
                                             opacity: 0
                                         }}/>
-                                        <Carousel.Caption style={{position: 'absolute', top: '20%', color: 'lightgreen'}}>
+                                        <Carousel.Caption style={{position: 'absolute', top: window.innerWidth <= 480 ? '10%' : '20%', color: 'lightgreen'}}>
                                         <h4 style={{fontWeight: 'bold'}}>PCB Design</h4>
-                                        <p style={{marginTop: '10%', fontSize: 'large', color: 'lightblue'}}>
+                                        <p style={{marginTop: window.innerWidth <= 480 ? '10%' : '15%', fontSize: window.innerWidth <= 480 ? 'medium' : 'large', color: 'lightblue'}}>
                                             Designed sophisticated printed circuit boards to drive various senors and 
                                             run embedded applications 
                                         </p>
