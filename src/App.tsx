@@ -4,14 +4,14 @@ import { HashRouter, Route, Routes } from "react-router-dom";
 import NavBar from './components/NavBar';
 import SocialMediaBar from './components/SocialMediaBar';
 import HomePage from './components/HomePage';
-import AboutPage from './components/AboutPage';
+import BackgroundPage from './components/BackgroundPage';
 import ExperiencePage from './components/ExperiencePage';
 import ContactPage from './components/ContactPage';
 import { useEffect, useState, useRef } from 'react';
 import RecommendationPage from './components/RecommendationPage';
 import ReactGA from 'react-ga';
 
-export type NavLinks = "Home" | "About" | "Experience" | "Contact" | "Recommendations";
+export type NavLinks = "Home" | "Background" | "Experience" | "Contact" | "Recommendations";
 
 ReactGA.initialize("G-TEM3M1JKC9");
 
@@ -55,7 +55,7 @@ function App() {
           <Routes>
               <Route path="/Home" element={<HomePage linkActive={linkActive} setLinkActive={setLinkActive} />} />
               <Route path="/" element={<HomePage linkActive={linkActive} setLinkActive={setLinkActive} />} />
-              <Route path='/About' element={<AboutPage />} />
+              <Route path='/Background' element={<BackgroundPage />} />
               <Route path='/Experience' element={<ExperiencePage />} />
               <Route path='/Contact' element={<ContactPage />} />
               <Route path='/Recommendations' element={<RecommendationPage />} />

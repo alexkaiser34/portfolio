@@ -8,6 +8,7 @@ import FlightDemo from "./ProfessionalProjects/DW/SecTech/FlightDemo";
 import Polarfire from "./ProfessionalProjects/DW/SecTech/Polarfire";
 import VMComposer from "./ProfessionalProjects/DW/SecTech/VMComposer";
 import SeniorProject from "./ProfessionalProjects/SeniorProject";
+import MlProject from "./ProfessionalProjects/DW/FPGA/MlProject";
 
 import VMComposerImage from '../../images/VMComposer.jpg';
 import SeniorProjectImage from '../../images/DoomDemo.gif';
@@ -19,6 +20,7 @@ import NbaImage from '../../images/nba.png';
 import SportsBetImage from '../../images/dotnetImage.jpeg';
 import DronerImage from '../../images/DroneGif.gif';
 import SlotMachineImage from '../../images/SlotMachine.gif';
+import FPGAImage from '../../images/fpga.png';
 
 
 
@@ -41,6 +43,15 @@ export const projectListProfessional:ProjectCardData[] = [
         role: 'Project Manager',
         image: SeniorProjectImage,
         component: SeniorProject()
+    },
+    {
+        title: 'FPGA Algorithm Acceleration', 
+        shortDescription: 'Converted an algorithm written in Python to a hardware description language (VHDL)' +
+        ' to accelerate the algorithm\'s performance ',
+        category: 'FPGA',
+        image: FPGAImage,
+        role: 'DornerWorks Project Engineer',
+        component: MlProject()
     },
     {
         title: 'Embedded Android Device', 

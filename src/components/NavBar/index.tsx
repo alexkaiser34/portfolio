@@ -75,26 +75,26 @@ function NavBar(props: NavBarProps){
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="align-items-center ms-auto" id="navbar-links">
                         <Nav.Link onClick={() => {window.scrollTo(0,0); props.setLinkActive("Home")}} active={props.linkActive === "Home"} href="#/Home" className="d-flex flex-row" >
-                            <span style={{color:'lightgreen', paddingRight: '5px'}}>1.</span>
+                            <span style={{color:'lightgreen', paddingRight: '3px'}}>1.</span>
                             <span>Home</span>
                         </Nav.Link>
-                        <Nav.Link onClick={() => {window.scrollTo(0,0); props.setLinkActive("About")}} active={props.linkActive === "About"} href="#/About"  className="d-flex flex-row" >
-                            <span style={{color:'lightgreen', paddingRight: '5px'}}>2.</span>
-                            <span>About</span>
+                        <Nav.Link onClick={() => {window.scrollTo(0,0); props.setLinkActive("Background")}} active={props.linkActive === "Background"} href="#/Background"  className="d-flex flex-row" >
+                            <span style={{color:'lightgreen', paddingRight: '3px'}}>2.</span>
+                            <span>Background</span>
                         </Nav.Link>
                         <Nav.Link onClick={() => {window.scrollTo(0,0); props.setLinkActive("Experience")}} active={props.linkActive === "Experience"} href="#/Experience"  className="d-flex flex-row" >
-                            <span style={{color:'lightgreen', paddingRight: '5px'}}>3.</span>
+                            <span style={{color:'lightgreen', paddingRight: '3px'}}>3.</span>
                             <span>Experience</span>
                         </Nav.Link>
                         <Nav.Link onClick={() => {window.scrollTo(0,0); props.setLinkActive("Contact")}} active={props.linkActive === "Contact"} href="#/Contact" className="d-flex flex-row" >
-                            <span style={{color:'lightgreen', paddingRight: '5px'}}>4.</span>
+                            <span style={{color:'lightgreen', paddingRight: '3px'}}>4.</span>
                             <span>Contact</span>
                         </Nav.Link>
                         <Nav.Link onClick={() => {window.scrollTo(0,0); props.setLinkActive("Recommendations")}} active={props.linkActive === "Recommendations"} href="#/Recommendations" className="d-flex flex-row" >
-                            <span style={{color:'lightgreen', paddingRight: '5px'}}>5.</span>
+                            <span style={{color:'lightgreen', paddingRight: '3px'}}>5.</span>
                             <span>Recommendations</span>
                         </Nav.Link>
-                        <div style={{paddingLeft: '40px'}}>
+                        <div style={{paddingLeft: '20px'}}>
                             <Resume />
                         </div>
                     </Nav>

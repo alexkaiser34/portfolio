@@ -6,12 +6,6 @@ import ProjectCard from './ProjectCard';
 import { projectListPersonal, projectListProfessional } from './ProjectDescriptions';
 import FadeAnimate from '../FadeAnimate';
 
-export type professionalProjects = "seL4 Doom Pendulum Demo" | "DornerWorks - Secure Technologies" | "DornerWorks - FPGA";
-export type personalProjects = "Machine Learning Stock App" | "NBA App" | "Sports Betting App" | "Slot Machine" | "Drone";
-export interface ExperiencePageProps {
-    activeProject: professionalProjects | personalProjects
-}
-
 type CategorySelect = "Personal" | "Professional";
 
 function ExperiencePage(){
@@ -21,6 +15,49 @@ function ExperiencePage(){
     useEffect(() => {
         document.title = "Alex Kaiser - Experience";
      }, []);
+
+     const ProjectCards = () => {
+        if (category === "Professional"){
+            return (
+                <>
+                    {projectListProfessional.map((project) => {
+                        return (
+                        <div className='col-12 col-md-6 col-lg-4 p-3 pb-5' key={project.title + '-card-wrapper'}>
+                            {FadeAnimate({className: `card-${project.title}-animate-prof`, children:
+                                <ProjectCard 
+                                    title={project.title}
+                                    image={project.image}
+                                    component={project.component}
+                                    decription={project.shortDescription}
+                                />
+                            })}
+                        </div>
+                        )
+                    })}
+                </>
+            )
+        }
+        else {
+            return (
+                <>
+                    {projectListPersonal.map((project) => {
+                        return (
+                        <div className='col-12 col-md-6 col-lg-4 p-3 pb-5' key={project.title + '-card-wrapper'}>
+                            {FadeAnimate({className: `card-${project.title}-animate-pers`, children:
+                                <ProjectCard 
+                                    title={project.title}
+                                    image={project.image}
+                                    component={project.component}
+                                    decription={project.shortDescription}
+                                />
+                            })}
+                        </div>
+                        )
+                    })}
+                </>
+            )
+        }
+     }
 
 
     return (
@@ -50,36 +87,7 @@ function ExperiencePage(){
                 
             <Container fluid className='p-5'>
                 <div className='row d-flex align-items-baseline justify-content-center'>
-                        {category === "Professional" ? 
-                            projectListProfessional.map((project) => {
-                                return (
-                                <div className='col-12 col-md-6 col-lg-4 p-3 pb-5'>
-                                    {FadeAnimate({className: `card-${project}-animate`, children:
-                                        <ProjectCard 
-                                            title={project.title}
-                                            image={project.image}
-                                            component={project.component}
-                                            decription={project.shortDescription}
-                                        />
-                                    })}
-                                </div>
-                                )
-                            }) :
-                            projectListPersonal.map((project) => {
-                                return (
-                                <div className='col-12 col-md-6 col-lg-4 p-3 pb-5'>
-                                    {FadeAnimate({className: `card-${project}-animate`, children:
-                                        <ProjectCard 
-                                            title={project.title}
-                                            image={project.image}
-                                            component={project.component}
-                                            decription={project.shortDescription}
-                                        />
-                                    })}
-                                </div>
-                                )
-                            })
-                    }
+                    <ProjectCards />
                 </div>
             </Container>
         </div>

@@ -1,12 +1,8 @@
-import { Button, Carousel, Card, Container, Image} from 'react-bootstrap';
+import { Button, Carousel, Container, Image} from 'react-bootstrap';
 import './styles.css';
-import Headshot from '../../images/Headshot.png';
-import { AmazonwebservicesOriginal, AmazonwebservicesOriginalWordmark, AmazonwebservicesPlainWordmark, BashOriginal, BashPlain, COriginal, CplusplusOriginal, CsharpOriginal, DockerOriginal, DotnetcoreOriginal, DotNetOriginal, JavaOriginal, JavascriptOriginal, PythonOriginal, ReactOriginal, TypescriptOriginal } from 'devicons-react';
+import { AmazonwebservicesOriginal, BashOriginal, COriginal, CplusplusOriginal, CsharpOriginal, DockerOriginal, DotnetcoreOriginal, JavaOriginal, JavascriptOriginal, PythonOriginal, ReactOriginal, TypescriptOriginal } from 'devicons-react';
 import { NavLinks } from '../../App';
-// import CarouselBackground from '../../images/CarouselBackground.png';
-// import SmoothGrey from '../../images/smooth-gray-background.jpg';
 import SpaceBlue from '../../images/space-blue.jpg';
-
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 
@@ -33,10 +29,10 @@ function HomePage(props: HomePageProps){
                         >
                         <div className='intro-homepage pb-5' style={{color: 'lightgreen'}}>
                             <div>
-                                <h3 style={{color: 'lightblue'}}>
-                                    <h2 className="wave">👋</h2>
-                                    Hi, my name is
-                                </h3>
+                                <div className='d-flex flex-row align-items-center' style={{color: 'lightblue'}}>
+                                    <h4 className="wave">👋</h4>
+                                    <h3>Hi, my name is</h3>
+                                </div>
                             </div>
                             <h1 style={{fontWeight: 'bold'}}>Alex Kaiser</h1>
                             <h2>Software Engineer</h2>

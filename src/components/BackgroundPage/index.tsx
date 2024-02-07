@@ -12,11 +12,11 @@ import FadeAnimate from '../FadeAnimate';
 import { useEffect } from 'react';
 
 
-function AboutPage(){
+function BackgroundPage(){
 
 
     useEffect(() => {
-        document.title = "Alex Kaiser - About";
+        document.title = "Alex Kaiser - Background";
      }, []);
 
     return (
@@ -29,9 +29,9 @@ function AboutPage(){
                     {FadeAnimate({className: 'about-headline', children:
                         <div>
                             <h3 className='headline-header pb-3'>
-                                Five years ago, I had never written a line of code. Today,
-                                I can say I have designed complex software in over
-                                10 different languages.
+                                Currently seeking a full-time engineering position
+                                in which I can utilize and expand my knowledge, skills,
+                                and experience in the fields of computer science and engineering.
                             </h3>
                         </div>
                     })}
@@ -73,10 +73,9 @@ function AboutPage(){
                                     Passionate about designing full-stack web applications, embedded systems,
                                     FPGA applications, and printed circuit boards!
                                     </li>
-                                    <li style={{fontWeight: 'bolder', color: 'lightgreen'}}>
-                                    Currently seeking a full-time engineering position
-                                    in which I can utilize and expand my knowledge, skills,
-                                    and experience in the fields of computer science and engineering.
+                                    <li>
+                                    Designing complex software in over
+                                    10 different languages.
                                     </li>
                                 </ul>
                             </>
@@ -207,6 +206,9 @@ function AboutPage(){
                                         <li>
                                         Maintained a 3.85 GPA
                                         </li>
+                                        <li>
+                                        Gained 2 years of professional experience in software engineering at <a href="https://www.dornerworks.com/">DornerWorks Ltd</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </>
@@ -231,4 +233,4 @@ function AboutPage(){
 }
 
 
-export default AboutPage;
+export default BackgroundPage;

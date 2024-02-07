@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Card, Button, Modal, Container } from "react-bootstrap";
+import { projectListProfessional } from "./ProjectDescriptions";
 
 interface ProjectCardProps {
     title: string,
@@ -32,7 +33,7 @@ function ProjectCard(props: ProjectCardProps) {
 
     return (
       <>
-        <Card className="project-card text-center" >
+        <Card className="project-card text-center" key={props.title} >
           <Card.Img variant="top" src={props.image} style={{
             padding: '10px 10px',
             maxHeight: 'max(130px, 10vw)',
