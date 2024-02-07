@@ -59,7 +59,7 @@ function BackgroundPage(){
                                 <ul>
                                     <li>
                                     A software engineer currently located in
-                                    Grand Rapids, Michigan. However, I am open to relocate.
+                                    Raleigh, North Carolina. However, I am open to relocating.
                                     </li>
                                     <li>
                                     A self-motivated problem solver who can learn
