@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.db868288.css",
-    "main.js": "/static/js/main.57da84ca.js",
+    "main.css": "/static/css/main.373df2bc.css",
+    "main.js": "/static/js/main.7de3d5d9.js",
     "static/js/787.1ed0c42c.chunk.js": "/static/js/787.1ed0c42c.chunk.js",
     "static/media/DoomDemo.gif": "/static/media/DoomDemo.23cb4b963637296292e1.gif",
     "static/media/DroneGif.gif": "/static/media/DroneGif.005b737d6993e3777e8b.gif",
@@ -13,6 +13,7 @@
     "static/media/VMComposer.jpg": "/static/media/VMComposer.e857fbbc113ac1ebfbb7.jpg",
     "static/media/school-letter-of-rec.pdf": "/static/media/school-letter-of-rec.d15a94d6a8e9e4da4951.pdf",
     "static/media/resume.pdf": "/static/media/resume.b152a4ff348e43628664.pdf",
+    "static/media/fpga.png": "/static/media/fpga.79ef2708f9df119ebf85.png",
     "static/media/MLStocks.png": "/static/media/MLStocks.617a8e639cb9596db187.png",
     "static/media/gv-logo.png": "/static/media/gv-logo.ce31354fe491161d41b0.png",
     "static/media/secure-tech-letter-of-rec.pdf": "/static/media/secure-tech-letter-of-rec.66f2b75ad4c9325477c0.pdf",
@@ -21,12 +22,12 @@
     "static/media/Android.png": "/static/media/Android.413b4fb1d800b1303914.png",
     "static/media/nba.png": "/static/media/nba.0f6c21f56d169879bf96.png",
     "index.html": "/index.html",
-    "main.db868288.css.map": "/static/css/main.db868288.css.map",
-    "main.57da84ca.js.map": "/static/js/main.57da84ca.js.map",
+    "main.373df2bc.css.map": "/static/css/main.373df2bc.css.map",
+    "main.7de3d5d9.js.map": "/static/js/main.7de3d5d9.js.map",
     "787.1ed0c42c.chunk.js.map": "/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.db868288.css",
-    "static/js/main.57da84ca.js"
+    "static/css/main.373df2bc.css",
+    "static/js/main.7de3d5d9.js"
   ]
 }
