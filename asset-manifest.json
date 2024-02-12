@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.373df2bc.css",
+    "main.css": "/static/css/main.9145d9e0.css",
     "main.js": "/static/js/main.a5d06f5d.js",
     "static/js/787.1ed0c42c.chunk.js": "/static/js/787.1ed0c42c.chunk.js",
     "static/media/DoomDemo.gif": "/static/media/DoomDemo.23cb4b963637296292e1.gif",
@@ -22,12 +22,12 @@
     "static/media/Android.png": "/static/media/Android.413b4fb1d800b1303914.png",
     "static/media/nba.png": "/static/media/nba.0f6c21f56d169879bf96.png",
     "index.html": "/index.html",
-    "main.373df2bc.css.map": "/static/css/main.373df2bc.css.map",
+    "main.9145d9e0.css.map": "/static/css/main.9145d9e0.css.map",
     "main.a5d06f5d.js.map": "/static/js/main.a5d06f5d.js.map",
     "787.1ed0c42c.chunk.js.map": "/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.373df2bc.css",
+    "static/css/main.9145d9e0.css",
     "static/js/main.a5d06f5d.js"
   ]
 }
