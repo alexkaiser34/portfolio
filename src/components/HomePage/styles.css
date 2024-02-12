@@ -142,8 +142,8 @@
 }
 
 .scroller {
-    max-width: 70vw;
-    outline: 30px solid green;
+    max-width: 60vw;
+    /* outline: 30px solid green; */
     overflow: hidden;
     -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
     mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
