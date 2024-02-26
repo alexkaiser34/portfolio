@@ -37,9 +37,9 @@ function SportsBetApp(){
     ]
 
     project.projectContributions = [
-        "Created an ASP.NET MVC core web application",
-        "Created an ASP.NET Web API to communicate to an Amazon DynamoDB",
-        "Created a Node.js backend to communicated with a database and external API",
+        "Created an ASP.NET MVC core web application hosted by AWS Elastic Beanstalk",
+        "Created an ASP.NET Web API to communicate to an AWS DynamoDB",
+        "Created a Node.js backend to communicate with a database and external API hosted by AWS Elastic Container Service",
         "Designed models, views, and controllers for the core web application",
         "Communicated with team to ensure deadlines will be met",
         "Hosted team meetings to strategize ideas"

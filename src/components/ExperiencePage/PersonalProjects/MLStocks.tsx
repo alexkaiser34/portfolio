@@ -36,7 +36,7 @@ function MLStocks(){
     ]
 
     project.projectContributions = [
-        "Designed and implemented the back-end that has been running for over a year without fault in a docker container on a raspberry pi",
+        "Designed and implemented the back-end which has been running for over a year without fault in a docker container on a raspberry pi",
         "Designed and implemented all front-end components and made application available for download on GitHub",
         "Gained vast experience in full-stack engineering",
         "Gained numerous skills in front-end, database, and back-end development"

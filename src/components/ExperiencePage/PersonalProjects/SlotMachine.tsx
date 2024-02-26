@@ -35,7 +35,7 @@ function SlotMachine(){
     ]
 
     project.projectContributions = [
-        "Created C programs for control of each peripherals and sensor",
+        "Created C programs to control all peripherals and sensors",
         "Created main C application to control the state of the slot machine",
         "Constructed and painted a wooden enclosure",
         "Documented each step of the design process"

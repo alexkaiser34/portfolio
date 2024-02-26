@@ -9,6 +9,11 @@ import Polarfire from "./ProfessionalProjects/DW/SecTech/Polarfire";
 import VMComposer from "./ProfessionalProjects/DW/SecTech/VMComposer";
 import SeniorProject from "./ProfessionalProjects/SeniorProject";
 import MlProject from "./ProfessionalProjects/DW/FPGA/MlProject";
+import CarDashboard from "./AcademicProjects/CarDashboard";
+import MspRtos from "./AcademicProjects/MspRtos";
+import StmCarAlarm from "./AcademicProjects/StmCarAlarm";
+import VhdlCPU from "./AcademicProjects/VhdlCPU";
+import VhdlVideoGame from "./AcademicProjects/VhdlVideoGame";
 
 import VMComposerImage from '../../images/VMComposer.jpg';
 import SeniorProjectImage from '../../images/DoomDemo.gif';
@@ -21,6 +26,11 @@ import SportsBetImage from '../../images/dotnetImage.jpeg';
 import DronerImage from '../../images/DroneGif.gif';
 import SlotMachineImage from '../../images/SlotMachine.gif';
 import FPGAImage from '../../images/fpga.png';
+import CarDashboardImage from '../../images/dashboard.gif';
+import MspRtosImage from '../../images/msp_rtos.png';
+import PcbCarAlarm from '../../images/pcb-carAlarm.gif';
+import CpuState from '../../images/cpu-state.png';
+import ElectricFish from '../../images/electric-fish.png';
 
 
 
@@ -33,6 +43,48 @@ interface ProjectCardData {
     component: JSX.Element
 }
 
+export const projectListAcademic:ProjectCardData[] = [
+    {
+        title: 'VHDL CPU Design',
+        shortDescription: 'Created a VHDL CPU Module to control onboard peripherals and execute opcodes',
+        category: 'FPGA/Software',
+        role: 'Engineer',
+        image: CpuState,
+        component: VhdlCPU()
+    },
+    {
+        title: 'MSP Real Time Operating System Design',
+        shortDescription: 'Created a real time operating system using the MSP 432 microcontroller',
+        category: 'Embedded Systems/Hardware',
+        role: 'Engineer',
+        image: MspRtosImage,
+        component: MspRtos()
+    },
+    {
+        title: 'Car Alarm System - PCB and Software Design',
+        shortDescription: 'Fully designed a PCB and embedded system to function as a car alarm using an STM32 MCU',
+        category: 'Embedded Systems/Hardware',
+        role: 'Engineer',
+        image: PcbCarAlarm,
+        component: StmCarAlarm()
+    },
+    {
+        title: 'VHDL Video Game - Electric Groove Fish',
+        shortDescription: 'Created the Electric Groove Fish video game in VHDL to run on an FPGA',
+        category: 'FPGA/Software',
+        role: 'Engineer',
+        image: ElectricFish,
+        component: VhdlVideoGame()
+    },
+    {
+        title: 'Embedded Car Dashboard',
+        shortDescription: 'Created an embedded system with bluetooth to function as a car dashboard',
+        category: 'Embedded Systems/Hardware',
+        role: 'Engineer',
+        image: CarDashboardImage,
+        component: CarDashboard()
+    }
+];
 
 export const projectListProfessional:ProjectCardData[] = [
     {
@@ -52,15 +104,6 @@ export const projectListProfessional:ProjectCardData[] = [
         image: FPGAImage,
         role: 'DornerWorks Project Engineer',
         component: MlProject()
-    },
-    {
-        title: 'Embedded Android Device', 
-        shortDescription: 'Designed application to interact with a webserver and control' +
-        ' hardware peripherals of a custom Android device',
-        category: 'Embedded Systems',
-        image: AndroidImage,
-        role: 'DornerWorks Project Engineer',
-        component: AndroidProject()
     },
     {
         title: 'VxWorks Flight Simulation App', 
@@ -88,13 +131,22 @@ export const projectListProfessional:ProjectCardData[] = [
         image: VMComposerImage,
         role: 'DornerWorks Project Engineer',
         component: VMComposer()
+    },
+    {
+        title: 'Embedded Android Device', 
+        shortDescription: 'Designed application to interact with a webserver and control' +
+        ' hardware peripherals of a custom Android device',
+        category: 'Embedded Systems',
+        image: AndroidImage,
+        role: 'DornerWorks Project Engineer',
+        component: AndroidProject()
     }
 ];
 
 export const projectListPersonal:ProjectCardData[] = [
     {
         title: 'Machine Learning Stock App',
-        shortDescription: 'Created a full stack desktop application that displays real time stock data' +
+        shortDescription: 'Created a full stack desktop application that displays real time stock data ' +
         'along with machine learning price predictions',
         category: 'Full Stack',
         image: MLStocksImage,

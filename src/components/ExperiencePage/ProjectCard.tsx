@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { Card, Button, Modal, Container } from "react-bootstrap";
-import { projectListProfessional } from "./ProjectDescriptions";
+import { useState } from "react";
+import { Card, Button, Modal } from "react-bootstrap";
 
 interface ProjectCardProps {
     title: string,

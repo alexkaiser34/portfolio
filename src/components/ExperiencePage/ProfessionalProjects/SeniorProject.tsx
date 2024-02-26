@@ -22,7 +22,7 @@ function SeniorProject(){
         on the same piece of hardware on top of the seL4 hypervisor.  One virtual machine balanced
         an inverted pendulum, while the other displayed the video game Chocolate Doom on a monitor. There was also a
         big red button in the demo that when pressed, shuts down the Doom virtual machine, while the inverted
-        pendulum keeps balancing. This visually illustrates how the two virtual machines running on the same hardware
+        pendulum keeps balancing. This visually illustrates how the two virtual machines running on the same hardware 
         are completely isolated from one another due to the hypervisor.`;
 
     project.projectImage = SeniorProjectImage;

@@ -31,7 +31,7 @@ function AndroidProject(){
     ]
 
     project.projectContributions = [
-        "Created custom application to control the color of device LEDs which communicated with the webserver to show device statistics",
+        "Created a custom application to control the color of device LEDs which communicated with the webserver to show device statistics",
         "Created multiple components in webserver (C#, ASP.NET)",
         "Created various documentation for the customer",
         "Helped the team plan the best course of action for completing the project"

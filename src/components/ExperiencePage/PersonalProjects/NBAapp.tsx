@@ -11,11 +11,11 @@ function NBAapp(){
 
     project.alignment = "right";
 
-    project.projectTimeline = "November 2023 - Present";
+    project.projectTimeline = "November 2023 - January 2024";
 
     project.projectDescription = `
-        I am working on this project individually. The goal of this project
-        is to practice more advanced concepts of React, SQL, TypeScript,
+        I worked on this project individually. The goal of this project
+        was to practice more advanced concepts of React, SQL, TypeScript,
         Node.js, and Amazon Web Services. This project shows up to date NBA
         scores, along with player and team stats for past and current NBA
         seasons.  The user can interact with the application by creating an
@@ -36,10 +36,10 @@ function NBAapp(){
     ]
 
     project.projectContributions = [
-        "Created and configured AWS to host a MySQL database",
-        "Created and configured AWS to host the back-end of the application",
+        "Configured a MySQL database in AWS",
+        "Hosted the back-end of the application with AWS Lambda and event scheduler",
         "Designed the back-end to preform API requests daily to store new data in the database",
-        "Designed and created a RESTful API for front-end to database communication",
+        "Designed and created a RESTful API for front-end to database communication. Hosted by AWS Elastic Beanstalk",
         "Designed and tested various components for the front-end",
         "Implemented some advanced capabilities of ReactJS"
     ]
