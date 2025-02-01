@@ -14,34 +14,29 @@ function MlProject(){
     project.projectTimeline = "August 2022 - January 2023";
 
     project.projectDescription = `
-        I worked on this project during my time as a software engineer co-op
-        for the FPGA group at DornerWorks Ltd.  For this project, I worked
-        with a team of engineers to help accelerate the performance of a few
-        machine learning and artificial intelligence algorithms.  I was responsible
-        for taking an algorithm written in a interpreted language, such as Python, and translating
-        it to a compiled language, specifically C++. Then, I translated the C++ code
-        to VHDL (very high speed integrated circuit hardware description language) to accelerate
-        the performance of various algorithms`;
+        This project was undertaken during my tenure as a software engineer co-op
+        for the FPGA group at DornerWorks Ltd. The objective was to accelerate the performance
+        of various machine learning and artificial intelligence algorithms. My role involved
+        translating algorithms written in interpreted languages, such as Python, into compiled languages,
+        specifically C++. Subsequently, I converted the C++ code into VHDL (Very High Speed Integrated Circuit Hardware Description Language)
+        to enhance the performance of these algorithms.`;
 
     project.projectImage = FpgaImage;
 
     project.projectRole = 'Software Engineer';
 
     project.projectResponsibilities = [
-        "Lead engineer on translation of specific algorithms",
-        "Communicate with team and customer to provide project status updates",
-        "Led team in specific areas of software development",
-        "Increase speed and performance of various algorithms"
+        "Lead engineer on the translation of specific algorithms",
+        "Communicate with team and customers to provide project status updates",
+        "Lead team in specific areas of software development",
+        "Enhance the speed and performance of various algorithms"
     ]
 
     project.projectContributions = [
-        "Created a development environment for the team by configuring a Docker image and container",
-        "Created a debugger configuration allowing the team to debug C++ and python code at the same time",
-        "Identified bottlenecks and areas for optimization throughout algorithm code",
-        "Convert python code to C++, then to VHDL",
-        "Configured hardware designs that run in an FPGA",
-        "Developed embedded linux software applications to run the accelerated algorithm in a linux machine",
-        "Accelerated the performance of an algorithm by a factor of 100"
+        "Served as the lead engineer for the translation of specific algorithms",
+        "Effectively communicated project status updates to team members and customers",
+        "Led the team in key areas of software development",
+        "Significantly enhanced the speed and performance of various algorithms"
     ]
 
 

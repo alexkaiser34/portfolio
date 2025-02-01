@@ -14,12 +14,10 @@ function SlotMachine(){
     project.projectTimeline = "August 2020 - January 2021";
 
     project.projectDescription = `
-
-        I worked on this project individually at Grand Valley State University.
-        The goal of the project was to create a slot machine using an MSP430 microcontroller.
-        The slot machine contained pushbuttons, a keypad, various sensors, an LCD display, and RGB LEDs.
-        The user can interact with the slot machine through the pushbuttons and keypads.
-        `;
+        This individual project was undertaken at Grand Valley State University.
+        The objective was to design and implement a slot machine using an MSP430 microcontroller.
+        The slot machine featured pushbuttons, a keypad, various sensors, an LCD display, and RGB LEDs.
+        Users could interact with the slot machine through the pushbuttons and keypad.`;
 
 
 
@@ -35,10 +33,10 @@ function SlotMachine(){
     ]
 
     project.projectContributions = [
-        "Created C programs to control all peripherals and sensors",
-        "Created main C application to control the state of the slot machine",
-        "Constructed and painted a wooden enclosure",
-        "Documented each step of the design process"
+        "Designed schematics and circuitry for all sensors and peripherals",
+        "Programmed the MSP430 microcontroller to operate as a slot machine",
+        "Constructed an enclosure to replicate the appearance of a traditional slot machine",
+        "Authored comprehensive documentation detailing the design process"
     ]
 
     return (

@@ -15,34 +15,30 @@ function SportsBetApp(){
     project.projectTimeline = "August 2023 - December 2023";
 
     project.projectDescription = `
-
-        I worked on this project with a team of engineers from Grand Valley
-        State Universtiy. The goal of the project was to create a web application
-        that displays different bets and odds for upcoming NFL games.  The user
-        can interact with this application by creating an account and tracknig
-        their own bets.  They will be able to see how much profit they can make
-        from each bet, and will be able to see their lifetime profit or loss. The
-        application will be hosted by Amazon Web Services.`;
+        This project was undertaken with a team of engineers from Grand Valley State University.
+        The objective was to create a web application that displays various bets and odds for upcoming NFL games.
+        Users can interact with the application by creating an account and tracking their own bets.
+        The application provides insights into potential profits from each bet and tracks the user's lifetime profit or loss.
+        The application is hosted on Amazon Web Services.`;
 
     project.projectImage = DotnetImage;
 
     project.projectRole = 'Project Manager';
 
     project.projectResponsibilities = [
-        "Lead team of engineers to ensure project deadlines are being meet",
-        "Research and strategize a plan to incorporate various technologies into this application",
-        "Create and delegate tasks for each member of the team",
-        "Host presentations with classmates and faculty providing updates on the project",
+        "Lead a team of engineers to ensure project deadlines are met",
+        "Research and strategize the integration of various technologies into the application",
+        "Create and delegate tasks to team members",
+        "Host presentations for classmates and faculty to provide project updates",
         "Design the infrastructure of the full-stack application"
     ]
 
     project.projectContributions = [
-        "Created an ASP.NET MVC core web application hosted by AWS Elastic Beanstalk",
-        "Created an ASP.NET Web API to communicate to an AWS DynamoDB",
-        "Created a Node.js backend to communicate with a database and external API hosted by AWS Elastic Container Service",
-        "Designed models, views, and controllers for the core web application",
-        "Communicated with team to ensure deadlines will be met",
-        "Hosted team meetings to strategize ideas"
+        "Led a team of engineers to meet project deadlines",
+        "Researched and strategized the integration of various technologies into the application",
+        "Created and delegated tasks to team members",
+        "Hosted presentations for classmates and faculty to provide project updates",
+        "Designed the infrastructure of the full-stack application"
     ]
 
 

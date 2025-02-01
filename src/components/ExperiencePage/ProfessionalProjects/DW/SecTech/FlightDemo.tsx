@@ -14,28 +14,27 @@ function FlightDemo(){
     project.projectTimeline = "January 2022 - May 2022";
 
     project.projectDescription = `
-        For this project, I worked with one engineer in the Secure Technologies
-        group at DornerWorks Ltd.  The goal of the first phase of this project was to implement
-        a demo simulating a vulnerability in a flight software application.  This demo was intended to
-        show what could happen if applications run directly on hardware without a hypervisor. The next
-        phase of the project was to integrate an application onto a hypervisor`;
+        This project was undertaken with the Secure Technologies group at DornerWorks Ltd. 
+        The goal of the first phase was to implement a demo simulating a vulnerability in a flight software application, 
+        demonstrating potential risks when applications run directly on hardware without a hypervisor. 
+        The next phase involved integrating the application onto a hypervisor to mitigate these risks.`;
 
     project.projectImage = FlightImage;
 
     project.projectRole = 'Software Engineer';
 
     project.projectResponsibilities = [
-        "Collaborate with team to determine the best course of action",
+        "Collaborate with the team to determine the best course of action",
         "Participate in daily status meetings with the customer and the team",
         "Develop a visual demo to simulate a vulnerability in flight software",
-        "Develop using software called VxWorks"
+        "Utilize VxWorks for software development"
     ]
 
     project.projectContributions = [
-        "Created a TCP server and client demo application in C and Python",
+        "Developed a TCP server and client demo application in C and Python",
         "Created a multi-threaded TCP server in C",
-        "Created an application to simulate a vulnerability which would crash the demo",
-        "Configured application to interact with a visual flight primary display"
+        "Developed an application to simulate a vulnerability that would crash the demo",
+        "Integrated the application onto a hypervisor to demonstrate enhanced security"
     ]
 
 

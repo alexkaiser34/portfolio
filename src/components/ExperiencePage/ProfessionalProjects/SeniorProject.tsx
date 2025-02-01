@@ -14,16 +14,11 @@ function SeniorProject(){
     project.projectTimeline = "January 2023 - August 2023";
 
     project.projectDescription = `
-        This was my senior project at Grand Valley State University.  I worked with a team
-        of engineers to support the project customer: DornerWorks Ltd.
-        The goal of this project was to provide DornerWorks Ltd with a visually
-        appealing application to customers that shows off the isolation and security features of a hypervisor,
-        specifically the seL4 hypervisor. The demo consisted of two virtual machines running
-        on the same piece of hardware on top of the seL4 hypervisor.  One virtual machine balanced
-        an inverted pendulum, while the other displayed the video game Chocolate Doom on a monitor. There was also a
-        big red button in the demo that when pressed, shuts down the Doom virtual machine, while the inverted
-        pendulum keeps balancing. This visually illustrates how the two virtual machines running on the same hardware 
-        are completely isolated from one another due to the hypervisor.`;
+        This senior project at Grand Valley State University was conducted in collaboration with DornerWorks Ltd.
+        The objective was to create a visually appealing demonstration to showcase the isolation and security features of the seL4 hypervisor.
+        The demo featured two virtual machines running on the same hardware: one balancing an inverted pendulum and the other displaying the video game Chocolate Doom.
+        A red button in the demo, when pressed, would shut down the Doom virtual machine while the inverted pendulum continued to balance,
+        illustrating the isolation provided by the hypervisor.`;
 
     project.projectImage = SeniorProjectImage;
 
@@ -31,22 +26,18 @@ function SeniorProject(){
 
     project.projectResponsibilities = [
         "Lead software and hardware engineer",
-        "Led and managed a team of engineers to meet a variety of customer needs",
-        "Organized and planned project timeline",
-        "Preformed one-on-one and team meetings with the customer to better understand their needs",
-        "Delegated tasks to the team to ensure project deadlines would be met",
-        "Held numerous design presentations with various faculty and industry customers"
+        "Managed and led a team of engineers to meet customer requirements",
+        "Organized and planned the project timeline",
+        "Conducted one-on-one and team meetings with the customer to understand their needs",
+        "Delegated tasks to ensure project deadlines were met"
     ]
 
     project.projectContributions = [
-        "Designed and researched a control algorithm to balance inverted pendulum",
-        "Designed and prototyped a custom printed circuit board to add signal processing circuitry",
-        "Configured the hardware description of an MPSoC (multiprocessor system on chip)",
-        "Designed hardware drivers in VHDL and Verilog to communicate with various sensors using the AXI communication protocol",
-        "Designed software drivers to communicate to the hardware drivers from a freeRTOS and linux virtual machine",
-        "Created bootloader patches to add application functionality",
-        "Configured an seL4 application to allow seL4 to manage a freeRTOS and linux virtual machine",
-        "Completed project a month early and greatly satisfied the customer"
+        "Led the development and implementation of both software and hardware components",
+        "Managed a team of engineers to successfully meet diverse customer requirements",
+        "Organized and planned the project timeline to ensure timely completion",
+        "Conducted regular meetings with the customer to align project goals with their needs",
+        "Delegated tasks effectively to ensure all project milestones were achieved"
     ]
 
 

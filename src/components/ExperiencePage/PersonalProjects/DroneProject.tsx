@@ -14,30 +14,26 @@ function DroneProject(){
     project.projectTimeline = "May 2020 - August 2020";
 
     project.projectDescription = `
-
-        I worked on this project individually. The goal of this project
-        was to gain experience building and wiring systems. It was also
-        to become more familiar with using a flight controller. This project
-        uses the Pixhawk flight controller in combination with Ardupilot
-        software to control and monitor the drone.  A camera was also attached
-        to take in flight video.`;
+        This individual project aimed to gain hands-on experience in building and wiring systems, as well as to become proficient with flight controllers.
+        The project involved using the Pixhawk flight controller in combination with Ardupilot software to control and monitor the drone.
+        Additionally, a camera was attached to capture in-flight video.`;
 
     project.projectImage = DroneImage;
 
     project.projectRole = 'Individual - Software/Hardware Engineer';
 
     project.projectResponsibilities = [
-        "Build and construct durable drone frame",
-        "Configure Pixhawk flight controller to control drone",
-        "Attach external camera to view flight video",
-        "Ensure wiring and soldering can sustain harsh flying conditions"
+        "Build and construct a durable drone frame",
+        "Configure the Pixhawk flight controller for drone operation",
+        "Attach an external camera to capture in-flight video",
+        "Ensure wiring and soldering can withstand harsh flying conditions"
     ]
 
     project.projectContributions = [
-        "Built and constructed durable carbon fiber drone frame",
-        "Configured Ardupilot software to correctly monitor and control the drone",
-        "Placed external camera on drone for video (I have some cool views!)",
-        "Neatly wired and solders all wires throughout the drone"
+        "Built and constructed a durable carbon fiber drone frame",
+        "Configured the Pixhawk flight controller for precise drone control",
+        "Attached and integrated an external camera for in-flight video capture",
+        "Ensured robust wiring and soldering to sustain harsh flying conditions"
     ]
 
 

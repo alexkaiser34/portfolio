@@ -11,30 +11,27 @@ function MspRtos(){
     project.projectTimeline = "August 2022 - December 2022";
 
     project.projectDescription = `
-
-        I worked on this project on a team of 2 engineers as part of an 
-        assembly/embedded systems class at GVSU. The goal of this project was to use 
-        the MSP432 microcontroller to create a multi-threaded real time operating system using C and 
-        Assembly.  The real time operating system would allow the user to control various 
-        onboard device peripherals and external sensors simultaneously.`;
+        This project was undertaken as part of an assembly/embedded systems class at GVSU, involving a team of two engineers.
+        The objective was to utilize the MSP432 microcontroller to develop a multi-threaded real-time operating system using C and Assembly.
+        The operating system was designed to control various onboard device peripherals and external sensors simultaneously.`;
 
     project.projectImage = RtosImage;
 
     project.projectRole = 'Academic - Software/Hardware Engineer';
 
     project.projectResponsibilities = [
-        "Create the kernel and operating system using C and Assembly",
-        "Create a round robin scheduler using the SysTick timer to run multiple threads",
-        "Configure the system to context switch properly",
+        "Develop the kernel and operating system using C and Assembly",
+        "Implement a round-robin scheduler using the SysTick timer to manage multiple threads",
+        "Configure the system for proper context switching",
         "Control onboard LEDs, pushbuttons, and external LEDs from different threads",
-        "Use locks to ensure thread synchronization"
+        "Utilize locks to ensure thread synchronization"
     ]
 
     project.projectContributions = [
-        "Created a kernel and operating system to setup threads and run the scheduler",
-        "Designed assembly to handle context switching and store register values on the stack",
-        "Designed assembly to decipher critical and non critical sections of threads",
-        "Implemented functionality of 4 threads to control various sensors simultaneously"
+        "Developed a kernel and operating system to set up threads and run the scheduler",
+        "Designed assembly code to handle context switching and store register values on the stack",
+        "Implemented assembly code to distinguish between critical and non-critical sections of threads",
+        "Enabled functionality of four threads to control various sensors simultaneously"
     ]
 
 

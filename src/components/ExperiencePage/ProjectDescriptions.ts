@@ -14,6 +14,9 @@ import MspRtos from "./AcademicProjects/MspRtos";
 import StmCarAlarm from "./AcademicProjects/StmCarAlarm";
 import VhdlCPU from "./AcademicProjects/VhdlCPU";
 import VhdlVideoGame from "./AcademicProjects/VhdlVideoGame";
+import CpuOptimization from "./ProfessionalProjects/Itron/CpuOptimization";
+import Gen5RivaMeter from "./ProfessionalProjects/Itron/Gen5RivaMeter";
+import ToolSuiteApps from "./ProfessionalProjects/Itron/ToolSuiteApps";
 
 import VMComposerImage from '../../images/VMComposer.jpg';
 import SeniorProjectImage from '../../images/DoomDemo.gif';
@@ -31,7 +34,9 @@ import MspRtosImage from '../../images/msp_rtos.png';
 import PcbCarAlarm from '../../images/pcb-carAlarm.gif';
 import CpuState from '../../images/cpu-state.png';
 import ElectricFish from '../../images/electric-fish.png';
-
+import CpuOptimizationImage from '../../images/CpuOptimization.jpg';
+import Gen5RivaMeterImage from '../../images/Gen5RivaMeter.jpg';
+import DesktopAppImage from '../../images/desktopApp.jpg';
 
 
 interface ProjectCardData {
@@ -46,7 +51,7 @@ interface ProjectCardData {
 export const projectListAcademic:ProjectCardData[] = [
     {
         title: 'VHDL CPU Design',
-        shortDescription: 'Created a VHDL CPU Module to control onboard peripherals and execute opcodes',
+        shortDescription: 'Developed a VHDL CPU module to control onboard peripherals and execute opcodes efficiently',
         category: 'FPGA/Software',
         role: 'Engineer',
         image: CpuState,
@@ -54,7 +59,7 @@ export const projectListAcademic:ProjectCardData[] = [
     },
     {
         title: 'MSP Real Time Operating System Design',
-        shortDescription: 'Created a real time operating system using the MSP 432 microcontroller',
+        shortDescription: 'Engineered a real-time operating system utilizing the MSP 432 microcontroller',
         category: 'Embedded Systems/Hardware',
         role: 'Engineer',
         image: MspRtosImage,
@@ -62,7 +67,7 @@ export const projectListAcademic:ProjectCardData[] = [
     },
     {
         title: 'Car Alarm System - PCB and Software Design',
-        shortDescription: 'Fully designed a PCB and embedded system to function as a car alarm using an STM32 MCU',
+        shortDescription: 'Designed a comprehensive PCB and embedded system for a car alarm using an STM32 MCU',
         category: 'Embedded Systems/Hardware',
         role: 'Engineer',
         image: PcbCarAlarm,
@@ -70,7 +75,7 @@ export const projectListAcademic:ProjectCardData[] = [
     },
     {
         title: 'VHDL Video Game - Electric Groove Fish',
-        shortDescription: 'Created the Electric Groove Fish video game in VHDL to run on an FPGA',
+        shortDescription: 'Created the Electric Groove Fish video game in VHDL for execution on an FPGA platform',
         category: 'FPGA/Software',
         role: 'Engineer',
         image: ElectricFish,
@@ -88,10 +93,34 @@ export const projectListAcademic:ProjectCardData[] = [
 
 export const projectListProfessional:ProjectCardData[] = [
     {
+        title: 'Gen5RivaMeter CPU Profiling and Optimization',
+        shortDescription: 'Profiled and optimized the CPU performance of Itron\'s Gen5Riva Electric Meter to identify and address inefficiencies.',
+        category: 'Embedded Systems',
+        role: 'Software Engineer',
+        image: CpuOptimizationImage,
+        component: CpuOptimization()
+    },
+    {
+        title: 'Gen5RivaMeter Alternate LCD Display',
+        shortDescription: 'Designed and implemented an alternate LCD display interface for Itron\'s Gen5Riva Electric Meter.',
+        category: 'Embedded Systems',
+        role: 'Software Engineer',
+        image: Gen5RivaMeterImage,
+        component: Gen5RivaMeter()
+    },
+    {
+        title: 'ASP.NET Core Itron Engineer Desktop Applications',
+        shortDescription: 'Designed and enhanced desktop applications using the ASP.NET Core Framework for data extraction and debugging.',
+        category: 'Full Stack',
+        role: 'Software Engineer',
+        image: DesktopAppImage,
+        component: ToolSuiteApps()
+    },
+    {
         title: 'seL4 Doom Pendulum Demo',
         shortDescription: 'Created an embedded application to run an inverted pendulum and video game' +
         ' on top of a hypervisor',
-        category: 'Embedded Sytems/FPGA/Hardware',
+        category: 'Embedded Systems/FPGA/Hardware',
         role: 'Project Manager',
         image: SeniorProjectImage,
         component: SeniorProject()
@@ -146,8 +175,7 @@ export const projectListProfessional:ProjectCardData[] = [
 export const projectListPersonal:ProjectCardData[] = [
     {
         title: 'Machine Learning Stock App',
-        shortDescription: 'Created a full stack desktop application that displays real time stock data ' +
-        'along with machine learning price predictions',
+        shortDescription: 'Developed a full stack desktop application displaying real-time stock data with machine learning price predictions.',
         category: 'Full Stack',
         image: MLStocksImage,
         role: 'Product Owner',
@@ -155,8 +183,7 @@ export const projectListPersonal:ProjectCardData[] = [
     },
     {
         title: 'NBA App', 
-        shortDescription: 'Designed a full stack application to allow users to track NBA players, teams,' +
-        ' and stats for any NBA season in the last 30 years',
+        shortDescription: 'Designed a full stack application for tracking NBA players, teams, and stats for any season in the last 30 years.',
         category: 'Full Stack',
         image: NbaImage,
         role: 'Product Owner',
@@ -164,8 +191,7 @@ export const projectListPersonal:ProjectCardData[] = [
     },
     {
         title: 'Sports Betting App', 
-        shortDescription: 'Created a web application to allow users to track, place, and monitor ' +
-        'their sports betting history',
+        shortDescription: 'Created a web application for users to track, place, and monitor their sports betting history.',
         category: 'Full Stack',
         image: SportsBetImage,
         role: 'Project Manager',

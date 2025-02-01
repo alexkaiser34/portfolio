@@ -14,26 +14,25 @@ function Polarfire(){
     project.projectTimeline = "January 2022 - May 2022";
 
     project.projectDescription = `
-        For this project, I worked with a team of engineers in the Secure Technologies
-        group at DornerWorks Ltd.  The goal of the project was to create an seL4 ethernet
-        driver for the Polarfire SoC (RISC-V Architecture). This driver could then be used by various applications
-        running in seL4.`;
+        This project was undertaken with the Secure Technologies group at DornerWorks Ltd.
+        The objective was to develop an seL4 Ethernet driver for the Polarfire SoC (RISC-V Architecture).
+        This driver would be utilized by various applications running in the seL4 environment.`;
 
     project.projectImage = RISCVImage;
 
     project.projectRole = 'Software Engineer';
 
     project.projectResponsibilities = [
-        "Collaborate with team to effectively develop solutions",
+        "Collaborate with the team to effectively develop solutions",
         "Participate in daily status meetings with the customer and the team",
-        "Participate in one on one meetings with the customer"
+        "Engage in one-on-one meetings with the customer to address specific issues"
     ]
 
     project.projectContributions = [
-        "Created a development environment for the team with Docker to build and run test applications",
-        "Helped implement sections of ethernet driver code",
-        "Hosted individual meetings with the customer to help them debug issues",
-        "Wrote numerous bash/shell scripts for building and testing the application"
+        "Created a development environment using Docker to build and run test applications",
+        "Contributed to the implementation of sections of the Ethernet driver code",
+        "Hosted individual meetings with the customer to assist in debugging issues",
+        "Authored numerous bash/shell scripts for building and testing the application"
     ]
 
 

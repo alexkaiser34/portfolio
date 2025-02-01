@@ -14,12 +14,10 @@ function VMComposer(){
     project.projectTimeline = "January 2022 - May 2022";
 
     project.projectDescription = `
-        For this project, I worked
-        alone on improvements to a DornerWorks tool called VMComposer.  This tool allows
-        customers to create and configure the layout of embedded applications that run on
-        top of the seL4 hypervisor using a graphical user interface. This tool is a desktop
-        application using React, TypeScript, and Electron. I worked on both the front-end and
-        the back-end of this application.`;
+        This project involved working independently on enhancements to a DornerWorks tool called VMComposer.
+        VMComposer allows customers to create and configure the layout of embedded applications that run on
+        top of the seL4 hypervisor using a graphical user interface. This desktop application utilizes React, TypeScript, and Electron.
+        My contributions spanned both the front-end and back-end of the application.`;
 
 
     project.projectImage = VMComposerImage;
@@ -34,12 +32,10 @@ function VMComposer(){
     ]
 
     project.projectContributions = [
-        "Fixed various back-end bugs in python",
-        "Added unit tests for both the front-end and back-end",
-        "Designed and created front-end components to improve layout and user interaction",
-        "Helped configure a GitLab CI/CD pipeline",
-        "Improved styling of various front-end components",
-        "Wrote numerous unit tests for front-end components"
+        "Designed and implemented new front-end features to enhance user experience",
+        "Resolved various front-end bugs and improved test coverage",
+        "Developed new back-end features to extend application functionality",
+        "Fixed multiple back-end bugs and enhanced test coverage"
     ]
 
 
