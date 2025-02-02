@@ -53,7 +53,7 @@ function HomePage(props: HomePageProps){
                         transition={{ ease: "easeIn", duration: 0.5 }}
                         >
                             <div className='d-flex flex-column align-items-center justify-content-evenly pb-5'>
-                                <h2 style={{color: 'lightgreen', paddingBottom: '20px'}}>2+ years experience designing</h2>
+                                <h2 style={{color: 'lightgreen', paddingBottom: '20px'}}>3+ years experience designing</h2>
                                 
                                 <Carousel style={{maxHeight: '500px', maxWidth: '600px', borderRadius: '20px', outline: '3px solid lightgreen'}}>
                                     <Carousel.Item>

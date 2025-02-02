@@ -36,6 +36,53 @@
     background-color: #050e2f;
 }
 
+.companyButton {
+    border: 2px solid lightgreen;
+    flex: 1;
+    color: lightblue;
+    background-color: #050e2f;
+    padding: 10px 10px;
+    transition: all 0.3s ease;
+    font-size: larger;
+}
+
+.companyButton:active {
+    border: 2px solid lightgreen !important;
+    color: lightgreen !important;
+    background-color: #050e2f !important;
+    padding: 10px 10px !important;
+}
+
+.companyButton:hover {
+    border: 2px solid lightgreen;
+    color: lightgreen;
+    background-color: #050e2f;
+    padding: 10px 10px;
+    transition: all 0.3s ease;
+}
+
+.companyDropDownItem {
+    color: lightgreen;
+    background-color: #050e2f;
+}
+
+.companyDropDownItem:hover {
+    color: white;
+    background-color: #050e2f;
+    transition: all 0.3s ease;
+}
+
+.companyButton[aria-expanded="true"] {
+    background-color: #050e2f;
+    border: 2px solid lightgreen;
+}
+
+.companyDropDown button:active {
+    border: 2px solid lightgreen;
+    color: lightgreen;
+    background-color: #050e2f;
+}
+
 
 .template-project-img img {
     width: auto;
