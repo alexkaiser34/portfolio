@@ -1,41 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.9145d9e0.css",
-    "main.js": "/static/js/main.df74ece3.js",
+    "main.css": "/static/css/main.b080020b.css",
+    "main.js": "/static/js/main.d4f0657a.js",
     "static/js/787.1ed0c42c.chunk.js": "/static/js/787.1ed0c42c.chunk.js",
-    "static/media/DoomDemo.gif": "/static/media/DoomDemo.23cb4b963637296292e1.gif",
-    "static/media/DroneGif.gif": "/static/media/DroneGif.005b737d6993e3777e8b.gif",
-    "static/media/RISC-V.png": "/static/media/RISC-V.3188554890f46332d9db.png",
     "static/media/Headshot.png": "/static/media/Headshot.f8fbff9836fbf50054d1.png",
-    "static/media/Gen5RivaMeter.jpg": "/static/media/Gen5RivaMeter.1f446c6f5885756ae179.jpg",
-    "static/media/FlightDisplay.png": "/static/media/FlightDisplay.b4f6692d1561b6941c4a.png",
-    "static/media/SlotMachine.gif": "/static/media/SlotMachine.01b4f7b7d52622115070.gif",
-    "static/media/dashboard.gif": "/static/media/dashboard.5210da915f7d07b1bb99.gif",
     "static/media/space-blue.jpg": "/static/media/space-blue.bd2ba9232cfc731d2cf9.jpg",
-    "static/media/VMComposer.jpg": "/static/media/VMComposer.e857fbbc113ac1ebfbb7.jpg",
     "static/media/school-letter-of-rec.pdf": "/static/media/school-letter-of-rec.d15a94d6a8e9e4da4951.pdf",
-    "static/media/cpu-state.png": "/static/media/cpu-state.b26dcfec025a0aaea5ed.png",
     "static/media/resume.pdf": "/static/media/resume.78dba824f44df1406aa0.pdf",
-    "static/media/fpga.png": "/static/media/fpga.79ef2708f9df119ebf85.png",
-    "static/media/MLStocks.png": "/static/media/MLStocks.617a8e639cb9596db187.png",
     "static/media/gv-logo.png": "/static/media/gv-logo.ce31354fe491161d41b0.png",
-    "static/media/pcb-carAlarm.gif": "/static/media/pcb-carAlarm.0341fd626c5a13d4990f.gif",
-    "static/media/electric-fish.png": "/static/media/electric-fish.30cc6e85315c54d78d4d.png",
-    "static/media/CpuOptimization.jpg": "/static/media/CpuOptimization.beaeb6e12f92e796a007.jpg",
     "static/media/secure-tech-letter-of-rec.pdf": "/static/media/secure-tech-letter-of-rec.66f2b75ad4c9325477c0.pdf",
     "static/media/fpga-letter-of-rec.pdf": "/static/media/fpga-letter-of-rec.74939385a60361e13bdb.pdf",
-    "static/media/dotnetImage.jpeg": "/static/media/dotnetImage.0dd73291be2259064c47.jpeg",
-    "static/media/msp_rtos.png": "/static/media/msp_rtos.2802e146e57494af366a.png",
-    "static/media/Android.png": "/static/media/Android.413b4fb1d800b1303914.png",
-    "static/media/desktopApp.jpg": "/static/media/desktopApp.3560c4dfaa0f48f7a9ee.jpg",
-    "static/media/nba.png": "/static/media/nba.0f6c21f56d169879bf96.png",
     "index.html": "/index.html",
-    "main.9145d9e0.css.map": "/static/css/main.9145d9e0.css.map",
-    "main.df74ece3.js.map": "/static/js/main.df74ece3.js.map",
+    "main.b080020b.css.map": "/static/css/main.b080020b.css.map",
+    "main.d4f0657a.js.map": "/static/js/main.d4f0657a.js.map",
     "787.1ed0c42c.chunk.js.map": "/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9145d9e0.css",
-    "static/js/main.df74ece3.js"
+    "static/css/main.b080020b.css",
+    "static/js/main.d4f0657a.js"
   ]
 }
