@@ -1,15 +1,14 @@
 import './style.css';
 import Headshot from '../../images/Headshot.png';
-import { Col, Image, Row, Tab, Table, Container } from 'react-bootstrap';
+import { Col, Image, Row, Container } from 'react-bootstrap';
 import ProjectManagement from '../../images/project-management.png';
 import DesignThinking from '../../images/design-thinking.png';
 import DiverseBackground from  '../../images/diverse-background.png';
 import SoftwareDesign from '../../images/software-design.png';
 import GVLogo from '../../images/gv-logo.png';
 import CustomerService from '../../images/CustomerService.png';
-import FadeAnimate from '../FadeAnimate';
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ChevronDoubleDown } from 'react-bootstrap-icons';
 
 function BackgroundPage(){

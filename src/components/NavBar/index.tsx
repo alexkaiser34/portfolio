@@ -5,7 +5,7 @@ import { NavLinks } from "../../App";
 import Resume from "../Resume";
 import './styles.css';
 import ReactGA from 'react-ga';
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface NavBarProps {
     linkActive: NavLinks | undefined,
@@ -36,7 +36,7 @@ function NavBar(props: NavBarProps) {
 
     useEffect(() => {
         ReactGA.pageview(location.pathname + location.search);
-    }, [location.pathname]);
+    }, [location.pathname, location.search]);
 
     const navItems = [
         { name: "Home", number: "01" },

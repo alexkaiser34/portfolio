@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Button, Form, Container, Row, Col } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { Linkedin, Github, Envelope, GeoAlt } from 'react-bootstrap-icons';
@@ -8,64 +8,105 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './style.css';
 
+type resultButton = "Success" | "Danger";
+
 function ContactPage() {
     const formRef = useRef<HTMLFormElement>(null);
     const [loading, setLoading] = useState(false);
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
+    const [formValue, setFormValue] = useState({
+        user_email: '',
         subject: '',
-        message: ''
+        body: ''
     });
     const [formValid, setFormValid] = useState({
-        name: false,
-        email: false,
-        message: false
+        user_email: false,
+        subject: false,
+        body: false
     });
 
-    useEffect(() => {
-        document.title = "Alex Kaiser - Contact";
-    }, []);
+    const notify = (s:resultButton) => {
+
+        if (s === "Success"){
+            toast("Email sent successfully!", {
+                theme: 'colored',
+                style: {backgroundColor: 'lightgreen', color: 'black'},
+                position: 'top-left',
+                autoClose: 3000
+            });
+        }
+        else {
+            toast("Email failed! Please ensure you have correctly entered an email, subject, and body", {
+                theme: 'colored',
+                style: {backgroundColor: '#ff6868', color: 'black'},
+                position: 'top-left',
+                autoClose: 5000
+            });
+        }
+    }
+
+    const checkValid = (s: string) => {
+        if (s === 'user_email') {
+            if (validator.isEmail(formValue.user_email)) {
+                setFormValid({ ...formValid, user_email: true });
+            } else {
+                setFormValid({ ...formValid, user_email: false });
+            }
+        } else if (s === 'body') {
+            if (validator.isEmpty(formValue.body)) {
+                setFormValid({ ...formValid, body: false });
+            } else {
+                setFormValid({ ...formValid, body: true });
+            }
+        } else if (s === 'subject') {
+            if (validator.isEmpty(formValue.subject)) {
+                setFormValid({ ...formValid, subject: false });
+            } else {
+                setFormValid({ ...formValid, subject: true });
+            }
+        }
+    };
+
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
-        validateField(name, value);
+        setFormValue({ ...formValue, [e.target.name]: e.target.value });
+        checkValid(e.target.name);
     };
 
-    const validateField = (name: string, value: string) => {
-        switch (name) {
-            case 'email':
-                setFormValid(prev => ({ ...prev, email: validator.isEmail(value) }));
-                break;
-            case 'name':
-            case 'message':
-                setFormValid(prev => ({ ...prev, [name]: value.trim().length > 0 }));
-                break;
+    const handleSubmit = (event:any) => {
+        const form = event.currentTarget;
+        event.preventDefault();
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
         }
-    };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
         setLoading(true);
-
-        try {
-            await emailjs.sendForm(
-                'YOUR_SERVICE_ID',
-                'YOUR_TEMPLATE_ID',
-                formRef.current!,
-                'YOUR_PUBLIC_KEY'
-            );
-            toast.success('Message sent successfully!');
+        emailjs.sendForm("service_lha85ip","template_qqlvfre", formRef.current as HTMLFormElement, 'oGwhiciNhFAOwztGo')
+        .then((result) => {
+            console.log(result.text);
+            notify("Success");
             formRef.current?.reset();
-            setFormData({ name: '', email: '', subject: '', message: '' });
-            setFormValid({ name: false, email: false, message: false });
-        } catch (error) {
-            toast.error('Failed to send message. Please try again.');
-            console.error(error);
-        }
 
-        setLoading(false);
+            setFormValue({
+                user_email: '',
+                subject: '',
+                body: ''
+            });
+
+            setFormValid({
+                body: false,
+                user_email: false,
+                subject: false
+            });
+
+            setLoading(false);
+
+        }, (error) => {
+            console.log(error.text);
+            notify("Danger");
+            setLoading(false);
+        });
+
     };
 
     return (
@@ -140,26 +181,14 @@ function ContactPage() {
                                     <Row>
                                         <Col md={6}>
                                             <Form.Group className="mb-4">
-                                                <Form.Label>Name</Form.Label>
-                                                <Form.Control
-                                                    type="text"
-                                                    name="name"
-                                                    required
-                                                    onChange={handleInputChange}
-                                                    isValid={formValid.name}
-                                                    placeholder="Your name"
-                                                />
-                                            </Form.Group>
-                                        </Col>
-                                        <Col md={6}>
-                                            <Form.Group className="mb-4">
                                                 <Form.Label>Email</Form.Label>
                                                 <Form.Control
                                                     type="email"
-                                                    name="email"
+                                                    name="user_email"
                                                     required
                                                     onChange={handleInputChange}
-                                                    isValid={formValid.email}
+                                                    isInvalid={!formValid.user_email}
+                                                    isValid={formValid.user_email}
                                                     placeholder="Your email"
                                                 />
                                             </Form.Group>
@@ -170,8 +199,11 @@ function ContactPage() {
                                         <Form.Label>Subject</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            name="subject"
+                                            required
                                             onChange={handleInputChange}
+                                            name="subject"
+                                            isInvalid={!formValid.subject}
+                                            isValid={formValid.subject}
                                             placeholder="Message subject"
                                         />
                                     </Form.Group>
@@ -181,10 +213,11 @@ function ContactPage() {
                                         <Form.Control
                                             as="textarea"
                                             rows={6}
-                                            name="message"
+                                            name="body"
                                             required
                                             onChange={handleInputChange}
-                                            isValid={formValid.message}
+                                            isValid={formValid.body}
+                                            isInvalid={!formValid.body}
                                             placeholder="Your message"
                                         />
                                     </Form.Group>
@@ -192,7 +225,7 @@ function ContactPage() {
                                     <Button 
                                         type="submit"
                                         className="submit-button"
-                                        disabled={!formValid.email || !formValid.name || !formValid.message || loading}
+                                        disabled={!formValid.user_email || !formValid.subject || !formValid.body || loading}
                                     >
                                         {loading ? 'Sending...' : 'Send Message'}
                                     </Button>

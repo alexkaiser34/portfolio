@@ -157,7 +157,7 @@ function HomePage(props: HomePageProps) {
                         </motion.h2>
                     </Col>
                     {expertiseAreas.map((area, index) => (
-                        <Col md={3} sm={6} key={area.title}>
+                        <Col md={3} sm={6} key={area.title} className='pe-4 ps-4'>
                             <motion.div 
                                 className="expertise-card"
                                 initial={{ opacity: 0, y: 20 }}
@@ -184,18 +184,20 @@ function HomePage(props: HomePageProps) {
                         </motion.h2>
                         <div className="tech-grid-container">
                             <div className="tech-grid">
-                                {technologies.map((tech, index) => (
+                                {Object.keys(technologies).map((key, index) => (
                                     <motion.div 
                                         key={index}
                                         className="tech-icon-wrapper"
+                                        title={key}
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         whileHover={{ scale: 1.1 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: index * 0.05 }}
                                     >
+                                        <div className="tech-icon-title">{key}</div>
                                         <div className="tech-icon">
-                                            {tech}
+                                            {technologies[key]}
                                         </div>
                                     </motion.div>
                                 ))}
@@ -227,19 +229,19 @@ const expertiseAreas = [
     }
 ];
 
-const technologies = [
-    <PythonOriginal size="3em" />,
-    <ReactOriginal size="3em" />,
-    <TypescriptOriginal size="3em" />,
-    <JavascriptOriginal size="3em" />,
-    <COriginal size="3em" />,
-    <CplusplusOriginal size="3em" />,
-    <CsharpOriginal size="3em" />,
-    <DotnetcoreOriginal size="3em" />,
-    <JavaOriginal size="3em" />,
-    <BashOriginal size="3em" />,
-    <AmazonwebservicesOriginal size="3em" />,
-    <DockerOriginal size="3em" />
-];
+const technologies : { [key: string]: React.ReactNode } = {
+    "Python": <PythonOriginal size="3em" />,
+    "React": <ReactOriginal size="3em" />,
+    "JavaScript": <JavascriptOriginal size="3em" />,
+    "TypeScript": <TypescriptOriginal size="3em" />,
+    "C": <COriginal size="3em" />,
+    "C++": <CplusplusOriginal size="3em" />,
+    "C#": <CsharpOriginal size="3em" />,
+    "ASP.NET": <DotnetcoreOriginal size="3em" />,
+    "Java": <JavaOriginal size="3em" />,
+    "Bash": <BashOriginal size="3em" />,
+    "AWS": <AmazonwebservicesOriginal size="3em" />,
+    "Docker": <DockerOriginal size="3em" />
+};
 
 export default HomePage;
