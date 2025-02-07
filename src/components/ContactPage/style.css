@@ -163,13 +163,17 @@
 }
 
 .submit-button:hover:not(:disabled) {
-    background: rgba(100, 255, 218, 0.1);
-    transform: translateY(-2px);
+    border: 2px solid #64ffda;
+    color: #64ffda;
+    scale: 1.05;
+    background-color: transparent;
+    transition: all 0.3s ease;
 }
 
 .submit-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+    background-color: transparent;
+    color: gray;
+    border: 2px solid gray;
 }
 
 /* Toast Customization */

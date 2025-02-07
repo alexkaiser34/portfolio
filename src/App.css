@@ -50,6 +50,11 @@ html {
   scrollbar-width: none;  /* Firefox */
 }
 
+/* Add this rule to prevent horizontal scrolling */
+body {
+  overflow-x: hidden;
+}
+
 .static-background {
   z-index: -1;
   background-color: #050e2f;
