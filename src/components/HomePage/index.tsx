@@ -99,9 +99,10 @@ function HomePage(props: HomePageProps) {
                                     href="mailto:alexkaiser@me.com"
                                     whileHover={{ scale: 1.05 }}
                                     className="contact-link"
+                                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                 >
                                     <Envelope size={24} />
-                                    <span>alexkaiser@me.com</span>
+                                    <span style={{ marginLeft: '8px' }}>alexkaiser@me.com</span>
                                 </motion.a>
                                 <motion.a 
                                     href="https://www.linkedin.com/in/alex-kaiser34/"
@@ -109,9 +110,10 @@ function HomePage(props: HomePageProps) {
                                     rel="noopener noreferrer"
                                     whileHover={{ scale: 1.05 }}
                                     className="contact-link"
+                                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                 >
                                     <Linkedin size={24} />
-                                    <span>LinkedIn Profile</span>
+                                    <span style={{ marginLeft: '8px' }}>LinkedIn Profile</span>
                                 </motion.a>
                                 <motion.a 
                                     href="https://github.com/alexkaiser34"
@@ -119,9 +121,10 @@ function HomePage(props: HomePageProps) {
                                     rel="noopener noreferrer"
                                     whileHover={{ scale: 1.05 }}
                                     className="contact-link"
+                                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                 >
                                     <Github size={24} />
-                                    <span>GitHub Profile</span>
+                                    <span style={{ marginLeft: '8px' }}>GitHub Profile</span>
                                 </motion.a>
                             </div>
                         </motion.div>
