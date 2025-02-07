@@ -53,7 +53,15 @@ function NavBar(props: NavBarProps) {
             className={`modern-navbar ${isScrolled ? 'scrolled' : ''}`}
         >
             <Container>
-                <Navbar.Brand href="#/Home" className="brand">
+                <Navbar.Brand 
+                    href="#/Home" 
+                    className="brand"
+                    onClick={() => {
+                        window.scrollTo(0, 0);
+                        setIsOpen(false);
+                        props.setLinkActive("Home");
+                    }}
+                >
                     <motion.div
                         className="logo-container"
                         whileHover={{ scale: 1.1 }}
@@ -78,7 +86,7 @@ function NavBar(props: NavBarProps) {
                     </div>
                 </Navbar.Toggle>
 
-                <Navbar.Collapse id="navbar-nav">
+                <Navbar.Collapse id="navbar-nav" in={isOpen}>
                     <Nav className="ms-auto nav-links">
                         {navItems.map((item, index) => (
                             <motion.div
