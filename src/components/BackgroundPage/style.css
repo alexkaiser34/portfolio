@@ -244,6 +244,37 @@
     }
 }
 
+/* Add space between the picture and About Me header on mobile devices */
+@media (max-width: 576px) {
+    .profile-image-col {
+        margin-bottom: 1.5rem;
+    }
+
+    .page-header {
+        margin-bottom: 1rem;
+    }
+
+    .intro-section {
+        margin-top: 1rem;
+    }
+
+    .highlight-bar {
+        margin-bottom: 0.5rem;
+    }
+
+    .image-wrapper {
+        margin-bottom: 1rem;
+    }
+
+    .profile-image-col {
+        margin-bottom: 1rem;
+    }
+
+    .intro-section {
+        padding-top: 0;
+    }
+}
+
 /* Rest of existing styles... */
 
 .intro-content h2 {
