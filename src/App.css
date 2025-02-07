@@ -25,6 +25,7 @@
   padding-top: 80px; /* Height of navbar */
   min-height: calc(100vh - 80px);
   width: 100%;
+  overflow-x: hidden;
 }
 
 @media (max-width: 991px) {
@@ -55,13 +56,13 @@ body {
   overflow-x: hidden;
 }
 
-.static-background {
+/* .static-background {
   z-index: -1;
   background-color: #050e2f;
   position: fixed;
   height: 150vh;
   width: 150vw;
-}
+} */
 
 .App-content {
   background-color: #050e2f;
@@ -70,6 +71,7 @@ body {
   min-width: 100vw;
   justify-content: center;
   z-index: 1000;
+  overflow-x: hidden;
 }
 
 .App-navbar {
