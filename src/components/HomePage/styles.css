@@ -503,6 +503,15 @@
     .tech-icon-wrapper {
         flex: 0 0 calc(20% - 1.6rem); /* 5 icons per row */
     }
+
+    .contact-section {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .contact-title {
+        text-align: center;
+    }
 }
 
 @media (max-width: 768px) {
@@ -543,6 +552,8 @@
     .expertise-card {
         margin: 0.5rem;
     }
+
+    
 }
 
 @media (max-width: 576px) {
@@ -558,6 +569,8 @@
         font-size: 1.75rem;
         margin-bottom: 2rem;
     }
+
+    
 }
 
 @media (max-width: 480px) {
