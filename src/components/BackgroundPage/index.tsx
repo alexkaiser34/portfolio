@@ -145,10 +145,11 @@ function BackgroundPage(){
                             <motion.div
                                 key={skill.title}
                                 className={`skill-card ${index >= skills.length - (skills.length % 3) ? 'last-row' : ''}`}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        whileHover={{ scale: 1.05 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: index * 0.1, duration: 0.2, ease: "easeInOut" }}
                             >
                                 <div className="skill-icon">
                                     <Image src={skill.image} alt={skill.title} fluid />
