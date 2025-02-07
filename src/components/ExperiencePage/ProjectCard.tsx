@@ -1,15 +1,14 @@
 import { useState } from "react";
-import { Card, Button, Modal } from "react-bootstrap";
+import {  Modal, Image } from "react-bootstrap";
 import { ProjectType } from "./getProjects";
 import TemplateProject from "./TemplateProject";
 
 interface ProjectCardProps {
-    project: ProjectType
+    project: ProjectType;
+    onLearnMore: () => void;
 }
 
-
-function ProjectCard(props: ProjectCardProps) {
-
+function ProjectCard({ project, onLearnMore }: ProjectCardProps) {
     const [show, setShow] = useState(false);
     const handleClick = () => {
       setShow(true);
@@ -19,35 +18,33 @@ function ProjectCard(props: ProjectCardProps) {
       return (
         <Modal className="card-modal" fullscreen={true} show={show} onHide={() => setShow(false)}>
           <Modal.Header className="card-modal-header" closeButton> 
-            <Modal.Title>{props.project.title}</Modal.Title>
+            <Modal.Title>{project.title}</Modal.Title>
           </Modal.Header>
           <Modal.Body className="card-modal-body">
-              <TemplateProject project={props.project} />
+              <TemplateProject project={project} />
           </Modal.Body>
         </Modal>
-
       )
     }
 
     return (
-      <>
-        <Card className="project-card text-center" key={props.project.title} >
-          <Card.Img variant="top" src={props.project.image} style={{
-            padding: '10px 10px',
-            maxHeight: 'max(130px, 10vw)',
-            width: 'auto',
-            margin: 'auto'
-          }}/>
-          <Card.Body>
-            <Card.Title style={{fontWeight: 'bold', color: 'lightgreen'}}>{props.project.title}</Card.Title>
-            <Card.Text>
-              {props.project.shortDescription}
-            </Card.Text>
-            <Button id="card-button" onClick={handleClick}>View Project</Button>
-          </Card.Body>
-        </Card>
-        <ModalCard />
-      </>
+        <div className="project-card">
+            <div className="project-image-container">
+                <Image 
+                    src={project.image} 
+                    alt={project.title} 
+                    fluid 
+                    className="project-image"
+                />
+            </div>
+            <div className="project-content">
+                <h3>{project.title}</h3>
+                <p>{project.shortDescription}</p>
+                <button onClick={onLearnMore} className="learn-more-button">
+                    Learn More
+                </button>
+            </div>
+        </div>
     );
 }
 

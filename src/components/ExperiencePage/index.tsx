@@ -1,8 +1,10 @@
-
 import { useEffect, useState } from 'react';
-import { ButtonGroup, Container, Dropdown } from 'react-bootstrap';
+import { ButtonGroup, Container, Dropdown, Modal, Spinner } from 'react-bootstrap';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X } from 'react-bootstrap-icons';
 import './style.css';
 import ProjectCard from './ProjectCard';
+import TemplateProject from './TemplateProject';
 import { ProjectType, getAllProjects } from './getProjects';
 
 type CategorySelect = "Personal" | "Professional" | "Academic";
@@ -26,203 +28,220 @@ const monthDict:MonthDict = {
     "December": 12
 }
 
-function ExperiencePage(){
-
+function ExperiencePage() {
     const [category, setCategory] = useState<CategorySelect>("Professional");
     const [projects, setProjects] = useState<ProjectType[]>([]);
     const [company, setCompany] = useState<string>("All");
     const [availableCompanies, setCompanies] = useState<string[]>([]);
+    const [selectedProject, setSelectedProject] = useState<ProjectType | null>(null);
+    const [showModal, setShowModal] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         document.title = "Alex Kaiser - Experience";
         getAllProjects()
-        .then((data) => {
-            const sortedData = data.sort((a, b) => {
-                const aTimeline = a.timeline.split(" ");
-                const bTimeLine = b.timeline.split(" ");
+            .then((data) => {
+                const sortedData = data.sort((a, b) => {
+                    const aTimeline = a.timeline.split(" ");
+                    const bTimeLine = b.timeline.split(" ");
 
-                if ((aTimeline.length < 4) || (bTimeLine.length < 4))
-                {
-                    return 0
-                }
-
-                const aYear = aTimeline[aTimeline.length - 1];
-                const aMonth = aTimeline[aTimeline.length - 2];
-                const bYear = bTimeLine[bTimeLine.length - 1];
-                const bMonth = bTimeLine[bTimeLine.length - 2];
-
-                if (bYear === "Present")
-                {
-                    return 1;
-                }
-
-                if (aYear === "Present")
-                {
-                    return -1;
-                }
-
-                if (Number(aYear) > Number(bYear))
-                {
-                    return -1;
-                }
-                else if (Number(bYear) > Number(aYear))
-                {
-                    return 1;
-                }
-                else
-                {
-                    if ((aMonth in monthDict) && (bMonth in monthDict))
+                    if ((aTimeline.length < 4) || (bTimeLine.length < 4))
                     {
-                        if (monthDict[aMonth] > monthDict[bMonth])
-                        {
-                            return -1;
-                        }
-                        else
-                        {
-                            return 1;
-                        }
+                        return 0
+                    }
+
+                    const aYear = aTimeline[aTimeline.length - 1];
+                    const aMonth = aTimeline[aTimeline.length - 2];
+                    const bYear = bTimeLine[bTimeLine.length - 1];
+                    const bMonth = bTimeLine[bTimeLine.length - 2];
+
+                    if (bYear === "Present")
+                    {
+                        return 1;
+                    }
+
+                    if (aYear === "Present")
+                    {
+                        return -1;
+                    }
+
+                    if (Number(aYear) > Number(bYear))
+                    {
+                        return -1;
+                    }
+                    else if (Number(bYear) > Number(aYear))
+                    {
+                        return 1;
                     }
                     else
                     {
-                        return 0;
+                        if ((aMonth in monthDict) && (bMonth in monthDict))
+                        {
+                            if (monthDict[aMonth] > monthDict[bMonth])
+                            {
+                                return -1;
+                            }
+                            else
+                            {
+                                return 1;
+                            }
+                        }
+                        else
+                        {
+                            return 0;
+                        }
                     }
-                }
-            })
-            setProjects(sortedData);
-            let temp: string[] = []
-            sortedData.forEach(project => {
-                if (project.company)
-                {
-                    if (!(temp.includes(project.company)))
-                    {
+                })
+                setProjects(sortedData);
+                let temp: string[] = [];
+                sortedData.forEach(project => {
+                    if (project.company && !temp.includes(project.company)) {
                         temp.push(project.company);
                     }
-                }
+                });
+                temp.unshift("All");
+                setCompanies(temp);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.log(err);
+                setLoading(false);
             });
-            temp.unshift("All");
-            setCompanies(temp);
-        })
-        .catch((err) => console.log(err))
-     }, []);
+    }, []);
 
-     const ProjectCards = () => {
+    const handleLearnMore = (project: ProjectType) => {
+        setSelectedProject(project);
+        setShowModal(true);
+    };
 
+    const ProjectCards = () => {
         const projectsToShow = projects.filter((project) => {
-            if (category === "Professional")
-            {
-                if (company === "All")
-                {
-                    return project.category === category
-                }
-                else
-                {
-                    return (project?.company === company) && (project.category === category)
-                }
+            if (category === "Professional") {
+                return company === "All" 
+                    ? project.category === category
+                    : project.company === company && project.category === category;
             }
-            else {
-                return project.category === category
-            }
+            return project.category === category;
         });
 
-        if (projectsToShow.length > 0)
-        {
-            return (
-                <>
-                {
-                    projectsToShow.map((project) => {
-                        return (
-                            <div className='col-12 col-md-6 col-lg-4 p-3 pb-5' key={project.title + '-card-wrapper'}>
-                                <ProjectCard project={project} />
-                            </div>
-                        )
-                    })
-                }
-                </>
-            )
-        }
-        else
-        {
-            return (
-                <>
-                <h1>Loading...</h1>
-                </>
-            )
-        }
-     }
-
-     const ExperienceButton = (c: CategorySelect) => {
         return (
-            <button style={{
-                backgroundColor: category === c ? 'lightgreen' : '',
-                color: category === c ? '#050e2f' : '',
-            }}
-            className={`${c}-button`}
-            onClick={() => {setCategory(c)}}>
-                {c}
-             </button>
-        )
-     }
+            <div 
+                className="projects-grid" 
+                style={{ 
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    minHeight: projectsToShow.length <= 2 ? 'calc(100vh - 300px)' : 'auto'
+                }}
+            >
+                {projectsToShow.map((project) => (
+                    <div key={project.title} className='project-card'>
+                        <ProjectCard 
+                            project={project} 
+                            onLearnMore={() => handleLearnMore(project)}
+                        />
+                    </div>
+                ))}
+            </div>
+        );
+    };
 
-     const CompanyDropDown = () => {
+    const CategoryButton = (c: CategorySelect) => (
+        <button
+            className={`category-button ${category === c ? 'active' : ''}`}
+            onClick={() => setCategory(c)}
+        >
+            {c}
+        </button>
+    );
 
-        const handleDropDownClick = (company: string) => {
-            setCompany(company);
-        }
-
-        return (
-            <Dropdown className='companyDropDown'>
-                <Dropdown.Toggle className='companyButton'>
-                    {company}
-                </Dropdown.Toggle>
-                <Dropdown.Menu style={{
-                    backgroundColor: '#050e2f',
-                    border: '2px solid lightgreen'
-                }}>
-                    {availableCompanies.map((company) => {
-                        return (
-                            <Dropdown.Item key={company} className={'companyDropDownItem ' + company} onClick={() => handleDropDownClick(company)}>
-                                {company}
-                            </Dropdown.Item>
-                        )
-                    })}
-                </Dropdown.Menu>
-            </Dropdown>
-        )
-
-     }
+    const CompanyDropDown = () => (
+        <Dropdown className="company-dropdown">
+            <Dropdown.Toggle variant="outline-light">
+                {company}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+                {availableCompanies.map((c) => (
+                    <Dropdown.Item 
+                        key={c} 
+                        onClick={() => setCompany(c)}
+                        active={company === c}
+                    >
+                        {c}
+                    </Dropdown.Item>
+                ))}
+            </Dropdown.Menu>
+        </Dropdown>
+    );
 
     return (
-        <div className='ExperiencePage-container'>
-            <div className='d-flex justify-content-center flex-column align-items-center'>
-                <h1 style={{paddingBottom: '15px', color: 'lightgreen'}}>{category.toString()} Projects</h1>
-                <div className='d-flex w-75 justify-content-center pb-3'>
-                    <ButtonGroup className='button-group-experience'>
-                        {ExperienceButton("Professional")}
-                        {ExperienceButton("Personal")}
-                        {ExperienceButton("Academic")}
-                    </ButtonGroup>
-                </div>
-            </div>
-            {
-                category === "Professional" ?
-                    <div className='d-flex flex-row justify-content-center align-items-center pt-4'>
-                        <div className='d-flex flex-row align-items-center'>
-                            <h3 className='pe-4' style={{padding: '15px', color: 'lightblue', fontWeight: 'bold'}}>Select Company: </h3>
-                            <div>
-                                {CompanyDropDown()}
-                            </div>
-                        </div>
+        <div className="experience-page">
+            <Container fluid>
+                <motion.div 
+                    className="page-header"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <h1>Experience</h1>
+                    <div className="highlight-bar"></div>
+                    <p className="header-description">
+                        Explore my journey through various projects and experiences
+                    </p>
+                </motion.div>
+
+                {loading ? (
+                    <div className="loading-container">
+                        <Spinner animation="border" role="status" variant="info">
+                            <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                        <p>Loading projects...</p>
                     </div>
-                : <></>
-            }
-            <Container fluid className='p-5'>
-                <div className='row d-flex align-items-baseline justify-content-center'>
-                    <ProjectCards />
-                </div>
+                ) : (
+                    <>
+                        <div className="filters-section">
+                            <ButtonGroup className="category-buttons">
+                                {CategoryButton("Professional")}
+                                {CategoryButton("Personal")}
+                                {CategoryButton("Academic")}
+                            </ButtonGroup>
+
+                            {category === "Professional" && (
+                                <div className="company-filter">
+                                    <span>Company:</span>
+                                    <CompanyDropDown />
+                                </div>
+                            )}
+                        </div>
+
+                        <ProjectCards />
+                    </>
+                )}
+
+                <AnimatePresence>
+                    {showModal && selectedProject && (
+                        <Modal 
+                            show={showModal} 
+                            onHide={() => setShowModal(false)}
+                            fullscreen
+                            className="project-modal"
+                        >
+                            <Modal.Header>
+                                <button 
+                                    className="close-button"
+                                    onClick={() => setShowModal(false)}
+                                >
+                                    <X size={24} />
+                                </button>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <TemplateProject project={selectedProject} />
+                            </Modal.Body>
+                        </Modal>
+                    )}
+                </AnimatePresence>
             </Container>
         </div>
-    )
+    );
 }
-
 
 export default ExperiencePage;

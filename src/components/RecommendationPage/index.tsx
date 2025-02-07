@@ -1,133 +1,123 @@
-
 import './styles.css';
 import fpgaLetter from './fpga-letter-of-rec.pdf';
 import schoolLetter from './school-letter-of-rec.pdf';
 import secTechLetter from './secure-tech-letter-of-rec.pdf';
 
 import { Document, Page, pdfjs } from 'react-pdf';
-import FadeAnimate from '../FadeAnimate';
-import { useEffect, useMemo, useState } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import { motion } from 'framer-motion';
+import { Quote } from 'react-bootstrap-icons';
+import { useEffect, useState } from 'react';
 
-
-function RecommendationPage(){
-
+function RecommendationPage() {
     const [screenSize, setScreenSize] = useState(getCurrentDimension());
-    const [show, setShow] = useState(false);
     const [scale, setScale] = useState(1.0);
 
-  	function getCurrentDimension(){
-    	return {
-      		width: window.innerWidth,
-      		height: window.innerHeight
-    	}
-  	}
+    function getCurrentDimension() {
+        return {
+            width: window.innerWidth,
+            height: window.innerHeight
+        }
+    }
 
-  	useEffect(() => {
+    useEffect(() => {
         const updateDimension = () => {
             setScreenSize(getCurrentDimension());
         }
         window.addEventListener('resize', updateDimension);
-
         return(() => {
             window.removeEventListener('resize', updateDimension);
         })
-  	}, [screenSize]);
+    }, [screenSize]);
 
     useEffect(() => {
-
-        if (screenSize.width > 1300){
+        if (screenSize.width > 1300) {
             setScale(1.0);
-        }
-        else if (screenSize.width <= 1300 && screenSize.width > 1150){
+        } else if (screenSize.width <= 1300 && screenSize.width > 1150) {
             setScale(0.8);
-        }
-        else {
+        } else {
             setScale(0.6);
         }
-
-    },[screenSize.width]);
-
+    }, [screenSize.width]);
 
     useEffect(() => {
         document.title = "Alex Kaiser - Recommendations";
-     }, []);
+    }, []);
 
+    const recommendations = [
+        {
+            name: "Professor Brian Krug",
+            title: "GVSU Professor",
+            description: "Letter of recommendation from my professor at Grand Valley State University, highlighting my academic achievements and research contributions.",
+            file: schoolLetter
+        },
+        {
+            name: "Jake Vande Brake (PMP, ACP)",
+            title: "DornerWorks Engineering Project Manager",
+            description: "Recommendation focusing on my work with FPGA development and embedded systems during my time at DornerWorks.",
+            file: fpgaLetter
+        },
+        {
+            name: "David Van Duinen",
+            title: "DornerWorks Engineering Project Manager",
+            description: "Professional recommendation highlighting my contributions to secure technology projects and software development.",
+            file: secTechLetter
+        }
+    ];
 
-    const SchoolFile = () => {
-        pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-        return(
-            <Document file={schoolLetter}>
-                <Page scale={scale} pageNumber={1} renderTextLayer={false} renderAnnotationLayer={false} />
-            </Document>
-        );
-    }
-
-    const FpgaFile = () => {
-        pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-        return(
-            <Document file={fpgaLetter}>
-                <Page scale={scale} pageNumber={1} renderTextLayer={false} renderAnnotationLayer={false} />
-            </Document>
-        );
-    }
-
-
-    const SecTechFile = () => {
-        pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-        return(
-            <Document file={secTechLetter}>
-                <Page scale={scale} pageNumber={1} renderTextLayer={false} renderAnnotationLayer={false} />
-            </Document>
-        );
-    }
-
-    const MemoFpga = useMemo(() => FpgaFile(), [scale]);
-    const MemoSchool = useMemo(() => SchoolFile(), [scale]);
-    const MemoSecTech = useMemo(() => SecTechFile(), [scale]);
-
+    pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
     return (
-        <div className="RecommendationPage-container">
-            <div className='rec-header-flex'>
-                <h1>Recommendations</h1>
-            </div>
-            <div className="letter-wrapper">
+        <div className="recommendation-page">
+            <Container fluid>
+                <motion.div 
+                    className="page-header"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <h1>Letters of Recommendation</h1>
+                    <div className="highlight-bar"></div>
+                    <p className="header-description">
+                        Professional endorsements from academic and industry leaders who have witnessed my work firsthand.
+                    </p>
+                </motion.div>
 
-                <div className='letter-grid-wrapper'>
-                {FadeAnimate({className: 'letter-grid', children:
-                    <>
-                        <h1>Professor Brian Krug</h1>
-                        <h2>GVSU Professor</h2>
-                        {MemoSchool}
-                    </>
-                })}
+                <div className="recommendations-container">
+                    {recommendations.map((rec, index) => (
+                        <motion.div
+                            key={index}
+                            className="recommendation-section"
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.2 }}
+                        >
+                            <Row className="recommendation-content">
+                                <Col lg={4} className="recommendation-info">
+                                    <div className="quote-icon">
+                                        <Quote size={40} />
+                                    </div>
+                                    <h2>{rec.name}</h2>
+                                    <h3>{rec.title}</h3>
+                                    <p>{rec.description}</p>
+                                </Col>
+                                <Col lg={8} className="pdf-container">
+                                    <div className="pdf-wrapper">
+                                        <Document file={rec.file}>
+                                            <Page 
+                                                scale={scale} 
+                                                pageNumber={1} 
+                                                renderTextLayer={false} 
+                                                renderAnnotationLayer={false}
+                                            />
+                                        </Document>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </motion.div>
+                    ))}
                 </div>
-
-                <div className='letter-grid-wrapper'>
-
-
-                {FadeAnimate({className: 'letter-grid', children:
-                    <>
-                        <h1>Jake Vande Brake (PMP,ACP)</h1>
-                        <h2>DornerWorks Engineering Project Manager</h2>
-                        {MemoFpga}
-                    </>
-
-                })}
-
-                </div>
-
-                <div className='letter-grid-wrapper'>
-                {FadeAnimate({className: 'letter-grid', children:
-                    <>
-                        <h1>David Van Duinen</h1>
-                        <h2>DornerWorks Engineering Project Manager</h2>
-                        {MemoSecTech}
-                    </>
-
-                })}
-                </div>
-            </div>
+            </Container>
         </div>
     );
 }
