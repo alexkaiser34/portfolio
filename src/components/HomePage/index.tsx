@@ -145,7 +145,7 @@ function HomePage(props: HomePageProps) {
                     <ChevronDoubleDown size={30} />
                 </motion.div>
 
-                <Row className="expertise-section">
+                <Row className="expertise-section pe-4 ps-4 justify-content-center justify-items-center">
                     <Col xs={12} className="text-center">
                         <motion.h2 
                             className="section-title"
@@ -157,13 +157,14 @@ function HomePage(props: HomePageProps) {
                         </motion.h2>
                     </Col>
                     {expertiseAreas.map((area, index) => (
-                        <Col md={3} sm={6} key={area.title} className='pe-4 ps-4'>
+                        <Col md={3} sm={6} key={area.title}>
                             <motion.div 
                                 className="expertise-card"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        whileHover={{ scale: 1.05 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: index * 0.1, duration: 0.2, ease: "easeInOut" }}
                             >
                                 <h3>{area.title}</h3>
                                 <p>{area.description}</p>
@@ -189,11 +190,11 @@ function HomePage(props: HomePageProps) {
                                         key={index}
                                         className="tech-icon-wrapper"
                                         title={key}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        whileHover={{ scale: 1.1 }}
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        whileHover={{ scale: 1.05 }}
                                         viewport={{ once: true }}
-                                        transition={{ delay: index * 0.05 }}
+                                        transition={{ delay: index * 0.1, duration: 0.2, ease: "easeInOut" }}
                                     >
                                         <div className="tech-icon-title">{key}</div>
                                         <div className="tech-icon">

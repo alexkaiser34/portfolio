@@ -5,12 +5,6 @@
     position: relative;
 }
 
-.HomePage-wrapper {
-    height: 100%;
-    width: 100%;
-    display: grid;
-    justify-content: center;
-}
 
 .HomePage-Info {
     display: flex;
@@ -296,9 +290,13 @@
 }
 
 .expertise-section {
-    position: relative;
-    padding: 4rem 0;
+    /* position: relative; */
+    /* padding: 4rem 0;  */
     margin-bottom: 4rem;
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: center;
 }
 
 .expertise-section::before {
@@ -323,10 +321,18 @@
     border-radius: 8px;
     height: 100%;
     border: 1px solid rgba(100, 255, 218, 0.1);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.1s ease;
+    /* transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); */
     position: relative;
     /* inline-size: min-content; */
     overflow: hidden;
+    opacity: 0;
+    will-change: opacity, transform;
+    transform: translateZ(0);
+}
+
+.expertise-card.in-view {
+    opacity: 1;
 }
 
 .expertise-card::before {
@@ -422,7 +428,14 @@
     justify-content: center;
     align-items: center;
     margin: 0 0.5rem;
-    transition: all 0.3s ease;
+    transition: transform 0.1s ease;
+    opacity: 0;
+    will-change: opacity, transform;
+    transform: translateZ(0);
+}
+
+.tech-icon-wrapper.in-view {
+    opacity: 1;
 }
 
 .tech-icon-wrapper:hover {
@@ -475,7 +488,7 @@
         padding: 2rem 3rem;
     }
     .expertise-section {
-        width: 92%;
+        /* width: 92%; */
         padding: 3rem 1rem;
     }
 }
@@ -493,12 +506,20 @@
 }
 
 @media (max-width: 768px) {
-    .tech-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-        padding: 1rem;
+    .tech-icon-wrapper {
+        flex: 0 0 calc(33.333% - 1rem); /* 3 icons per row */
+        align-items: center;
+        justify-items: center;
     }
-    
+
+    .tech-grid {
+        display: grid; /* Change to grid layout */
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Responsive grid */
+        gap: 1rem; /* Adjust gap between icons */
+        justify-items: center; /* Center items in the grid */
+        padding: 2rem 0; /* Adjust padding as needed */
+    }
+
     .section-title {
         font-size: 1.75rem;
         margin-bottom: 2rem;
@@ -515,7 +536,7 @@
     }
     
     .expertise-section {
-        width: 95%;
+        /* width: 95%; */
         padding: 2rem 0.75rem;
     }
     

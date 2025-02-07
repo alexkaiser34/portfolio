@@ -99,9 +99,17 @@
     padding: 2.5rem;
     border-radius: 8px;
     border: 1px solid rgba(100, 255, 218, 0.1);
-    transition: all 0.3s ease;
+    transition: transform 0.1s ease;
+    opacity: 0;
+    will-change: opacity, transform;
+    transform: translateZ(0);
+
     position: relative;
     overflow: hidden;
+}
+
+.skill-card.in-view {
+    opacity: 1;
 }
 
 .skill-card::before {
