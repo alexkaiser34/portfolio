@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Button, Form, Container, Row, Col } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { Linkedin, Github, Envelope, GeoAlt } from 'react-bootstrap-icons';
@@ -66,7 +66,22 @@ function ContactPage() {
         }
     };
 
+    // useEffect(() => {
+    //     checkValid('subject');
+    // }, [formValid.subject]);
 
+    useEffect(() => {
+        checkValid('user_email');
+    }, [formValue.user_email]);
+
+    useEffect(() => {
+        checkValid('subject');
+    }, [formValue.subject]);
+
+    useEffect(() => {
+        checkValid('body');
+    }, [formValue.body]);
+    
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormValue({ ...formValue, [e.target.name]: e.target.value });
         checkValid(e.target.name);
@@ -187,7 +202,6 @@ function ContactPage() {
                                                     name="user_email"
                                                     required
                                                     onChange={handleInputChange}
-                                                    isInvalid={!formValid.user_email}
                                                     isValid={formValid.user_email}
                                                     placeholder="Your email"
                                                 />
@@ -202,7 +216,6 @@ function ContactPage() {
                                             required
                                             onChange={handleInputChange}
                                             name="subject"
-                                            isInvalid={!formValid.subject}
                                             isValid={formValid.subject}
                                             placeholder="Message subject"
                                         />
@@ -217,7 +230,6 @@ function ContactPage() {
                                             required
                                             onChange={handleInputChange}
                                             isValid={formValid.body}
-                                            isInvalid={!formValid.body}
                                             placeholder="Your message"
                                         />
                                     </Form.Group>
