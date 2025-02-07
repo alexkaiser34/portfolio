@@ -1,64 +1,86 @@
-import FadeAnimate from "../FadeAnimate";
-import { Container, Image } from "react-bootstrap";
+import { Container, Row, Col, Image } from "react-bootstrap";
+import { motion } from "framer-motion";
+import { Calendar, BriefcaseFill, CodeSlash } from "react-bootstrap-icons";
 import { ProjectType } from "./getProjects";
-
-type alignmentType = "right" | "left";
+import "./TemplateProject.css";
 
 export interface TemplateProjectProps {
-    project: ProjectType
-
+    project: ProjectType;
 }
-function TemplateProject(props: TemplateProjectProps){
 
+function TemplateProject({ project }: TemplateProjectProps) {
     return (
-        <Container fluid className="template-container">
-            <div className="row d-flex align-items-center pt-2">
-                <div className="col-12 d-flex justify-content-center">
-                    {FadeAnimate({className: 'template-date', children:
-                        <h3 style={{color: 'lightblue'}}>{props.project.timeline}</h3>
-                    })}
-                </div>
-            </div>
-                {FadeAnimate({className: "template-first-row", children:
-                <div className="row d-flex align-items-center pt-4">
-
-                    <div className="col-12 col-lg-6 d-flex justify-content-center">
-                            <div className="d-flex flex-column align-items-center" style={{textAlign: 'center'}}>
-                                <h2>About the project...</h2>
-                                <p>{props.project.LongDescription}</p>
-                            </div>
-                    </div>
-                    <div className="col-12 col-lg-6 d-flex justify-content-center">
-                        <div className="template-project-img align-items-center justify-content-center">
-                            <Image fluid src={props.project.image} alt={props.project.title} />
-                        </div>
-                    </div>
-                    </div>
-            })}
-            {FadeAnimate({className: "template-second-row", children:
-
-            <div className="row d-flex align-items-baseline pt-5">
-                 <div className="col-12 col-lg-6 d-flex">
-                    <div className="d-flex flex-column">
-                        <h2>Role: {props.project.role}</h2>
-                        <ul>
-                            {props.project.responsibilities.map(item => <li key={`resp-${item as string}`}>{item}</li>)}
-                        </ul>
+        <Container fluid className="template-project">
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="project-grid"
+            >
+                <div className="project-media">
+                    <div className="image-container">
+                        <Image 
+                            src={project.image} 
+                            alt={project.title}
+                            fluid
+                            className="project-image"
+                        />
                     </div>
                 </div>
-                <div className="col-12 col-lg-6 d-flex">
-                    <div className="d-flex flex-column">
+
+                <div className="project-header">
+                    <h1>{project.title}</h1>
+                    <div className="timeline">
+                        <Calendar size={20} />
+                        <span>{project.timeline}</span>
+                    </div>
+                </div>
+
+                <div className="description-section">
+                    <h2>About the Project</h2>
+                    <p>{project.LongDescription}</p>
+                </div>
+
+                <div className="role-section">
+                    <div className="section-header">
+                        <BriefcaseFill size={20} />
+                        <h2>Role: {project.role}</h2>
+                    </div>
+                    <ul className="feature-list">
+                        {project.responsibilities.map((item, index) => (
+                            <motion.li
+                                key={`resp-${index}`}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.3, delay: index * 0.1 }}
+                            >
+                                {item}
+                            </motion.li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div className="contributions-section">
+                    <div className="section-header">
+                        <CodeSlash size={20} />
                         <h2>Technical Accomplishments</h2>
-                        <ul>
-                            {props.project.contributions.map(item => <li key={`cont-${item as string}`}>{item}</li>)}
-                        </ul>
                     </div>
+                    <ul className="feature-list">
+                        {project.contributions.map((item, index) => (
+                            <motion.li
+                                key={`cont-${index}`}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.3, delay: index * 0.1 }}
+                            >
+                                {item}
+                            </motion.li>
+                        ))}
+                    </ul>
                 </div>
-            </div>
-            })}
+            </motion.div>
         </Container>
     );
 }
-
 
 export default TemplateProject;

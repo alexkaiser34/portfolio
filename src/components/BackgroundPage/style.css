@@ -1,172 +1,313 @@
-
-
-.AboutPage-container {
-    overflow: auto;
-    min-height: 100%;
-    min-width: 100%;
-    background-color: #050e2f;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 20px;
-    color: lightblue
+.background-page {
+    min-height: 100vh;
+    background-color: #0a192f;
+    color: #e6f1ff;
+    padding: 2rem 0;
 }
 
-.about-headline {
+/* Section Styling */
+.intro-section,
+.skills-section,
+.education-section {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 5rem 4rem;
+}
+
+/* Modern Section Dividers */
+.intro-section::after,
+.skills-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        rgba(100, 255, 218, 0),
+        rgba(100, 255, 218, 0.3),
+        rgba(100, 255, 218, 0)
+    );
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: #e6f1ff;
+    margin-bottom: 1rem;
+}
+
+.section-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: #64ffda;
+    border-radius: 2px;
+}
+
+/* Profile Section Enhancement */
+.profile-image-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-image {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+    border: 2px solid rgba(100, 255, 218, 0.3);
+    transition: all 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
+    border-color: rgba(100, 255, 218, 0.5);
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    padding: 2rem 0;
+    justify-content: center;
+}
+
+.skill-card {
+    flex: 0 1 calc(33.333% - 2rem);
+    min-width: 300px;
+    max-width: 500px;
+    background: #112240;
+    padding: 2.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        rgba(100, 255, 218, 0.1),
+        rgba(100, 255, 218, 0)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+    border-color: rgba(100, 255, 218, 0.3);
+}
+
+.skill-card:hover::before {
+    opacity: 1;
+}
+
+/* Education Section Enhancement */
+.education-content {
+    position: relative;
+    padding: 2rem;
+    background: rgba(17, 34, 64, 0.5);
+    border-radius: 8px;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.university a {
+    font-size: 2rem;
+    color: #64ffda;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.university a:hover {
+    color: #e6f1ff;
+}
+
+.education-list {
+    list-style: none;
+    margin-top: 2rem;
+    padding: 0;
+}
+
+.education-list li {
+    margin-bottom: 1rem;
+    position: relative;
+    padding-left: 30px;
+    color: #8892b0;
+    line-height: 1.6;
+}
+
+.education-list li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: #64ffda;
+}
+
+.education-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.education-logo img {
+    max-width: 450px;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+}
+
+.education-logo img:hover {
+    opacity: 0.9;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+    .intro-section,
+    .skills-section,
+    .education-section {
+        padding: 4rem 3rem;
+    }
+}
+
+@media (max-width: 1200px) {
+    .intro-section,
+    .skills-section,
+    .education-section {
+        padding: 3rem 2rem;
+    }
+    
+    .skill-card {
+        flex: 0 1 calc(50% - 1.5rem);
+    }
+    
+    .education-logo img {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .intro-section,
+    .skills-section,
+    .education-section {
+        padding: 2rem 1.5rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    .skill-card {
+        flex: 0 1 100%;
+        max-width: 500px;
+    }
+    
+    .university a {
+        font-size: 1.5rem;
+    }
+    
+    .profile-image {
+        max-width: 250px;
+    }
+    
+    .education-logo img {
+        max-width: 300px;
+    }
+}
+
+/* Rest of existing styles... */
+
+.intro-content h2 {
+    color: #64ffda;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.lead-text {
+    color: #8892b0;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.about-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.about-list li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 1rem;
+    color: #8892b0;
+    line-height: 1.6;
+}
+
+.about-list li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: #64ffda;
+}
+
+.skills-section h2 {
+    color: #e6f1ff;
+    font-size: 2rem;
+    margin-bottom: 3rem;
     text-align: center;
 }
 
-#headshot {
-    border-radius: 30px;
-    max-height: 50vh;
-    min-height: 370px;
+.location {
+    color: #8892b0;
+    font-style: italic;
+    margin: 0.5rem 0;
 }
 
-.horizontal-divide{
-    background-color: lightgreen;
-    opacity: 0.7;
-    width: 12%;
-    height: 8px;
+.scroll-indicator-background {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #64ffda;
+    z-index: 10;
 }
 
-.AboutPage-container p {
-    font-size: larger;
-}
+@media (max-width: 480px) {
+    .section-header h2 {
+        font-size: 2rem;
+    }
 
-.about-intro h2 {
-    color:lightgreen;
-}
-
-.AboutPage-container li {
-    padding-top: 15px;
-    font-size: large;
-}
-
-.AboutSkills{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 40px 40px;
-    justify-content: space-evenly;
-}
-
-.skills-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-
-.AboutPage-container h1 {
-    color: lightgreen;
-    font-size: max(calc(10px + 2vw), 20px);
-}
-
-.horizontal-skills {
-    background-color: lightgreen;
-    opacity: 0.7;
-    width: 12%;
-    height: 8px;
-}
-
-.skills-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    padding-top: 10px;
-    border-bottom: 4px solid rgba(144,238,144,0.8);
-    padding-bottom: 15px;
-    padding-top: 15px;
-}
-
-.skills-row h2 {
-    font-weight: bolder;
-}
-
-.skills-row-end {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    padding-top: 10px;
-    padding-bottom: 15px;
-    padding-top: 15px;
-}
-
-.skills-row-end  h2 {
-    font-weight: bolder;
-}
-
-.skills-row-image img {
-    display: block;
-    width: 100%;
-    max-width: 100px;
-    height: auto;
-    margin: auto;
-}
-
-
-.education-header-divide {
-    background-color: lightgreen;
-    opacity: 0.7;
-    width: 12%;
-    height: 8px;
-}
-
-.education-img img {
-    background-color: #ffffffe3;
-    padding: 20px 20px;
-    border-radius: 20px;
-    max-height: 300px;
-}
-
-.education-info a {
-    text-decoration: none;
-    color: lightgreen;
-    transition: all 0.3s ease;
-}
-
-.AboutEducation a:hover {
-    color: rgb(2, 127, 2);
-}
-
-.education-profile h2 {
-    font-size: max(calc(10px + 1.5vw), 17px);
-    color:lightgreen;
-}
-
-.headline-header {
-    color: lightblue;
-
-}
-
-.project-card {
-    background-color: #050e2f;
-    color: lightblue;
-    outline: 3px solid rgba(144,238,144,0.8);
-    padding: 10px 10px;
-}
-
-#card-button {
-    background-color: transparent;
-    outline: 2px solid lightgreen !important;
-    color: lightblue;
-    border: none;
-    transition: all 0.3s ease;
-
-}
-
-#card-button:hover {
-    color: #050e2f;
-    background-color: lightgreen;
-    border: none;
-    outline: 2px solid lightgreen !important;
-}
-
-.card-modal-header {
-    background-color: #050e2f;
-    color: lightgreen;
-}
-
-.card-modal-body {
-    background-color: #050e2f;
+    .skill-card {
+        padding: 1.5rem;
+    }
 }

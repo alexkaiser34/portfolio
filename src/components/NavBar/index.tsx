@@ -1,33 +1,35 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
-import { Hexagon } from "react-bootstrap-icons";
 import { useLocation } from "react-router-dom";
 import { NavLinks } from "../../App";
 import Resume from "../Resume";
 import './styles.css';
 import ReactGA from 'react-ga';
-import SocialMediaBar from "../SocialMediaBar";
-
+import { motion, AnimatePresence } from "framer-motion";
 
 interface NavBarProps {
     linkActive: NavLinks | undefined,
-    setLinkActive: React.Dispatch<React.SetStateAction<NavLinks | undefined>>,
-    setMarginTop: React.Dispatch<React.SetStateAction<number>>
+    setLinkActive: React.Dispatch<React.SetStateAction<NavLinks | undefined>>
 }
 
-
-function NavBar(props: NavBarProps){
-
-    const [click, setClicked] = useState(false);
+function NavBar(props: NavBarProps) {
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const location = useLocation();
-    const ref = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     useEffect(() => {
         const routeName = location.pathname.slice(1);
-        if (routeName.length > 1){
+        if (routeName.length > 1) {
             props.setLinkActive(routeName as NavLinks);
-        }
-        else {
+        } else {
             props.setLinkActive("Home");
         }
     }, [location.pathname, props]);
@@ -36,73 +38,83 @@ function NavBar(props: NavBarProps){
         ReactGA.pageview(location.pathname + location.search);
     }, [location.pathname]);
 
-    useEffect(() => {
-        if (ref.current !== undefined && ref.current !== null ){
-            props.setMarginTop(ref.current?.clientHeight);
-        }
-        else {
-            props.setMarginTop(0);   
-
-        }
-
-    }, [window.innerHeight, window.innerWidth]);
-
-
-    const handleClick = () => {
-        if (click){
-            setClicked(false)
-        }
-        else {
-            setClicked(true);
-        }
-    }
-
+    const navItems = [
+        { name: "Home", number: "01" },
+        { name: "Background", number: "02" },
+        { name: "Experience", number: "03" },
+        { name: "Contact", number: "04" },
+        { name: "Recommendations", number: "05" }
+    ];
 
     return (
-        <Navbar ref={ref} collapseOnSelect expand="lg" fixed="top" className="navbar-dark" id="navbar-wrapper">
-            <Container fluid className="navbar-container">
-                <div className="icon-div">
-                    <hr className="horizontalDivider" />
-                    <Navbar.Brand href="#/Home" id="navbar-brand">
-                        <div className="brand-container">
-                            <Hexagon className="hex-icon" />
-                            <div className="initials">AK</div>
+        <Navbar 
+            expand="lg" 
+            fixed="top" 
+            className={`modern-navbar ${isScrolled ? 'scrolled' : ''}`}
+        >
+            <Container>
+                <Navbar.Brand href="#/Home" className="brand">
+                    <motion.div
+                        className="logo-container"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <div className="monogram">
+                            <span className="monogram-letter">A</span>
+                            <span className="monogram-letter">K</span>
                         </div>
-                    </Navbar.Brand>
-                </div>
-                <SocialMediaBar isExpanded={window.innerWidth >= 992}/>
-                <Navbar.Toggle onClick={handleClick} aria-controls="responsive-navbar-nav" className="ms-auto" id="toggle-bar"/>
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="align-items-center ms-auto" id="navbar-links">
-                        <Nav.Link onClick={() => {window.scrollTo(0,0); props.setLinkActive("Home")}} active={props.linkActive === "Home"} href="#/Home" className="d-flex flex-row" >
-                            <span style={{color:'lightgreen', paddingRight: '3px'}}>1.</span>
-                            <span>Home</span>
-                        </Nav.Link>
-                        <Nav.Link onClick={() => {window.scrollTo(0,0); props.setLinkActive("Background")}} active={props.linkActive === "Background"} href="#/Background"  className="d-flex flex-row" >
-                            <span style={{color:'lightgreen', paddingRight: '3px'}}>2.</span>
-                            <span>Background</span>
-                        </Nav.Link>
-                        <Nav.Link onClick={() => {window.scrollTo(0,0); props.setLinkActive("Experience")}} active={props.linkActive === "Experience"} href="#/Experience"  className="d-flex flex-row" >
-                            <span style={{color:'lightgreen', paddingRight: '3px'}}>3.</span>
-                            <span>Experience</span>
-                        </Nav.Link>
-                        <Nav.Link onClick={() => {window.scrollTo(0,0); props.setLinkActive("Contact")}} active={props.linkActive === "Contact"} href="#/Contact" className="d-flex flex-row" >
-                            <span style={{color:'lightgreen', paddingRight: '3px'}}>4.</span>
-                            <span>Contact</span>
-                        </Nav.Link>
-                        <Nav.Link onClick={() => {window.scrollTo(0,0); props.setLinkActive("Recommendations")}} active={props.linkActive === "Recommendations"} href="#/Recommendations" className="d-flex flex-row" >
-                            <span style={{color:'lightgreen', paddingRight: '3px'}}>5.</span>
-                            <span>Recommendations</span>
-                        </Nav.Link>
-                        <div style={{paddingLeft: '20px'}}>
+                    </motion.div>
+                </Navbar.Brand>
+
+                <Navbar.Toggle 
+                    aria-controls="navbar-nav"
+                    className="hamburger"
+                    onClick={() => setIsOpen(!isOpen)}
+                >
+                    <div className={`hamburger-lines ${isOpen ? 'open' : ''}`}>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </Navbar.Toggle>
+
+                <Navbar.Collapse id="navbar-nav">
+                    <Nav className="ms-auto nav-links">
+                        {navItems.map((item, index) => (
+                            <motion.div
+                                key={item.name}
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1 * index }}
+                            >
+                                <Nav.Link
+                                    href={`#/${item.name}`}
+                                    active={props.linkActive === item.name}
+                                    onClick={() => {
+                                        window.scrollTo(0,0);
+                                        props.setLinkActive(item.name as NavLinks);
+                                        setIsOpen(false);
+                                    }}
+                                    className="nav-item"
+                                >
+                                    <span className="nav-number">{item.number}</span>
+                                    <span className="nav-text">{item.name}</span>
+                                </Nav.Link>
+                            </motion.div>
+                        ))}
+                        <motion.div
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.6 }}
+                            className="resume-button-wrapper"
+                        >
                             <Resume />
-                        </div>
+                        </motion.div>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
     );
 }
-
 
 export default NavBar;

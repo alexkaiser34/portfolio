@@ -1,200 +1,210 @@
-
-
 import { useEffect, useRef, useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
-import './style.css';
-import validator from 'validator';
-import emailjs from '@emailjs/browser';
-
-
+import { Button, Form, Container, Row, Col } from 'react-bootstrap';
 import { motion } from 'framer-motion';
-import FadeAnimate from '../FadeAnimate';
+import { Linkedin, Github, Envelope, GeoAlt } from 'react-bootstrap-icons';
+import emailjs from '@emailjs/browser';
+import validator from 'validator';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './style.css';
 
-
-type resultButton = "Success" | "Danger";
-
-function ContactPage(){
-
-    const myForm = useRef<HTMLFormElement>();
-
+function ContactPage() {
+    const formRef = useRef<HTMLFormElement>(null);
     const [loading, setLoading] = useState(false);
-
-    const notify = (s:resultButton) => {
-
-        if (s === "Success"){
-            toast("Email sent successfully!", {
-                theme: 'colored',
-                style: {backgroundColor: 'lightgreen', color: 'black'},
-                position: 'top-left',
-                autoClose: 3000
-            });
-        }
-        else {
-            toast("Email failed! Please ensure you have correctly entered an email, subject, and body", {
-                theme: 'colored',
-                style: {backgroundColor: '#ff6868', color: 'black'},
-                position: 'top-left',
-                autoClose: 5000
-            });
-        }
-    }
-
-    const [formValue, setFormValue] = useState({
-        user_email: '',
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
         subject: '',
-        body: ''
+        message: ''
     });
-
     const [formValid, setFormValid] = useState({
-        user_email: false,
-        subject: true,
-        body: false
+        name: false,
+        email: false,
+        message: false
     });
-
-
-    useEffect(() => {
-        checkValid('email');
-    }, [formValue.user_email]);
-
-    useEffect(() => {
-        checkValid('body');
-    }, [formValue.body]);
 
     useEffect(() => {
         document.title = "Alex Kaiser - Contact";
-     }, []);
+    }, []);
 
-
-
-    const onChange = (e: any) => {
-        setFormValue({ ...formValue, [e.target.name]: e.target.value });
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+        validateField(name, value);
     };
 
-    const checkValid = (s: string) => {
-        if (s === 'email'){
-            if (validator.isEmail(formValue.user_email)){
-                setFormValid({...formValid, user_email: true});
-            }
-            else {
-                setFormValid({...formValid, user_email: false});
-            }
+    const validateField = (name: string, value: string) => {
+        switch (name) {
+            case 'email':
+                setFormValid(prev => ({ ...prev, email: validator.isEmail(value) }));
+                break;
+            case 'name':
+            case 'message':
+                setFormValid(prev => ({ ...prev, [name]: value.trim().length > 0 }));
+                break;
         }
-        else {
-            if (validator.isEmpty(formValue.body)){
-                setFormValid({...formValid, body: false});
-            }
-            else {
-                setFormValid({...formValid, body: true});
-            }
-        }
+    };
 
-    }
-
-    const handleSubmit = (event:any) => {
-        const form = event.currentTarget;
-        event.preventDefault();
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
         setLoading(true);
-        emailjs.sendForm("service_ccobspo","template_qqlvfre",myForm.current as HTMLFormElement, 'oGwhiciNhFAOwztGo')
-        .then((result) => {
-            console.log(result.text);
-            notify("Success");
-            myForm.current?.reset();
 
-            setFormValue({
-                body: '',
-                user_email: '',
-                subject: ''
-            });
+        try {
+            await emailjs.sendForm(
+                'YOUR_SERVICE_ID',
+                'YOUR_TEMPLATE_ID',
+                formRef.current!,
+                'YOUR_PUBLIC_KEY'
+            );
+            toast.success('Message sent successfully!');
+            formRef.current?.reset();
+            setFormData({ name: '', email: '', subject: '', message: '' });
+            setFormValid({ name: false, email: false, message: false });
+        } catch (error) {
+            toast.error('Failed to send message. Please try again.');
+            console.error(error);
+        }
 
-            setFormValid({
-                body: false,
-                user_email: false,
-                subject: true
-            });
-
-            setLoading(false);
-
-        }, (error) => {
-            console.log(error.text);
-            notify("Danger");
-            setLoading(false);
-        });
-
+        setLoading(false);
     };
-
 
     return (
-
-        <div className="ContactPage-container">
-            <ToastContainer />
-            <div className='contact-header'>
-                <motion.h1
-                animate={{x: [-2000, 0]}}
-                transition={{ ease: "easeIn", duration: 0.5 }}
+        <div className="contact-page">
+            <Container fluid className="h-100">
+                <motion.div 
+                    className="page-header"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
                 >
-                    Get in Touch
-                </motion.h1>
+                    <h1>Get In Touch</h1>
+                    <div className="highlight-bar"></div>
+                    <p className="header-description">
+                        Have a question or want to work together? Feel free to reach out!
+                    </p>
+                </motion.div>
 
-                <motion.h2
-                animate={{x: [2000, 0]}}
-                transition={{ delay: 0.4, ease: "easeIn", duration: 0.5 }}
-                >
-                    Want to get in touch? Click on one of the sidebar icons or send me an email!
-                </motion.h2>
-            </div>
-            {FadeAnimate({className: 'contact-form', delay: 1, children:
-                <>
-                <Form ref={myForm as any} className="email-form" onSubmit={handleSubmit}>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control
-                            as="input"
-                            required
-                            onChange={onChange}
-                            name="user_email"
-                            type="email"
-                            isValid={formValid.user_email}
-                            placeholder="name@example.com" />
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Subject</Form.Label>
-                        <Form.Control
-                            as="input"
-                            name="subject"
-                            isValid={formValid.subject}
-                            placeholder="Exciting Job Opportunity from <company name> (optional)"
-                            />
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Body</Form.Label>
-                        <Form.Control
-                            as="textarea"
-                            required
-                            onChange={onChange}
-                            isValid={formValid.body}
-                            rows={8}
-                            name="body"
-                            placeholder="We are prepared to offer you 1 billion dollars..."
-                             />
-                    </Form.Group>
-                    {!loading ?
-                    <Button type="submit" disabled={!(formValid.body && formValid.subject && formValid.user_email)} className="submit-button">
-                        Send Email
-                    </Button> :
-                    <Form.Label style={{justifySelf: 'center', alignSelf: 'center'}}>Loading...</Form.Label>
-                    }
-                </Form>
-                </>
-            })}
+                <div className="contact-container">
+                    <Row className="contact-row g-0">
+                        <Col md={5} className="contact-info-col">
+                            <motion.div
+                                className="contact-info"
+                                initial={{ opacity: 0, x: -50 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.5, delay: 0.2 }}
+                            >
+                                <h2>Let's Connect</h2>
+                                <p className="contact-description">
+                                    I'm currently open to new opportunities. Whether you have a question
+                                    or just want to say hi, I'll try my best to get back to you!
+                                </p>
+                                
+                                <div className="contact-links">
+                                    <a href="mailto:alexkaiser@me.com" className="contact-link">
+                                        <div className="icon-wrapper">
+                                            <Envelope size={20} />
+                                        </div>
+                                        <span>alexkaiser@me.com</span>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/alex-kaiser34/" target="_blank" rel="noopener noreferrer" className="contact-link">
+                                        <div className="icon-wrapper">
+                                            <Linkedin size={20} />
+                                        </div>
+                                        <span>linkedin.com/in/alex-kaiser34</span>
+                                    </a>
+                                    <a href="https://github.com/alexkaiser34" target="_blank" rel="noopener noreferrer" className="contact-link">
+                                        <div className="icon-wrapper">
+                                            <Github size={20} />
+                                        </div>
+                                        <span>github.com/alexkaiser34</span>
+                                    </a>
+                                    <div className="contact-link">
+                                        <div className="icon-wrapper">
+                                            <GeoAlt size={20} />
+                                        </div>
+                                        <span>Raleigh, North Carolina</span>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </Col>
+
+                        <Col md={7} className="contact-form-col">
+                            <motion.div
+                                className="contact-form"
+                                initial={{ opacity: 0, x: 50 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.5, delay: 0.2 }}
+                            >
+                                <h2>Send a Message</h2>
+                                <Form ref={formRef} onSubmit={handleSubmit}>
+                                    <Row>
+                                        <Col md={6}>
+                                            <Form.Group className="mb-4">
+                                                <Form.Label>Name</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    name="name"
+                                                    required
+                                                    onChange={handleInputChange}
+                                                    isValid={formValid.name}
+                                                    placeholder="Your name"
+                                                />
+                                            </Form.Group>
+                                        </Col>
+                                        <Col md={6}>
+                                            <Form.Group className="mb-4">
+                                                <Form.Label>Email</Form.Label>
+                                                <Form.Control
+                                                    type="email"
+                                                    name="email"
+                                                    required
+                                                    onChange={handleInputChange}
+                                                    isValid={formValid.email}
+                                                    placeholder="Your email"
+                                                />
+                                            </Form.Group>
+                                        </Col>
+                                    </Row>
+
+                                    <Form.Group className="mb-4">
+                                        <Form.Label>Subject</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            name="subject"
+                                            onChange={handleInputChange}
+                                            placeholder="Message subject"
+                                        />
+                                    </Form.Group>
+
+                                    <Form.Group className="mb-4">
+                                        <Form.Label>Message</Form.Label>
+                                        <Form.Control
+                                            as="textarea"
+                                            rows={6}
+                                            name="message"
+                                            required
+                                            onChange={handleInputChange}
+                                            isValid={formValid.message}
+                                            placeholder="Your message"
+                                        />
+                                    </Form.Group>
+
+                                    <Button 
+                                        type="submit"
+                                        className="submit-button"
+                                        disabled={!formValid.email || !formValid.name || !formValid.message || loading}
+                                    >
+                                        {loading ? 'Sending...' : 'Send Message'}
+                                    </Button>
+                                </Form>
+                            </motion.div>
+                        </Col>
+                    </Row>
+                </div>
+            </Container>
+            <ToastContainer position="top-right" />
         </div>
-    )
+    );
 }
 
 export default ContactPage;
