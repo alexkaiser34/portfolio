@@ -124,7 +124,6 @@ function HomePage(props: HomePageProps) {
                                     <span>GitHub Profile</span>
                                 </motion.a>
                             </div>
-                            <p className="contact-subtitle">Open to new opportunities</p>
                         </motion.div>
                     </Col>
                 </Row>
