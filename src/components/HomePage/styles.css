@@ -322,7 +322,7 @@
         rgba(0, 0, 0, 0.25) 0px 25px 50px -12px,
         rgba(100, 255, 218, 0.15) 0px 0px 0px 1px,
         rgba(0, 0, 0, 0.3) 0px 15px 25px -5px;
-    transition: all 0.3s ease-in-out;
+    transition: transform 0.1s ease;
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(10px);
