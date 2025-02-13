@@ -81,6 +81,10 @@ function ContactPage() {
     useEffect(() => {
         checkValid('body');
     }, [formValue.body]);
+
+    useEffect(() => {
+        document.title = "Alex Kaiser - Contact";
+    }, []);
     
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormValue({ ...formValue, [e.target.name]: e.target.value });
