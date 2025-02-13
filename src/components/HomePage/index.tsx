@@ -99,7 +99,6 @@ function HomePage(props: HomePageProps) {
                                     href="mailto:alexkaiser@me.com"
                                     whileHover={{ scale: 1.05 }}
                                     className="contact-link"
-                                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                 >
                                     <Envelope size={24} />
                                     <span style={{ marginLeft: '8px' }}>alexkaiser@me.com</span>
@@ -110,7 +109,6 @@ function HomePage(props: HomePageProps) {
                                     rel="noopener noreferrer"
                                     whileHover={{ scale: 1.05 }}
                                     className="contact-link"
-                                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                 >
                                     <Linkedin size={24} />
                                     <span style={{ marginLeft: '8px' }}>LinkedIn Profile</span>
@@ -121,7 +119,6 @@ function HomePage(props: HomePageProps) {
                                     rel="noopener noreferrer"
                                     whileHover={{ scale: 1.05 }}
                                     className="contact-link"
-                                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                 >
                                     <Github size={24} />
                                     <span style={{ marginLeft: '8px' }}>GitHub Profile</span>
