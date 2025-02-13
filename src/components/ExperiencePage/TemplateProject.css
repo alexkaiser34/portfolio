@@ -7,12 +7,13 @@
 
 .project-grid {
     display: grid;
-    grid-template-columns: 1fr minmax(300px, 400px);
     gap: 2rem;
     grid-template-areas:
         "header image"
         "description description"
         "role contributions";
+    /* Force equal columns for the bottom row */
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .project-media {
@@ -30,14 +31,27 @@
 
 .description-section {
     grid-area: description;
+    /* Span both columns */
+    grid-column: 1 / -1;
 }
 
 .role-section {
     grid-area: role;
+    /* Force first column */
+    grid-column: 1 / 2;
 }
 
 .contributions-section {
     grid-area: contributions;
+    /* Force second column */
+    grid-column: 2 / 3;
+}
+
+/* Remove any previous width constraints */
+.role-section,
+.contributions-section {
+    min-width: 0;
+    width: 100%;
 }
 
 .project-header {
@@ -49,7 +63,7 @@
 
 .project-header h1 {
     color: #64ffda;
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 700;
     margin-bottom: 1rem;
 }
@@ -59,7 +73,7 @@
     align-items: center;
     gap: 0.5rem;
     color: #8892b0;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 .project-content {
@@ -86,6 +100,7 @@
 .section-header {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
     margin-bottom: 1.5rem;
     color: #64ffda;
@@ -93,19 +108,27 @@
 
 .section-header h2 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 600;
 }
 
+.section-header svg {
+    width: 22px;
+    height: 22px;
+}
+
 .description-section h2 {
+    text-align: center;
     color: #64ffda;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
 }
 
 .description-section p {
     color: #8892b0;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    text-align: center;
     line-height: 1.6;
     margin: 0;
 }
@@ -121,9 +144,10 @@
 
 .feature-list li {
     color: #8892b0;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     padding-left: 1.5rem;
     position: relative;
+    line-height: 1.5;
 }
 
 .feature-list li::before {
@@ -131,6 +155,7 @@
     position: absolute;
     left: 0;
     color: #64ffda;
+    font-size: 1.2rem;
 }
 
 .image-container {
@@ -153,6 +178,26 @@
     transform: scale(1.02);
 }
 
+@media (max-width: 1200px) {
+    .project-header h1 {
+        font-size: 2.7rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.7rem;
+    }
+
+    .description-section h2 {
+        font-size: 2rem;
+    }
+
+    .feature-list li,
+    .description-section p,
+    .timeline {
+        font-size: 1.2rem;
+    }
+}
+
 @media (max-width: 992px) {
     .project-grid {
         grid-template-columns: 1fr;
@@ -162,6 +207,12 @@
             "description"
             "role"
             "contributions";
+        gap: 1.5rem;
+    }
+
+    .role-section,
+    .contributions-section {
+        grid-column: 1 / -1; /* Span full width on mobile */
     }
 
     .project-media {
@@ -175,11 +226,26 @@
     }
 
     .project-header h1 {
-        font-size: 2rem;
+        font-size: 2.3rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.6rem;
+    }
+
+    .description-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .feature-list li,
+    .description-section p,
+    .timeline {
+        font-size: 1.15rem;
     }
 
     .timeline {
         justify-content: center;
+        text-align: center;
     }
 }
 
@@ -192,13 +258,21 @@
         margin-bottom: 2rem;
     }
 
-    .description-section,
-    .role-section,
-    .contributions-section {
-        padding: 1.5rem;
+    .project-header h1 {
+        font-size: 2.2rem;
     }
 
-    .feature-list li {
-        font-size: 1rem;
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .description-section h2 {
+        font-size: 1.7rem;
+    }
+
+    .feature-list li,
+    .description-section p,
+    .timeline {
+        font-size: 1.1rem;
     }
 } 

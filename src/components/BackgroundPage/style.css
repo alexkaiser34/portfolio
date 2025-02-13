@@ -47,19 +47,7 @@
     margin-bottom: 1rem;
 }
 
-.section-header::after {
-    content: '';
-    position: absolute;
-    bottom: -1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
-    background: #64ffda;
-    border-radius: 2px;
-}
-
-/* Profile Section Enhancement */
+/* Profile Section */
 .profile-image-col {
     display: flex;
     align-items: center;
@@ -103,7 +91,6 @@
     opacity: 0;
     will-change: opacity, transform;
     transform: translateZ(0);
-
     position: relative;
     overflow: hidden;
 }
@@ -138,7 +125,7 @@
     opacity: 1;
 }
 
-/* Education Section Enhancement */
+/* Education Section */
 .education-content {
     position: relative;
     padding: 2rem;
@@ -252,7 +239,6 @@
     }
 }
 
-/* Add space between the picture and About Me header on mobile devices */
 @media (max-width: 576px) {
     .profile-image-col {
         margin-bottom: 1.5rem;
@@ -282,8 +268,6 @@
         padding-top: 0;
     }
 }
-
-/* Rest of existing styles... */
 
 .intro-content h2 {
     color: #64ffda;

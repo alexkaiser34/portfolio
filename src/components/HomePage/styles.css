@@ -139,7 +139,7 @@
 }
 
 .programming-icon {
-    transition: all 0.3s ease;
+    transition: all 0.3s ease-in-out;
     opacity: 0.7;
 }
 .program-icon p {
@@ -148,6 +148,7 @@
 .programming-icon:hover {
     opacity: 1;
     transform: translateY(-5px);
+    transform: all 0.3s ease-in-out;
 }
 
 .programming-languages {
@@ -290,12 +291,9 @@
 }
 
 .expertise-section {
-    /* position: relative; */
-    /* padding: 4rem 0;  */
     margin-bottom: 4rem;
     display: flex;
     flex-direction: row;
-    /* align-items: center; */
     justify-content: center;
 }
 
@@ -322,9 +320,7 @@
     height: 100%;
     border: 1px solid rgba(100, 255, 218, 0.1);
     transition: transform 0.1s ease;
-    /* transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); */
     position: relative;
-    /* inline-size: min-content; */
     overflow: hidden;
     opacity: 0;
     will-change: opacity, transform;
@@ -428,7 +424,7 @@
     justify-content: center;
     align-items: center;
     margin: 0 0.5rem;
-    transition: transform 0.1s ease;
+    /* transition: transform 0.3s ease-in-out; */
     opacity: 0;
     will-change: opacity, transform;
     transform: translateZ(0);
@@ -441,15 +437,16 @@
 .tech-icon-wrapper:hover {
     opacity: 1;
     scale: 1.3;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease-in-out;
     transform: translateY(-5px);
     border: none;
     box-shadow: none;   
 }
 
 .tech-icon-wrapper:hover .tech-icon-title {
-    opacity: 1; /* Show the title on hover */
+    opacity: 1;
 }
+
 .tech-icon-title {
     position: absolute;
     bottom: 100%;
@@ -461,7 +458,7 @@
     border-radius: 4px;
     font-size: 0.9rem;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease-in-out;
     white-space: nowrap;
     z-index: 10;
 }
@@ -471,7 +468,7 @@
     justify-content: center;
     align-items: center;
     color: #8892b0;
-    transition: color 0.3s ease;
+    /* transition: color 0.3s ease-in-out; */
 }
 
 .tech-icon-wrapper:hover .tech-icon {
@@ -489,9 +486,6 @@
     justify-content: flex-start;
     padding: 2rem 4rem;
 }
-
-
-
 
 .contact-content {
     position: relative;
@@ -514,7 +508,6 @@
     text-align: center;
 }
 
-
 .contact-subtitle {
     color: #8892b0;
     font-size: 1.1rem;
@@ -529,7 +522,6 @@
 
 .contact-link {
     display: flex;
-    /* width: 100%; */
     align-items: center;
     justify-content: center;
     gap: 1rem;
@@ -553,7 +545,6 @@
     font-size: 1.1rem;
 }
 
-/* New scroll indicator styles */
 .scroll-indicator-home {
     position: fixed;
     bottom: 3rem;
@@ -575,7 +566,6 @@
         padding: 2rem 3rem;
     }
     .expertise-section {
-        /* width: 92%; */
         padding: 3rem 1rem;
     }
 }
@@ -588,7 +578,7 @@
     }
     
     .tech-icon-wrapper {
-        flex: 0 0 calc(20% - 1.6rem); /* 5 icons per row */
+        flex: 0 0 calc(20% - 1.6rem);
     }
 
     .contact-section {
@@ -607,17 +597,17 @@
 
 @media (max-width: 768px) {
     .tech-icon-wrapper {
-        flex: 0 0 calc(33.333% - 1rem); /* 3 icons per row */
+        flex: 0 0 calc(33.333% - 1rem);
         align-items: center;
         justify-items: center;
     }
 
     .tech-grid {
-        display: grid; /* Change to grid layout */
-        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Responsive grid */
-        gap: 1rem; /* Adjust gap between icons */
-        justify-items: center; /* Center items in the grid */
-        padding: 2rem 0; /* Adjust padding as needed */
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 1rem;
+        justify-items: center;
+        padding: 2rem 0;
     }
 
     .section-title {
@@ -625,18 +615,7 @@
         margin-bottom: 2rem;
     }
     
-    .hero-section,
-    .expertise-section,
-    .tech-stack-section {
-        padding: 3rem 0;
-    }
-    
-    .scroll-indicator-home {
-        bottom: 2rem;
-    }
-    
     .expertise-section {
-        /* width: 95%; */
         padding: 2rem 0.75rem;
     }
     
@@ -651,7 +630,7 @@
 
 @media (max-width: 576px) {
     .tech-icon-wrapper {
-        flex: 0 0 calc(33.333% - 1rem); /* 3 icons per row */
+        flex: 0 0 calc(33.333% - 1rem);
     }
     
     .tech-grid {
@@ -666,8 +645,6 @@
     .contact-section {
         padding: 0 0;
     }    
-
-    
 }
 
 @media (max-width: 480px) {

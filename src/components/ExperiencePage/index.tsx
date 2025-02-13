@@ -3,6 +3,7 @@ import { ButtonGroup, Container, Dropdown, Modal, Spinner } from 'react-bootstra
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'react-bootstrap-icons';
 import './style.css';
+import './TemplateProject.css';
 import ProjectCard from './ProjectCard';
 import TemplateProject from './TemplateProject';
 import { ProjectType, getAllProjects } from './getProjects';
@@ -127,11 +128,6 @@ function ExperiencePage() {
         return (
             <div 
                 className="projects-grid" 
-                style={{ 
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    minHeight: projectsToShow.length <= 2 ? 'calc(100vh - 300px)' : 'auto'
-                }}
             >
                 {projectsToShow.map((project) => (
                     <div key={project.title} className='project-card'>
