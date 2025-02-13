@@ -48,6 +48,7 @@ function App() {
               <Route path='/recommendations' element={<RecommendationPage />} />
             </Routes>
           </div>
+          <div className="extra-pad" style={{ height: '3rem', width: '100vw'}} />
         </div>
       </HashRouter>
     </ThemeProvider>

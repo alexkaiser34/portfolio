@@ -48,7 +48,7 @@ function NavBar(props: NavBarProps) {
 
     return (
         <Navbar 
-            expand="lg" 
+            expand="xl"
             fixed="top" 
             className={`modern-navbar ${isScrolled ? 'scrolled' : ''}`}
         >

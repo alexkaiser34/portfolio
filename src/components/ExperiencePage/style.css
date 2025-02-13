@@ -2,7 +2,6 @@
     overflow: auto;
     min-height: 100%;
     min-width: 100%;
-    background-color: #050e2f;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 20px;
@@ -14,7 +13,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #050e2f;
+    /* background-color: #050e2f; */
     z-index: 12;
     border: 2px solid lightgreen;
 }
@@ -23,7 +22,7 @@
     border: none;
     flex: 1;
     color: lightblue;
-    background-color: transparent;
+    background-color: inherit;
     padding: 10px 10px;
     transition: all 0.3s ease;
 
@@ -32,14 +31,14 @@
 .button-group-experience button:hover {
     border: none;
     color: lightgreen;
-    background-color: #050e2f;
+    /* background-color: #050e2f; */
 }
 
 .companyButton {
     border: 2px solid lightgreen;
     flex: 1;
     color: lightblue;
-    background-color: #050e2f;
+    /* background-color: #050e2f; */
     padding: 10px 10px;
     transition: all 0.3s ease;
     font-size: larger;
@@ -48,42 +47,42 @@
 .companyButton:active {
     border: 2px solid lightgreen !important;
     color: lightgreen !important;
-    background-color: #050e2f !important;
+    background-color: transparent !important;
     padding: 10px 10px !important;
 }
 
 .companyButton:hover {
     border: 2px solid lightgreen;
     color: lightgreen;
-    background-color: #050e2f;
+    background-color: transparent;
     padding: 10px 10px;
     transition: all 0.3s ease;
 }
 
 .companyDropDownItem {
     color: lightgreen;
-    background-color: #050e2f;
+    /* background-color: #050e2f; */
 }
 
 .companyDropDownItem:hover {
     color: white;
-    background-color: #050e2f;
+    /* background-color: #050e2f; */
     transition: all 0.3s ease;
 }
 
 .companyButton[aria-expanded="true"] {
-    background-color: #050e2f;
+    /* background-color: #050e2f; */
     border: 2px solid lightgreen;
 }
 
 .companyDropDown button:active {
     border: 2px solid lightgreen;
     color: lightgreen;
-    background-color: #050e2f;
+    /* background-color: #050e2f; */
 }
 
 .experience-page {
-    background: linear-gradient(135deg, #0a192f 0%, #112240 100%);
+    /* background: linear-gradient(135deg, #0a192f 0%, #112240 100%); */
     min-height: 100vh;
     color: #e6f1ff;
     padding: 2rem 0 4rem;
@@ -124,6 +123,7 @@
     align-items: center;
     gap: 2rem;
     margin-bottom: 3rem;
+    background: inherit;
 }
 
 .category-buttons {
@@ -131,7 +131,7 @@
 }
 
 .category-button {
-    background: transparent;
+    background: inherit;
     border: 1px solid #64ffda;
     color: #64ffda;
     padding: 0.75rem 1.5rem;
@@ -151,6 +151,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    background: inherit;
 }
 
 .company-filter span {
@@ -158,14 +159,14 @@
 }
 
 .company-dropdown .dropdown-toggle {
-    background: transparent;
+    background: inherit;
     border: 1px solid #64ffda;
     color: #64ffda;
     min-width: 150px;
 }
 
 .company-dropdown .dropdown-menu {
-    background: #112240;
+    background-color: rgba(10, 25, 47, 0.98);
     border: 1px solid rgba(100, 255, 218, 0.1);
 }
 
@@ -199,7 +200,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    background-color: #0a192f;
+    background: linear-gradient(120deg, #0d1b2f 0%, #112236 50%, #152a42 100%);
     border-radius: 12px;
     border: 1px solid rgba(100, 255, 218, 0.1);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -217,10 +218,10 @@
     width: 100%;
     height: 220px;
     object-fit: contain;
-    background-color: #112240;
     border-radius: 12px 12px 0 0;
     transition: all 0.3s ease-in-out;
     padding: 1rem;
+    background: linear-gradient(120deg, #123c48 0%, #166155 50%, #197662 100%);
 }
 
 .project-card:hover img {
@@ -232,7 +233,6 @@
     flex-direction: column;
     height: calc(600px - 220px);
     padding: 1.5rem 1.5rem 2rem;
-    background-color: #0a192f;
 }
 
 .project-content h3 {
@@ -265,7 +265,7 @@
 }
 
 .learn-more-button {
-    background: transparent;
+    background: inherit;
     border: 1px solid #64ffda;
     color: #64ffda;
     padding: 0.8rem 1.2rem;
@@ -383,7 +383,7 @@
 }
 
 .close-button {
-    background: transparent;
+    background: inherit;
     border: none;
     color: #8892b0;
     transition: color 0.3s ease;
