@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.be0c0b5e.css",
+    "main.css": "/static/css/main.24d03157.css",
     "main.js": "/static/js/main.e6a965c5.js",
     "static/js/787.1ed0c42c.chunk.js": "/static/js/787.1ed0c42c.chunk.js",
     "static/media/Headshot.png": "/static/media/Headshot.f8fbff9836fbf50054d1.png",
@@ -10,12 +10,12 @@
     "static/media/secure-tech-letter-of-rec.pdf": "/static/media/secure-tech-letter-of-rec.66f2b75ad4c9325477c0.pdf",
     "static/media/fpga-letter-of-rec.pdf": "/static/media/fpga-letter-of-rec.74939385a60361e13bdb.pdf",
     "index.html": "/index.html",
-    "main.be0c0b5e.css.map": "/static/css/main.be0c0b5e.css.map",
+    "main.24d03157.css.map": "/static/css/main.24d03157.css.map",
     "main.e6a965c5.js.map": "/static/js/main.e6a965c5.js.map",
     "787.1ed0c42c.chunk.js.map": "/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.be0c0b5e.css",
+    "static/css/main.24d03157.css",
     "static/js/main.e6a965c5.js"
   ]
 }
