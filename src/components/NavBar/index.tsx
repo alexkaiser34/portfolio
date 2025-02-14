@@ -6,6 +6,7 @@ import Resume from "../Resume";
 import './styles.css';
 import ReactGA from 'react-ga';
 import { motion } from "framer-motion";
+import ThemeToggle from '../ThemeToggle';
 
 interface NavBarProps {
     linkActive: NavLinks | undefined,
@@ -73,6 +74,8 @@ function NavBar(props: NavBarProps) {
                         </div>
                     </motion.div>
                 </Link>
+
+                <ThemeToggle />
 
                 <Navbar.Toggle 
                     aria-controls="navbar-nav"

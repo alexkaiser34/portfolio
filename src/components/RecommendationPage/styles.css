@@ -11,14 +11,14 @@
 }
 
 .rec-header {
-    background-color: #050e2f;
+    background-color: var(--rec-header-bg);
     width: 100%;
     top: max(calc(40px + 3vh), 60px);
     height: max(15%, 100px);
     padding-top: 30px;
     z-index: 12;
     position: fixed;
-    border-bottom: 5px solid lightgreen;
+    border-bottom: 5px solid var(--rec-header-border);
 
 }
 
@@ -26,15 +26,15 @@
     display: flex;
     width: 100%;
     align-items: center;
-    border-bottom: 5px solid lightgreen;
+    border-bottom: 5px solid var(--rec-header-border);
     padding-top: 30px;
     padding-bottom: 30px;
-    background-color: #050e2f;
+    background-color: var(--rec-header-bg);
     justify-content: center;
 }
 
 .rec-header-flex h1 {
-    color: lightgreen;
+    color: var(--rec-title);
 }
 
 .letter-wrapper{
@@ -63,12 +63,12 @@
 }
 
 .letter-wrapper h1 {
-    color: lightgreen;
+    color: var(--rec-title);
     font-size: max(calc(10px + 1vw), 20px);
 }
 
 .letter-wrapper h2 {
-    color: lightblue;
+    color: var(--accent-primary);
     font-size: max(calc(10px + 0.8vw), 18px);
 }
 
@@ -87,9 +87,8 @@
 }
 
 .recommendation-page {
-    background: linear-gradient(135deg, #0a192f 0%, #112240 100%);
     min-height: 100vh;
-    color: #e6f1ff;
+    color: var(--rec-text);
     padding-bottom: 4rem;
     width: 100%;
 }
@@ -108,10 +107,10 @@
 }
 
 .highlight-bar {
-    width: 60px;
+    width: 100px;
     height: 4px;
-    background: #64ffda;
     margin: 1rem auto;
+    background: var(--button-gradient);
     border-radius: 2px;
 }
 
@@ -141,13 +140,10 @@
 }
 
 .recommendation-content {
-    background: linear-gradient(120deg, #0d1b2f 0%, #112236 50%, #152a42 100%);
+    background: var(--rec-card-bg);
     border-radius: 12px;
-    border: 1px solid rgba(100, 255, 218, 0.15);
-    box-shadow: 
-        rgba(0, 0, 0, 0.25) 0px 25px 50px -12px,
-        rgba(100, 255, 218, 0.15) 0px 0px 0px 1px,
-        rgba(0, 0, 0, 0.3) 0px 15px 25px -5px;
+    border: 1px solid var(--rec-card-border);
+    box-shadow: var(--rec-card-shadow);
     transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -155,11 +151,10 @@
 
 .recommendation-content:hover {
     transform: translateY(-8px);
-    background: linear-gradient(120deg, #0f1f35 0%, #13263c 50%, #172e48 100%);
-    border-color: rgba(100, 255, 218, 0.25);
+    background: var(--rec-card-hover);
+    border-color: var(--accent-primary);
     box-shadow: 
         rgba(0, 0, 0, 0.35) 0px 35px 60px -15px,
-        rgba(100, 255, 218, 0.25) 0px 0px 0px 1px,
         rgba(0, 0, 0, 0.4) 0px 20px 30px -8px;
 }
 
@@ -171,32 +166,36 @@
 }
 
 .quote-icon {
-    color: #64ffda;
-    margin-bottom: 1.5rem;
-    opacity: 0.8;
+    color: var(--accent-primary);
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.recommendation-content:hover .quote-icon {
+    color: var(--accent-secondary);
 }
 
 .recommendation-info h2 {
-    color: #ccd6f6;
+    color: var(--heading-color);
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
 }
 
 .recommendation-info h3 {
-    color: #64ffda;
+    color: var(--accent-primary);
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
     font-weight: 500;
 }
 
 .recommendation-info p {
-    color: #8892b0;
+    color: var(--rec-text);
     line-height: 1.6;
     font-size: 1.1rem;
 }
 
 .pdf-container {
-    background: linear-gradient(120deg, #0d2d36 0%, #104842 50%, #13574c 100%);
+    background: var(--pdf-container-bg);
     padding: 2rem;
     display: flex;
     align-items: center;

@@ -1,4 +1,3 @@
-import './styles.css';
 import fpgaLetter from './fpga-letter-of-rec.pdf';
 import schoolLetter from './school-letter-of-rec.pdf';
 import secTechLetter from './secure-tech-letter-of-rec.pdf';
@@ -8,6 +7,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { Quote } from 'react-bootstrap-icons';
 import { useEffect, useState } from 'react';
+import './styles.css';
 
 function RecommendationPage() {
     const [screenSize, setScreenSize] = useState(getCurrentDimension());

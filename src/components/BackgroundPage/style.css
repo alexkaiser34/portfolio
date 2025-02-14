@@ -25,12 +25,7 @@
     transform: translateX(-50%);
     width: 90%;
     height: 1px;
-    background: linear-gradient(
-        to right,
-        rgba(100, 255, 218, 0),
-        rgba(100, 255, 218, 0.3),
-        rgba(100, 255, 218, 0)
-    );
+    background: var(--section-divider-gradient);
 }
 
 /* Section Headers */
@@ -57,15 +52,17 @@
     max-width: 300px;
     width: 100%;
     height: auto;
-    border-radius: 12px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background: 
+        linear-gradient(to right, white, white) padding-box,
+        var(--profile-image-border) border-box;
     box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
-    border: 2px solid rgba(100, 255, 218, 0.3);
     transition: all 0.3s ease;
 }
 
 .profile-image:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
     border-color: rgba(100, 255, 218, 0.5);
 }
 
@@ -82,14 +79,11 @@
     flex: 0 1 calc(33.333% - 2rem);
     min-width: 300px;
     max-width: 500px;
-    background: linear-gradient(120deg, #0d1b2f 0%, #112236 50%, #152a42 100%);
+    background: var(--skill-card-bg);
     padding: 2.5rem;
     border-radius: 8px;
-    border: 1px solid rgba(100, 255, 218, 0.15);
-    box-shadow: 
-        rgba(0, 0, 0, 0.25) 0px 25px 50px -12px,
-        rgba(100, 255, 218, 0.15) 0px 0px 0px 1px,
-        rgba(0, 0, 0, 0.3) 0px 15px 25px -5px;
+    border: 1px solid var(--skill-card-border);
+    box-shadow: var(--skill-card-shadow);
     transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
     opacity: 0;
     will-change: opacity, transform;
@@ -120,50 +114,46 @@
 
 .skill-card:hover {
     transform: translateY(-8px);
-    background: linear-gradient(120deg, #0f1f35 0%, #13263c 50%, #172e48 100%);
+    background: var(--skill-card-hover);
     border-color: rgba(100, 255, 218, 0.25);
-    box-shadow: 
-        rgba(0, 0, 0, 0.35) 0px 35px 60px -15px,
-        rgba(100, 255, 218, 0.25) 0px 0px 0px 1px,
-        rgba(0, 0, 0, 0.4) 0px 20px 30px -8px;
+    box-shadow: var(--skill-card-hover-shadow);
 }
 
 .skill-card:hover::before {
     opacity: 1;
 }
 
+.skill-card h3 {
+    background: var(--skill-title);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.skill-card p {
+    color: var(--bg-page-text);
+}
+
 /* Education Section */
 .education-content {
-    position: relative;
+    background: var(--skill-card-bg);
+    border: 1px solid var(--skill-card-border);
+    box-shadow: var(--skill-card-shadow);
     padding: 2rem;
-    background: linear-gradient(120deg, #0d1b2f 0%, #112236 50%, #152a42 100%);
     border-radius: 8px;
-    border: 1px solid rgba(100, 255, 218, 0.15);
-    box-shadow: 
-        rgba(0, 0, 0, 0.25) 0px 25px 50px -12px,
-        rgba(100, 255, 218, 0.15) 0px 0px 0px 1px,
-        rgba(0, 0, 0, 0.3) 0px 15px 25px -5px;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .education-content:hover {
-    background: linear-gradient(120deg, #0f1f35 0%, #13263c 50%, #172e48 100%);
-    border-color: rgba(100, 255, 218, 0.25);
-    box-shadow: 
-        rgba(0, 0, 0, 0.35) 0px 35px 60px -15px,
-        rgba(100, 255, 218, 0.25) 0px 0px 0px 1px,
-        rgba(0, 0, 0, 0.4) 0px 20px 30px -8px;
+    background: var(--skill-card-hover);
+    box-shadow: var(--skill-card-hover-shadow);
 }
 
-.university a {
-    font-size: 2rem;
-    color: #64ffda;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.university a:hover {
-    color: #e6f1ff;
+.education-content h2 {
+    background: var(--bg-page-title);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .education-list {
@@ -176,15 +166,15 @@
     margin-bottom: 1rem;
     position: relative;
     padding-left: 30px;
-    color: #8892b0;
+    color: var(--bg-page-text);
     line-height: 1.6;
 }
 
 .education-list li::before {
-    content: '▹';
+    content: "▹";
+    color: var(--bullet-point-color);
     position: absolute;
     left: 0;
-    color: #64ffda;
 }
 
 .education-logo {
@@ -204,6 +194,16 @@
 
 .education-logo img:hover {
     opacity: 0.9;
+}
+
+.education-content a {
+    color: var(--education-link);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.education-content a:hover {
+    color: var(--education-link-hover);
 }
 
 /* Responsive Design */
@@ -291,13 +291,14 @@
 }
 
 .intro-content h2 {
-    color: #64ffda;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+    background: var(--bg-page-title);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .lead-text {
-    color: #8892b0;
+    color: var(--bg-page-text);
     font-size: 1.2rem;
     margin-bottom: 2rem;
     line-height: 1.6;
@@ -313,26 +314,27 @@
     position: relative;
     padding-left: 30px;
     margin-bottom: 1rem;
-    color: #8892b0;
+    color: var(--bg-page-text);
     line-height: 1.6;
 }
 
 .about-list li::before {
-    content: '▹';
+    content: "▹";
+    color: var(--bullet-point-color);
     position: absolute;
     left: 0;
-    color: #64ffda;
 }
 
 .skills-section h2 {
-    color: #e6f1ff;
-    font-size: 2rem;
-    margin-bottom: 3rem;
+    background: var(--bg-page-title);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     text-align: center;
 }
 
 .location {
-    color: #8892b0;
+    color: var(--bg-page-text);
     font-style: italic;
     margin: 0.5rem 0;
 }
@@ -342,8 +344,19 @@
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    color: #64ffda;
+    background: var(--scroll-indicator-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.scroll-indicator-background:hover {
+    background: var(--scroll-indicator-hover-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 @media (max-width: 480px) {
@@ -354,4 +367,80 @@
     .skill-card {
         padding: 1.5rem;
     }
+}
+
+.page-header h1 {
+    background: var(--bg-page-title);
+    background-clip: text;
+    text-align: center;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.lead-text, .about-list li {
+    color: var(--bg-page-text);
+}
+
+.skill-card {
+    background: var(--skill-card-bg);
+    border: 1px solid var(--skill-card-border);
+    box-shadow: var(--skill-card-shadow);
+}
+
+.skill-card:hover {
+    background: var(--skill-card-hover);
+    box-shadow: var(--skill-card-hover-shadow);
+}
+
+.skill-card h3 {
+    background: var(--skill-title);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.skill-card p {
+    color: var(--bg-page-text);
+}
+
+.education-list li {
+    color: var(--bg-page-text);
+}
+
+.education-content a {
+    color: var(--education-link);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.education-content a:hover {
+    color: var(--education-link-hover);
+}
+
+.education-content h2 {
+    background: var(--bg-page-title);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.education-content a {
+    color: var(--education-link);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.education-content a:hover {
+    color: var(--education-link-hover);
+}
+
+.location {
+    color: var(--bg-page-text);
+}
+
+.highlight-bar {
+    background: var(--highlight-bar-color);
+    height: 3px;
+    width: 60px;
+    margin: 1rem auto;
 }
