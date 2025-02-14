@@ -1,44 +1,3 @@
-.App {
-  min-height: 100vh;
-  /* background-color: #0a192f; */
-  position: relative;
-}
-
-.nav-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  transition: transform 0.3s ease;
-  /* background-color: #050e2f; */
-  /* background-color: rgba(10, 25, 47, 0.95); */
-  /* box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7); */
-}
-
-.nav-visible {
-  transform: translateY(0);
-}
-
-.nav-hidden {
-  transform: translateY(-100%);
-}
-
-.content-wrapper {
-  padding-top: 80px; /* Height of navbar */
-  min-height: calc(100vh - 80px);
-  width: 100%;
-  overflow-x: hidden;
-  background: linear-gradient(135deg, #0d1b2f 0%, #162844 100%); /* Adjusted to be darker and more blue */
-}
-
-@media (max-width: 991px) {
-  .content-wrapper {
-    padding-top: 65px; /* Adjusted for smaller navbar height on mobile */
-    min-height: calc(100vh - 65px);
-  }
-}
-
 /* Smooth scrolling for the entire page */
 html {
   scroll-behavior: smooth;
@@ -60,27 +19,58 @@ body {
   overflow-x: hidden;
 }
 
-/* .static-background {
-  z-index: -1;
-  background-color: #050e2f;
-  position: fixed;
-  height: 150vh;
-  width: 150vw;
-} */
-
-.App-content {
-  /* background-color: #050e2f; */
-  display: flex;
+.App {
   min-height: 100vh;
-  min-width: 100vw;
-  justify-content: center;
-  z-index: 1000;
-  overflow-x: hidden;
+  /* background-color: #0a192f; */
+  position: relative;
 }
 
+.nav-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
 
+.nav-visible {
+  transform: translateY(0);
+}
 
-.extra-pad {
+.nav-hidden {
+  transform: translateY(-100%);
+}
+
+.content-wrapper-light {
+  padding-top: 80px; /* Height of navbar */
+  min-height: calc(100vh - 80px);
+  width: 100%;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #0d1b2f 0%, #162844 100%); /* Adjusted to be darker and more blue */
+}
+
+.content-wrapper-dark {
+  padding-top: 80px; /* Height of navbar */
+  min-height: calc(100vh - 80px);
+  width: 100%;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #0d1b2f 0%, #162844 100%); /* Adjusted to be darker and more blue */
+}
+
+.extra-pad-light {
   background: linear-gradient(to right, #050d1a 0%, #0a1629 100%);
   box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+}
+
+.extra-pad-dark {
+  background: linear-gradient(to right, #050d1a 0%, #0a1629 100%);
+  box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+}
+
+@media (max-width: 991px) {
+  .content-wrapper {
+    padding-top: 65px; /* Adjusted for smaller navbar height on mobile */
+    min-height: calc(100vh - 65px);
+  }
 }

@@ -18,6 +18,7 @@ import {
   TypescriptOriginal 
 } from 'devicons-react';
 import { Linkedin, Github, Envelope, ChevronDoubleDown } from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom';
 
 interface HomePageProps {
     linkActive: NavLinks | undefined,
@@ -63,26 +64,26 @@ function HomePage(props: HomePageProps) {
                                 to complex engineering challenges.
                             </p>
                             <div className="cta-buttons">
-                                <Button 
-                                    className="primary-button"
-                                    href="#/Experience"
+                                <Link 
+                                    to="/experience"
+                                    className="btn primary-button"
                                     onClick={() => {
                                         window.scrollTo(0,0);
-                                        props.setLinkActive("Experience");
+                                        props.setLinkActive("experience");
                                     }}
                                 >
                                     View My Work
-                                </Button>
-                                <Button 
-                                    className="secondary-button"
-                                    href="#/Contact"
+                                </Link>
+                                <Link 
+                                    to="/contact"
+                                    className="btn secondary-button"
                                     onClick={() => {
                                         window.scrollTo(0,0);
-                                        props.setLinkActive("Contact");
+                                        props.setLinkActive("contact");
                                     }}
                                 >
                                     Get in Touch
-                                </Button>
+                                </Link>
                             </div>
                         </motion.div>
                     </Col>

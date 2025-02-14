@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { NavLinks } from "../../App";
 import Resume from "../Resume";
 import './styles.css';
@@ -30,7 +30,7 @@ function NavBar(props: NavBarProps) {
         if (routeName.length > 1) {
             props.setLinkActive(routeName as NavLinks);
         } else {
-            props.setLinkActive("Home");
+            props.setLinkActive("home");
         }
     }, [location.pathname, props]);
 
@@ -39,11 +39,11 @@ function NavBar(props: NavBarProps) {
     }, [location.pathname, location.search]);
 
     const navItems = [
-        { name: "Home", number: "01" },
-        { name: "Background", number: "02" },
-        { name: "Experience", number: "03" },
-        { name: "Contact", number: "04" },
-        { name: "Recommendations", number: "05" }
+        { name: "home", number: "01" },
+        { name: "background", number: "02" },
+        { name: "experience", number: "03" },
+        { name: "contact", number: "04" },
+        { name: "recommendations", number: "05" }
     ];
 
     return (
@@ -53,13 +53,13 @@ function NavBar(props: NavBarProps) {
             className={`modern-navbar ${isScrolled ? 'scrolled' : ''}`}
         >
             <Container>
-                <Navbar.Brand 
-                    href="#/Home" 
-                    className="brand"
+                <Link 
+                    to="/home"
+                    className="navbar-brand brand"
                     onClick={() => {
                         window.scrollTo(0, 0);
                         setIsOpen(false);
-                        props.setLinkActive("Home");
+                        props.setLinkActive("home");
                     }}
                 >
                     <motion.div
@@ -72,7 +72,7 @@ function NavBar(props: NavBarProps) {
                             <span className="monogram-letter">K</span>
                         </div>
                     </motion.div>
-                </Navbar.Brand>
+                </Link>
 
                 <Navbar.Toggle 
                     aria-controls="navbar-nav"
@@ -95,19 +95,18 @@ function NavBar(props: NavBarProps) {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 * index }}
                             >
-                                <Nav.Link
-                                    href={`#/${item.name}`}
-                                    active={props.linkActive === item.name}
+                                <Link
+                                    to={`/${item.name.toLowerCase()}`}
+                                    className={`nav-link nav-item ${props.linkActive === item.name.charAt(0).toLowerCase() + item.name.slice(1) ? 'active' : ''}`}
                                     onClick={() => {
                                         window.scrollTo(0,0);
-                                        props.setLinkActive(item.name as NavLinks);
+                                        props.setLinkActive((item.name.charAt(0).toLowerCase() + item.name.slice(1)) as NavLinks);
                                         setIsOpen(false);
                                     }}
-                                    className="nav-item"
                                 >
                                     <span className="nav-number">{item.number}</span>
-                                    <span className="nav-text">{item.name}</span>
-                                </Nav.Link>
+                                    <span className="nav-text">{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</span>
+                                </Link>
                             </motion.div>
                         ))}
                         <motion.div
