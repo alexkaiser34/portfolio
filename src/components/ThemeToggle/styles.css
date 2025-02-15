@@ -39,7 +39,7 @@
     border-radius: 50px;
     padding: 0;
     cursor: pointer;
-    overflow: hidden;
+    overflow: visible;
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px var(--theme-button-shadow);
 }
@@ -50,13 +50,13 @@
     box-shadow: 0 6px 16px var(--theme-button-shadow);
 }
 
-.theme-toggle-button .slider {
+.slider {
     position: absolute;
     top: 2px;
     left: 2px;
     width: 28px;
     height: 28px;
-    background-color: var(--slider-circle-bg);
+    background: var(--slider-circle-bg);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -97,7 +97,7 @@
 }
 
 .theme-toggle-button.light .slider {
-    background: var(--slider-circle-bg);
+    transform: translateX(28px);
 }
 
 .theme-toggle-button:not(.light) .slider {
@@ -105,21 +105,26 @@
 }
 
 @media (max-width: 768px) {
-    .theme-toggle-wrapper {
+    /* .theme-toggle-wrapper {
         margin: 0;
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-    }
+    } */
     
     .theme-toggle-button {
         width: 56px;
         height: 32px;
+        margin: 0 8px;
     }
     
     .slider {
         width: 24px;
         height: 24px;
+    }
+    
+    .theme-toggle-button.light .slider {
+        transform: translateX(20px);
     }
     
     .moon-icon,
@@ -133,11 +138,18 @@
     .theme-toggle-button {
         width: 48px;
         height: 28px;
+        margin: 0 6px;
     }
     
     .slider {
         width: 20px;
         height: 20px;
+        top: 2px;
+        left: 2px;
+    }
+    
+    .theme-toggle-button.light .slider {
+        transform: translateX(5px);
     }
     
     .moon-icon,

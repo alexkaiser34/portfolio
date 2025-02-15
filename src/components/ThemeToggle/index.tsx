@@ -1,10 +1,34 @@
 import { useTheme } from '../../context/ThemeContext';
 import { Sun, Moon } from 'react-bootstrap-icons';
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import './styles.css';
 
 function ThemeToggle() {
     const { theme, toggleTheme } = useTheme();
+    const [slideDistance, setSlideDistance] = useState(28);
+
+    useEffect(() => {
+        const updateSlideDistance = () => {
+            const width = window.innerWidth;
+            if (width <= 480) {
+                setSlideDistance(20);
+            } else if (width <= 768) {
+                setSlideDistance(24);
+            } else {
+                setSlideDistance(28);
+            }
+        };
+
+        // Initial calculation
+        updateSlideDistance();
+
+        // Add event listener
+        window.addEventListener('resize', updateSlideDistance);
+
+        // Cleanup
+        return () => window.removeEventListener('resize', updateSlideDistance);
+    }, []);
 
     return (
         <motion.div 
@@ -20,7 +44,7 @@ function ThemeToggle() {
             >
                 <motion.div 
                     className="slider"
-                    animate={{ x: theme === 'dark' ? 0 : 26 }}
+                    animate={{ x: theme === 'dark' ? 0 : slideDistance }}
                     transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 >
                     <Moon className="moon-icon" />

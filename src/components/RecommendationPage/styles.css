@@ -90,6 +90,7 @@
     min-height: 100vh;
     color: var(--rec-text);
     padding-bottom: 4rem;
+    padding-top: 2rem;
     width: 100%;
 }
 

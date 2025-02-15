@@ -44,8 +44,7 @@ body {
 }
 
 .content-wrapper-light {
-  padding-top: 80px; /* Height of navbar */
-  min-height: calc(100vh - 80px);
+  padding-top: 4rem;
   width: 100%;
   overflow-x: hidden;
   background: var(--content-wrapper-bg);
@@ -53,8 +52,7 @@ body {
 }
 
 .content-wrapper-dark {
-  padding-top: 80px; /* Height of navbar */
-  min-height: calc(100vh - 80px);
+  padding-top: 4rem;
   width: 100%;
   overflow-x: hidden;
   background-color: var(--bg-primary);

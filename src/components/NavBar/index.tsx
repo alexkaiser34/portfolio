@@ -74,8 +74,12 @@ function NavBar(props: NavBarProps) {
                         </div>
                     </motion.div>
                 </Link>
-
-                <ThemeToggle />
+                
+                <div className="toggle-button-wrapper-navbar">
+                    <div className="mx-auto">
+                        <ThemeToggle />
+                    </div>
+                </div>
 
                 <Navbar.Toggle 
                     aria-controls="navbar-nav"

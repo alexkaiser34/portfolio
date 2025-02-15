@@ -287,40 +287,6 @@
     transform: translateY(-10px) rotate(-45deg);
 }
 
-/* Mobile Styles */
-@media (max-width: 1200px) {
-    .nav-links {
-        text-align: center;
-        padding: 1rem 0;
-    }
-
-    .nav-item {
-        padding: 0.5rem 0;
-    }
-
-    .hamburger {
-        display: block;
-    }
-
-    .navbar-nav {
-        padding: 1rem 0;
-    }
-
-    .resume-button-wrapper {
-        margin: 1rem 0;
-    }
-}
-
-@media (max-width: 576px) {
-    .logo {
-        font-size: 1.5rem;
-    }
-
-    .nav-item {
-        font-size: 0.85rem;
-    }
-}
-
 .navbar-custom {
     background-color: var(--nav-bg);
     backdrop-filter: blur(10px);
@@ -328,20 +294,25 @@
     transition: all 0.3s ease;
     border-bottom: 1px solid var(--nav-border);
     box-shadow: var(--nav-shadow);
-    width: 100%;
+    width: 100vw;
     max-width: 100vw;
-    overflow-x: hidden;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 .navbar .container {
-    position: relative;
-    min-height: 70px;
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 2rem;
 }
+
+
+
 
 .navbar-brand {
     position: relative;
@@ -385,7 +356,7 @@
 .nav-controls {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    margin-left: auto;
 }
 
 .theme-toggle {
@@ -445,37 +416,6 @@
     transform: translateY(-2px);
 }
 
-@media (max-width: 991px) {
-    .navbar-custom {
-        padding: 0.8rem 1rem;
-    }
-
-    .nav-link {
-        margin: 0.5rem 0;
-        padding: 0.5rem 1rem;
-    }
-
-    .nav-text::after {
-        display: none;
-    }
-
-    .resume-link {
-        margin: 0.5rem 1rem;
-        text-align: center;
-    }
-
-    /* .navbar-collapse {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--navbar-bg);
-        backdrop-filter: blur(10px);
-        padding: 1rem;
-        z-index: 999;
-        border-bottom: 1px solid var(--navbar-border);
-    } */
-}
 
 .logo-container {
     display: flex;
@@ -531,23 +471,11 @@
     transform: translateX(-2px);
 }
 
-@media (max-width: 768px) {
-    .navbar-custom {
-        padding: 0.8rem 1rem;
-    }
-    
-    .navbar-brand {
-        margin-right: 0;
-    }
-    
-    .navbar-toggler {
-        margin-left: auto;
-        padding-right: 0;
-    }
-    
-    .nav-controls {
-        margin-right: 1rem;
-    }
+.toggle-button-wrapper-navbar {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .nav-resume-button {
@@ -566,3 +494,133 @@
     transform: translateY(-2px);
     background: transparent;
 }
+
+
+
+
+
+/* Mobile Styles */
+@media (max-width: 1200px) {
+    .nav-links {
+        text-align: center;
+        padding: 1rem 0;
+    }
+
+    .toggle-button-wrapper-navbar {
+        max-width: 20%;
+    }
+
+    .nav-item {
+        padding: 0.5rem 0;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .navbar-nav {
+        padding: 1rem 0;
+    }
+
+    .resume-button-wrapper {
+        margin: 1rem 0;
+    }
+
+    .navbar .container {
+        padding: 0 1.5rem;
+    }
+
+    .navbar-custom {
+        padding: 0.8rem 1rem;
+    }
+
+    .navbar .container {
+        padding: 0 1rem;
+    }
+
+    .nav-link {
+        margin: 0.5rem 0;
+        padding: 0.5rem 1rem;
+    }
+
+    .nav-text::after {
+        display: none;
+    }
+
+    .resume-link {
+        margin: 0.5rem 1rem;
+        text-align: center;
+    }
+
+    /* .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        background: var(--navbar-bg);
+        padding: 1rem;
+        z-index: 999;
+        border-bottom: 1px solid var(--navbar-border);
+    } */
+
+    .nav-controls {
+        position: absolute;
+        top: 1rem;
+        right: 4rem;
+        margin: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .nav-item {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-controls {
+        right: 3.5rem;
+    }
+
+    .navbar .container {
+        padding: 0 0.75rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .navbar-brand.brand {
+        padding-left: 3rem;
+    }
+
+    .resume-button-wrapper {
+        padding-right: 3rem;
+    }
+}
+
+/* Add new media query for the range between xl and xxl breakpoints */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .nav-item {
+        font-size: 0.9rem;
+        margin: 0 0.3rem;  /* Reduce spacing between nav items */
+    }
+
+    .nav-number {
+        font-size: 0.8rem;
+    }
+
+    .nav-resume-button {
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .nav-links {
+        gap: 0.5rem;  /* Reduce gap between nav items */
+    }
+}
+
+
