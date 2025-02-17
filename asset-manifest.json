@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.d0693062.css",
-    "main.js": "/static/js/main.c9f2fc77.js",
+    "main.css": "/static/css/main.c50ce1cb.css",
+    "main.js": "/static/js/main.de38f98b.js",
     "static/js/787.1ed0c42c.chunk.js": "/static/js/787.1ed0c42c.chunk.js",
     "static/media/Headshot.png": "/static/media/Headshot.f8fbff9836fbf50054d1.png",
     "static/media/school-letter-of-rec.pdf": "/static/media/school-letter-of-rec.d15a94d6a8e9e4da4951.pdf",
@@ -10,12 +10,12 @@
     "static/media/secure-tech-letter-of-rec.pdf": "/static/media/secure-tech-letter-of-rec.66f2b75ad4c9325477c0.pdf",
     "static/media/fpga-letter-of-rec.pdf": "/static/media/fpga-letter-of-rec.74939385a60361e13bdb.pdf",
     "index.html": "/index.html",
-    "main.d0693062.css.map": "/static/css/main.d0693062.css.map",
-    "main.c9f2fc77.js.map": "/static/js/main.c9f2fc77.js.map",
+    "main.c50ce1cb.css.map": "/static/css/main.c50ce1cb.css.map",
+    "main.de38f98b.js.map": "/static/js/main.de38f98b.js.map",
     "787.1ed0c42c.chunk.js.map": "/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d0693062.css",
-    "static/js/main.c9f2fc77.js"
+    "static/css/main.c50ce1cb.css",
+    "static/js/main.de38f98b.js"
   ]
 }
