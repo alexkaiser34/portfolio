@@ -18,8 +18,8 @@ function ProjectCard({ project, onLearnMore }: ProjectCardProps) {
                 />
             </div>
             <div className="project-content">
-                <h3 className="pb-4">{project.title}</h3>
-                <p className="pb-4">{project.shortDescription}</p>
+                <h3>{project.title}</h3>
+                <p>{project.shortDescription}</p>
                 <button onClick={onLearnMore} className="learn-more-button">
                     Learn More
                 </button>
