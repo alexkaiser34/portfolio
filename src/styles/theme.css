@@ -1,394 +1,219 @@
-:root[data-theme="light"] {
-    /* Base colors */
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8fafc;
-    --text-primary: #0f172a;
-    --text-secondary: #334155;
-    --accent-primary: #0c4a6e;
-    --accent-secondary: #0369a1;
-    --border-color: rgba(148, 163, 184, 0.2);
-    
-    /* Navbar Specific */
-    --navbar-bg: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-    --navbar-scrolled: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-    --navbar-border: rgba(148, 163, 184, 0.2);
-    --nav-text: #475569;
-    --nav-text-hover: var(--accent-primary);
-    --nav-number: var(--accent-primary);
-    --nav-hover: #0284c7;
-    --nav-active: #0284c7;
-    --logo-bg: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
-    --logo-border: var(--accent-primary);
-    --logo-text: #ffffff;
-    
-    /* Interactive Elements */
-    --theme-toggle-bg: #f1f5f9;
-    --theme-toggle-hover: #e2e8f0;
-    --theme-toggle-border: rgba(148, 163, 184, 0.2);
-    --theme-toggle-color: #475569;
-    --theme-toggle-hover-color: var(--accent-primary);
-    --nav-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    --resume-btn-hover: rgba(2, 132, 199, 0.1);
-    
-    /* Cards and Modals */
-    --card-bg: #ffffff;
-    --card-border: rgba(148, 163, 184, 0.2);
-    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --modal-bg: #ffffff;
-    --modal-overlay: rgba(0, 0, 0, 0.5);
-    --modal-header-bg: #f8fafc;
-    
-    /* Form Elements */
-    --input-bg: #f8fafc;
-    --input-border: rgba(148, 163, 184, 0.3);
-    --input-focus-border: #0284c7;
-    --input-text: #1e293b;
-    --input-placeholder: #94a3b8;
-    
-    /* Buttons and Links */
-    --btn-primary-bg: #0c4a6e;
-    --btn-primary-text: #ffffff;
-    --btn-primary-hover: #0369a1;
-    --btn-secondary-bg: transparent;
-    --btn-secondary-border: #0c4a6e;
-    --btn-secondary-text: #0c4a6e;
-    --btn-secondary-hover-bg: rgba(12, 74, 110, 0.1);
-    --link-color: #0c4a6e;
-    --link-hover: #0369a1;
-    
-    /* Expertise Section Specific */
-    --expertise-card-bg: linear-gradient(120deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
-    --expertise-card-hover-bg: linear-gradient(120deg, #f1f5f9 0%, #e2e8f0 50%, #cbd5e1 100%);
-    --expertise-card-border: rgba(148, 163, 184, 0.2);
-    --expertise-card-shadow: 
-        rgba(0, 0, 0, 0.1) 0px 10px 20px -5px,
-        rgba(148, 163, 184, 0.15) 0px 0px 0px 1px;
-    --expertise-card-hover-shadow: 
-        rgba(0, 0, 0, 0.15) 0px 15px 25px -8px,
-        rgba(148, 163, 184, 0.25) 0px 0px 0px 1px;
-    --expertise-section-bg: transparent;
-    --expertise-gradient: linear-gradient(
-        to right,
-        rgba(148, 163, 184, 0),
-        rgba(148, 163, 184, 0.3),
-        rgba(148, 163, 184, 0)
-    );
-    --expertise-card-title: #0284c7;
-    --expertise-card-text: #475569;
-    
-    /* Contact Section Specific */
-    --contact-link-hover-bg: rgba(2, 132, 199, 0.1);
-    
-    /* Homepage Specific */
-    --wave-color: #0c4a6e;
-    --gradient-text: linear-gradient(90deg, #0c4a6e 0%, #0284c7 100%);
-    --heading-gradient: linear-gradient(90deg, #0c4a6e 0%, #0284c7 100%);
-    --button-gradient: linear-gradient(90deg, #0c4a6e 0%, #0284c7 100%);
-    --button-hover-gradient: linear-gradient(90deg, #075985 0%, #0369a1 100%);
-    --description-text: #334155;
-    --program-icon-opacity: 0.7;
-    --program-icon-hover: 1;
-    --scroller-gradient: linear-gradient(
-        to right,
-        rgba(148, 163, 184, 0),
-        rgba(148, 163, 184, 0.3),
-        rgba(148, 163, 184, 0)
-    );
-    --heading-color: #0f172a;
-    --span-color: #334155;
-    --primary-button-text: #ffffff;
-    
-    /* Background Page Specific */
-    --bg-page-title: var(--heading-gradient);
-    --bg-page-text: #334155;
-    --skill-card-bg: linear-gradient(120deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
-    --skill-card-hover: linear-gradient(120deg, #f1f5f9 0%, #e2e8f0 50%, #cbd5e1 100%);
-    --skill-card-border: rgba(148, 163, 184, 0.2);
-    --skill-card-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    --skill-card-hover-shadow: rgba(0, 0, 0, 0.15) 0px 8px 24px;
-    --skill-title: var(--gradient-text);
-    --education-link: var(--accent-primary);
-    --education-link-hover: var(--accent-secondary);
-    --profile-image-border: var(--button-gradient);
-    --highlight-bar-color: var(--heading-gradient);
-    --bullet-point-color: var(--accent-primary);
-    
-    /* Scroll Indicator */
-    --scroll-indicator-gradient: linear-gradient(90deg, #0c4a6e 0%, #075985 100%);
-    --scroll-indicator-hover-gradient: linear-gradient(90deg, #075985 0%, #0c4a6e 100%);
-    
-    /* Section Divider */
-    --section-divider-gradient: linear-gradient(
-        to right,
-        rgba(12, 74, 110, 0),
-        rgba(12, 74, 110, 0.3),
-        rgba(12, 74, 110, 0)
-    );
-    
-    /* Experience Page Specific */
-    --project-card-bg: linear-gradient(120deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
-    --project-card-hover: linear-gradient(120deg, #f1f5f9 0%, #e2e8f0 50%, #cbd5e1 100%);
-    --project-card-border: rgba(148, 163, 184, 0.2);
-    --project-card-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    --project-card-hover-shadow: rgba(0, 0, 0, 0.15) 0px 8px 24px;
-    --project-title: var(--gradient-text);
-    --project-text: #475569;
-    --category-button-active: var(--button-gradient);
-    --category-button-inactive: transparent;
-    --category-text-active: #ffffff;
-    --category-text-inactive: var(--accent-primary);
-    --category-border: var(--accent-primary);
-    --category-hover-bg: var(--button-hover-gradient);
-    --dropdown-bg: #ffffff;
-    --dropdown-hover: var(--btn-secondary-hover-bg);
-    --dropdown-text: var(--text-primary);
-    --dropdown-border: var(--project-card-border);
-    --project-image-bg: linear-gradient(120deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
-    
-    /* Category Button States */
-    --category-button-hover: var(--button-gradient);
-    
-    /* Contact Page Specific */
-    --contact-card-bg: linear-gradient(120deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
-    --contact-card-hover: linear-gradient(120deg, #f1f5f9 0%, #e2e8f0 50%, #cbd5e1 100%);
-    --contact-card-border: rgba(148, 163, 184, 0.2);
-    --contact-card-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    --contact-text: #475569;
-    --contact-link-color: var(--accent-primary);
-    --contact-link-hover: var(--accent-secondary);
-    --contact-input-bg: #ffffff;
-    --contact-input-border: #e2e8f0;
-    --contact-input-text: #0f172a;
-    --disabled-button-text: #94a3b8;  /* Slate gray for light theme */
-    
-    /* Recommendation Page Specific */
-    --rec-bg: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-    --rec-header-bg: #ffffff;
-    --rec-header-border: var(--accent-primary);
-    --rec-text: #475569;
-    --rec-title: var(--accent-primary);
-    --rec-card-bg: linear-gradient(120deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
-    --rec-card-hover: linear-gradient(120deg, #f1f5f9 0%, #e2e8f0 50%, #cbd5e1 100%);
-    --rec-card-border: rgba(148, 163, 184, 0.2);
-    --rec-card-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    --pdf-container-bg: linear-gradient(120deg, #f1f5f9 0%, #e2e8f0 50%, #cbd5e1 100%);
-    
-    --nav-item-active: var(--accent-primary);
-    --nav-item-hover: var(--accent-secondary);
-    --nav-item-underline: var(--accent-primary);
-    --logo-hover-shadow: rgba(79, 70, 229, 0.2);  /* Indigo shadow for light theme */
-    
-    /* Resume Modal Specific */
-    --modal-bg: #ffffff;
-    --modal-header-bg: #f8fafc;
-    --modal-border: rgba(148, 163, 184, 0.2);
-    --modal-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px -5px;
-    --pdf-viewer-bg: linear-gradient(120deg, #f1f5f9 0%, #e2e8f0 50%, #cbd5e1 100%);
-    --slider-bg: #f8fafc;  /* Much lighter gray for light theme */
-    --theme-button-bg: #ffffff;
-    --theme-button-border: var(--accent-primary);
-    --theme-button-hover-border: var(--accent-secondary);
-    --theme-button-shadow: rgba(79, 70, 229, 0.1);
-    --hamburger-color: #475569;  /* Slate gray for light theme */
-    --slider-circle-bg: #475569;  /* Slate gray for light theme to match other dark elements */
-    --content-wrapper-bg: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-    --extra-pad-bg: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
+  --background: #f7f7f9;
+  --foreground: #0d0d12;
+  --card: #ffffff;
+  --card-foreground: #0d0d12;
+  --popover: #ffffff;
+  --popover-foreground: #0d0d12;
+  --primary: #5b5fcf;
+  --primary-foreground: #ffffff;
+  --secondary: #eeeef6;
+  --secondary-foreground: #0d0d12;
+  --muted: #f0f0f5;
+  --muted-foreground: #6b6b82;
+  --accent: #ebebff;
+  --accent-foreground: #3d3faa;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.07);
+  --input: transparent;
+  --input-background: #f0f0f5;
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: rgba(91, 95, 207, 0.35);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.5rem;
+  --sidebar: #f0f0f5;
+  --sidebar-foreground: #0d0d12;
+  --sidebar-primary: #5b5fcf;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ebebff;
+  --sidebar-accent-foreground: #3d3faa;
+  --sidebar-border: rgba(0, 0, 0, 0.07);
+  --sidebar-ring: rgba(91, 95, 207, 0.35);
 }
 
-:root[data-theme="dark"] {
-    /* Base colors - keeping existing dark theme */
-    --bg-primary: #0a192f;
-    --bg-secondary: #112240;
-    --text-primary: #e6f1ff;
-    --text-secondary: #8892b0;
-    --accent-primary: #64ffda;
-    --accent-secondary: #64ffda;
-    --border-color: rgba(100, 255, 218, 0.1);
-    
-    /* Navbar Specific */
-    --navbar-bg: rgba(10, 25, 47, 0.85);
-    --navbar-scrolled: rgba(10, 25, 47, 0.95);
-    --navbar-border: rgba(100, 255, 218, 0.1);
-    --nav-text: #8892b0;
-    --nav-text-hover: #64ffda;
-    --nav-number: #64ffda;
-    --nav-hover: #e6f1ff;
-    --nav-active: #64ffda;
-    --logo-bg: linear-gradient(135deg, #64ffda 0%, #0a192f 100%);
-    --logo-border: #64ffda;
-    --logo-text: #64ffda;
-    
-    /* Interactive Elements */
-    --theme-toggle-bg: rgba(17, 34, 64, 0.5);
-    --theme-toggle-hover: rgba(17, 34, 64, 0.8);
-    --theme-toggle-border: rgba(100, 255, 218, 0.1);
-    --theme-toggle-color: #8892b0;
-    --theme-toggle-hover-color: #64ffda;
-    --nav-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    --resume-btn-hover: rgba(100, 255, 218, 0.1);
-    
-    /* Cards and Modals */
-    --card-bg: #112240;
-    --card-border: rgba(100, 255, 218, 0.1);
-    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
-    --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
-    --modal-bg: rgba(17, 34, 64, 0.9);
-    --modal-header-bg: rgba(17, 34, 64, 0.95);
-    
-    /* Form Elements */
-    --input-bg: #112240;
-    --input-border: rgba(100, 255, 218, 0.1);
-    --input-focus-border: #64ffda;
-    --input-text: #e6f1ff;
-    --input-placeholder: #8892b0;
-    
-    /* Buttons and Links */
-    --btn-primary-bg: #64ffda;
-    --btn-primary-text: #0a192f;
-    --btn-primary-hover: #5ce6c4;
-    --btn-secondary-bg: transparent;
-    --btn-secondary-border: #64ffda;
-    --btn-secondary-text: #64ffda;
-    --btn-secondary-hover-bg: rgba(100, 255, 218, 0.1);
-    --link-color: #64ffda;
-    --link-hover: #5ce6c4;
-    
-    /* Expertise Section Specific */
-    --expertise-card-bg: linear-gradient(120deg, #0d1b2f 0%, #112236 50%, #152a42 100%);
-    --expertise-card-hover-bg: linear-gradient(120deg, #0f1f35 0%, #13263c 50%, #172e48 100%);
-    --expertise-card-border: rgba(100, 255, 218, 0.15);
-    --expertise-card-shadow: 
-        rgba(0, 0, 0, 0.25) 0px 25px 50px -12px,
-        rgba(100, 255, 218, 0.15) 0px 0px 0px 1px;
-    --expertise-card-hover-shadow: 
-        rgba(0, 0, 0, 0.35) 0px 35px 60px -15px,
-        rgba(100, 255, 218, 0.25) 0px 0px 0px 1px;
-    --expertise-section-bg: transparent;
-    --expertise-gradient: linear-gradient(
-        to right,
-        rgba(100, 255, 218, 0),
-        rgba(100, 255, 218, 0.3),
-        rgba(100, 255, 218, 0)
+.dark {
+  --background: #0b0b0f;
+  --foreground: #ededf5;
+  --card: #111118;
+  --card-foreground: #ededf5;
+  --popover: #111118;
+  --popover-foreground: #ededf5;
+  --primary: #8b8ef5;
+  --primary-foreground: #0b0b0f;
+  --secondary: #18181f;
+  --secondary-foreground: #ededf5;
+  --muted: #18181f;
+  --muted-foreground: #8b8ba8;
+  --accent: #1c1c2e;
+  --accent-foreground: #a5a8f8;
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: rgba(255, 255, 255, 0.07);
+  --input: rgba(255, 255, 255, 0.07);
+  --input-background: #18181f;
+  --switch-background: #3a3a4a;
+  --ring: rgba(139, 142, 245, 0.4);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.445);
+  --sidebar: #111118;
+  --sidebar-foreground: #ededf5;
+  --sidebar-primary: #8b8ef5;
+  --sidebar-primary-foreground: #0b0b0f;
+  --sidebar-accent: #1c1c2e;
+  --sidebar-accent-foreground: #a5a8f8;
+  --sidebar-border: rgba(255, 255, 255, 0.07);
+  --sidebar-ring: rgba(139, 142, 245, 0.4);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-family-sans: var(--font-sans);
+  --font-family-mono: var(--font-mono);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+
+  .app-shell {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(0, 0, 0, 0.038) 1px,
+      transparent 0
     );
-    --expertise-card-title: #64ffda;
-    --expertise-card-text: #8892b0;
-    
-    /* Contact Section Specific */
-    --contact-link-hover-bg: rgba(100, 255, 218, 0.1);
-    
-    /* Homepage Specific */
-    --wave-color: #64ffda;
-    --gradient-text: linear-gradient(90deg, #64ffda 0%, #00bcd4 100%);
-    --heading-gradient: linear-gradient(90deg, #64ffda 0%, #00bcd4 100%);
-    --button-gradient: linear-gradient(90deg, #64ffda 0%, #00bcd4 100%);
-    --button-hover-gradient: linear-gradient(90deg, #5ce6c4 0%, #00a5c0 100%);
-    --description-text: #8892b0;
-    --program-icon-opacity: 0.7;
-    --program-icon-hover: 1;
-    --scroller-gradient: linear-gradient(
-        to right,
-        rgba(100, 255, 218, 0),
-        rgba(100, 255, 218, 0.3),
-        rgba(100, 255, 218, 0)
+    background-size: 32px 32px;
+  }
+
+  .dark .app-shell {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(255, 255, 255, 0.028) 1px,
+      transparent 0
     );
-    --heading-color: #e6f1ff;
-    --span-color: #8892b0;
-    --primary-button-text: #0f172a;
-    
-    /* Background Page Specific */
-    --bg-page-title: var(--heading-gradient);
-    --bg-page-text: #8892b0;
-    --skill-card-bg: linear-gradient(120deg, #0d1b2f 0%, #112236 50%, #152a42 100%);
-    --skill-card-hover: linear-gradient(120deg, #0f1f35 0%, #13263c 50%, #172e48 100%);
-    --skill-card-border: rgba(100, 255, 218, 0.1);
-    --skill-card-shadow: none;
-    --skill-card-hover-shadow: none;
-    --skill-title: var(--gradient-text);
-    --education-link: #64ffda;
-    --education-link-hover: #5ce6c4;
-    --profile-image-border: var(--button-gradient);
-    --highlight-bar-color: var(--heading-gradient);
-    --bullet-point-color: #64ffda;
-    
-    /* Scroll Indicator */
-    --scroll-indicator-gradient: var(--gradient-text);
-    --scroll-indicator-hover-gradient: var(--button-hover-gradient);
-    
-    /* Section Divider */
-    --section-divider-gradient: linear-gradient(
-        to right,
-        rgba(100, 255, 218, 0),
-        rgba(100, 255, 218, 0.3),
-        rgba(100, 255, 218, 0)
-    );
-    
-    /* Experience Page Specific */
-    --project-card-bg: rgba(17, 34, 64, 0.8);
-    --project-card-hover: rgba(17, 34, 64, 0.95);
-    --project-card-border: rgba(100, 255, 218, 0.1);
-    --project-card-shadow: none;
-    --project-card-hover-shadow: none;
-    --project-title: #64ffda;
-    --project-text: #8892b0;
-    --category-button-active: rgba(100, 255, 218, 0.1);
-    --category-button-inactive: transparent;
-    --category-text-active: #64ffda;
-    --category-text-inactive: #8892b0;
-    --category-border: #64ffda;
-    --category-hover-bg: rgba(100, 255, 218, 0.2);
-    --dropdown-bg: #112240;
-    --dropdown-hover: rgba(100, 255, 218, 0.1);
-    --dropdown-text: #8892b0;
-    --dropdown-border: rgba(100, 255, 218, 0.1);
-    --project-image-bg: linear-gradient(120deg, #123c48 0%, #166155 50%, #197662 100%);
-    
-    /* Category Button States */
-    --category-button-hover: rgba(100, 255, 218, 0.2);
-    --category-text-active: #64ffda;
-    
-    /* Contact Page Specific */
-    --contact-card-bg: rgba(17, 34, 64, 0.8);
-    --contact-card-hover: rgba(17, 34, 64, 0.95);
-    --contact-card-border: rgba(100, 255, 218, 0.1);
-    --contact-card-shadow: none;
-    --contact-text: #8892b0;
-    --contact-link-color: #64ffda;
-    --contact-link-hover: #5ce6c4;
-    --contact-input-bg: rgba(17, 34, 64, 0.8);
-    --contact-input-border: rgba(100, 255, 218, 0.1);
-    --contact-input-text: #e6f1ff;
-    
-    /* Recommendation Page Specific */
-    --rec-bg: linear-gradient(135deg, #0a192f 0%, #112240 100%);
-    --rec-header-bg: #050e2f;
-    --rec-header-border: lightgreen;
-    --rec-text: #8892b0;
-    --rec-title: lightgreen;
-    --rec-card-bg: linear-gradient(120deg, #0d1b2f 0%, #112236 50%, #152a42 100%);
-    --rec-card-hover: linear-gradient(120deg, #0f1f35 0%, #13263c 50%, #172e48 100%);
-    --rec-card-border: rgba(100, 255, 218, 0.15);
-    --rec-card-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
-    --pdf-container-bg: linear-gradient(120deg, #0d2d36 0%, #104842 50%, #13574c 100%);
-    
-    --nav-item-active: #64ffda;
-    --nav-item-hover: #5ce6c4;
-    --nav-item-underline: #64ffda;
-    --logo-hover-shadow: rgba(100, 255, 218, 0.2);  /* Teal shadow for dark theme */
-    
-    /* Resume Modal Specific */
-    --modal-bg: #0a192f;
-    --modal-header-bg: rgba(17, 34, 64, 0.8);
-    --modal-border: rgba(100, 255, 218, 0.1);
-    --modal-shadow: rgba(0, 0, 0, 0.3) 0px 10px 30px -5px;
-    --pdf-viewer-bg: linear-gradient(120deg, #0d2d36 0%, #104842 50%, #13574c 100%);
-    --slider-bg: #1a1a1a;  /* Keep existing dark background */
-    --theme-button-bg: rgba(17, 34, 64, 0.8);
-    --theme-button-border: #64ffda;
-    --theme-button-hover-border: #5ce6c4;
-    --theme-button-shadow: rgba(100, 255, 218, 0.1);
-    --hamburger-color: #64ffda;  /* Teal for dark theme */
-    --slider-circle-bg: #e2e8f0;  /* Light gray for dark theme to match other light elements */
-    --content-wrapper-bg: var(--bg-primary);
-    --extra-pad-bg: var(--bg-secondary);
-} 
+  }
+
+  html {
+    font-size: var(--font-size);
+    scroll-behavior: smooth;
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h4 {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  label {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  button {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  input {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+  }
+}

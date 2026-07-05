@@ -1,125 +1,95 @@
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { FileText } from 'lucide-react';
 import fpgaLetter from './fpga-letter-of-rec.pdf';
 import schoolLetter from './school-letter-of-rec.pdf';
 import secTechLetter from './secure-tech-letter-of-rec.pdf';
+import { SectionLabel } from '../shared/Primitives';
+import { usePdfScale, PdfModal } from '../shared/PdfViewer';
+import { getRecommendations } from '../../services/recommendations';
+import { recommendationsModel } from '@shared/models';
 
-import { Document, Page, pdfjs } from 'react-pdf';
-import { Container, Row, Col } from 'react-bootstrap';
-import { motion } from 'framer-motion';
-import { Quote } from 'react-bootstrap-icons';
-import { useEffect, useState } from 'react';
-import './styles.css';
+// Bundled PDF assets keyed to match the `fileKey` stored in the data layer.
+const fileMap: Record<string, string> = {
+  school: schoolLetter,
+  fpga: fpgaLetter,
+  secureTech: secTechLetter,
+};
 
 function RecommendationPage() {
-    const [screenSize, setScreenSize] = useState(getCurrentDimension());
-    const [scale, setScale] = useState(1.0);
+  const [recommendations, setRecommendations] = useState(recommendationsModel.empty);
+  const [activeFile, setActiveFile] = useState<string | null>(null);
+  const scale = usePdfScale(
+    [{ maxWidth: 700, scale: 0.55 }, { maxWidth: 1300, scale: 0.8 }],
+    1.0
+  );
 
-    function getCurrentDimension() {
-        return {
-            width: window.innerWidth,
-            height: window.innerHeight
-        }
-    }
+  useEffect(() => {
+    getRecommendations().then(setRecommendations);
+  }, []);
 
-    useEffect(() => {
-        const updateDimension = () => {
-            setScreenSize(getCurrentDimension());
-        }
-        window.addEventListener('resize', updateDimension);
-        return(() => {
-            window.removeEventListener('resize', updateDimension);
-        })
-    }, [screenSize]);
-
-    useEffect(() => {
-        if (screenSize.width > 1300) {
-            setScale(1.0);
-        } else if (screenSize.width <= 1300 && screenSize.width > 1150) {
-            setScale(0.8);
-        } else {
-            setScale(0.6);
-        }
-    }, [screenSize.width]);
-
-    useEffect(() => {
-        document.title = "Alex Kaiser - Recommendations";
-    }, []);
-
-    const recommendations = [
-        {
-            name: "Professor Brian Krug",
-            title: "GVSU Professor",
-            description: "Letter of recommendation from my professor at Grand Valley State University, highlighting my academic achievements and research contributions.",
-            file: schoolLetter
-        },
-        {
-            name: "Jake Vande Brake (PMP, ACP)",
-            title: "DornerWorks Engineering Project Manager",
-            description: "Recommendation focusing on my work with FPGA development and embedded systems during my time at DornerWorks.",
-            file: fpgaLetter
-        },
-        {
-            name: "David Van Duinen",
-            title: "DornerWorks Engineering Project Manager",
-            description: "Professional recommendation highlighting my contributions to secure technology projects and software development.",
-            file: secTechLetter
-        }
-    ];
-
-    pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-
-    return (
-        <div className="recommendation-page">
-            <Container fluid>
-                <motion.div 
-                    className="page-header"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    <h1>Letters of Recommendation</h1>
-                    <div className="highlight-bar"></div>
-                    <p className="header-description">
-                        Professional endorsements from academic and industry leaders who have witnessed my work firsthand.
-                    </p>
-                </motion.div>
-
-                <div className="recommendations-container">
-                    {recommendations.map((rec, index) => (
-                        <motion.div
-                            key={index}
-                            className="recommendation-section"
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.2 }}
-                        >
-                            <Row className="recommendation-content">
-                                <Col lg={4} className="recommendation-info">
-                                    <div className="quote-icon">
-                                        <Quote size={40} />
-                                    </div>
-                                    <h2>{rec.name}</h2>
-                                    <h3>{rec.title}</h3>
-                                    <p>{rec.description}</p>
-                                </Col>
-                                <Col lg={8} className="pdf-container">
-                                    <div className="pdf-wrapper">
-                                        <Document file={rec.file}>
-                                            <Page 
-                                                scale={scale} 
-                                                pageNumber={1} 
-                                                renderTextLayer={false} 
-                                                renderAnnotationLayer={false}
-                                            />
-                                        </Document>
-                                    </div>
-                                </Col>
-                            </Row>
-                        </motion.div>
-                    ))}
-                </div>
-            </Container>
+  return (
+    <section id="recommendations" className="py-24 bg-card/60">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="mb-12">
+          <SectionLabel>Recommendations</SectionLabel>
+          <h2 className="text-2xl font-semibold tracking-[-0.02em]">What colleagues say</h2>
+          <p className="text-sm text-muted-foreground mt-2">
+            Professional endorsements from academic and industry leaders who have
+            witnessed my work firsthand.
+          </p>
         </div>
-    );
+
+        <div className="grid md:grid-cols-3 gap-3">
+          {recommendations.map((rec, i) => (
+            <motion.div
+              key={rec.name}
+              className="relative flex flex-col gap-5 p-6 rounded-xl border border-border bg-card overflow-hidden"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08, duration: 0.35 }}
+            >
+              {/* decorative quote mark */}
+              <span className="pointer-events-none select-none absolute -top-1 right-4 text-[7rem] font-serif leading-none text-primary/6">
+                &ldquo;
+              </span>
+              <p className="text-sm text-muted-foreground leading-[1.75] flex-1 relative z-10">
+                {rec.description}
+              </p>
+              <div className="flex items-center gap-3 pt-4 border-t border-border">
+                <div
+                  className="size-8 rounded-full flex items-center justify-center flex-shrink-0 border border-primary/20"
+                  style={{ background: 'linear-gradient(135deg, var(--accent), var(--muted))' }}
+                >
+                  <span className="text-[0.6rem] font-semibold font-mono text-primary tracking-wide">
+                    {rec.initials}
+                  </span>
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm font-medium text-foreground leading-tight">{rec.name}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{rec.title}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setActiveFile(fileMap[rec.fileKey] ?? null)}
+                className="inline-flex items-center justify-center gap-1.5 px-3 py-2 text-sm font-medium border border-border rounded-md text-foreground hover:bg-muted transition-colors"
+              >
+                <FileText size={13} />
+                Read letter
+              </button>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      <PdfModal
+        file={activeFile}
+        scale={scale}
+        onClose={() => setActiveFile(null)}
+      />
+    </section>
+  );
 }
 
 export default RecommendationPage;

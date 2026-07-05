@@ -1,57 +1,96 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/theme.css';
-import './App.css';
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
-import NavBar from './components/NavBar';
-import HomePage from './components/HomePage';
-import BackgroundPage from './components/BackgroundPage';
-import ExperiencePage from './components/ExperiencePage';
-import ContactPage from './components/ContactPage';
-import RecommendationPage from './components/RecommendationPage';
-import ReactGA from 'react-ga';
-import { useTheme } from './context/ThemeContext';
+import NavBar, { NavLink } from './components/NavBar';
+import Hero from './components/HomePage';
+import About from './components/BackgroundPage';
+import Experience from './components/ExperiencePage';
+import Skills from './components/Skills';
+import Resume from './components/Resume';
+import Recommendations from './components/RecommendationPage';
+import Contact from './components/ContactPage';
+import Footer from './components/Footer';
+import AIAssistant from './components/AIAssistant';
+import { Divider } from './components/shared/Primitives';
+import { getProfile } from './services/profile';
+import { profileModel } from '@shared/models';
 
-export type NavLinks = "home" | "background" | "experience" | "contact" | "recommendations";
-
-ReactGA.initialize("G-TEM3M1JKC9");
+const NAV_LINKS: NavLink[] = [
+  { label: 'About', id: 'about' },
+  { label: 'Experience', id: 'experience' },
+  { label: 'Skills', id: 'skills' },
+  { label: 'Resume', id: 'resume' },
+  { label: 'Recommendations', id: 'recommendations' },
+  { label: 'Contact', id: 'contact' },
+];
 
 function App() {
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [visible, setVisible] = useState(true);
-  const [linkActive, setLinkActive] = useState<NavLinks | undefined>();
-  const { theme } = useTheme();
+  const [active, setActive] = useState('');
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [profile, setProfile] = useState(profileModel.empty);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollPos = window.scrollY;
-      setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
-      setPrevScrollPos(currentScrollPos);
-    };
+    document.title = 'Alex Kaiser - Software Engineer';
+  }, []);
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [prevScrollPos]);
+  useEffect(() => {
+    getProfile().then(setProfile);
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = document.querySelectorAll<HTMLElement>('section[id]');
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(e.target.id);
+        });
+      },
+      { rootMargin: '-15% 0px -75% 0px' }
+    );
+    sections.forEach((s) => obs.observe(s));
+    return () => obs.disconnect();
+  }, []);
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setMenuOpen(false);
+  };
 
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <div className="App">
-        <div className={`nav-wrapper ${visible ? 'nav-visible' : 'nav-hidden'}`}>
-          <NavBar linkActive={linkActive} setLinkActive={setLinkActive} />
-        </div>
-        <div className={`content-wrapper-${theme}`}>
-          <Routes>
-            <Route path="/" element={<Navigate to="/home" replace />} />
-            <Route path="/home" element={<HomePage linkActive={linkActive} setLinkActive={setLinkActive} />} />
-            <Route path="/background" element={<BackgroundPage />} />
-            <Route path="/experience" element={<ExperiencePage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/recommendations" element={<RecommendationPage />} />
-          </Routes>
-        </div>
-        <div className={`extra-pad-${theme}`} style={{ height: '3rem', width: '100vw'}} />
-      </div>
-    </BrowserRouter>
+    <div className="app-shell min-h-screen bg-background text-foreground antialiased">
+      <NavBar
+        links={NAV_LINKS}
+        active={active}
+        scrolled={scrolled}
+        menuOpen={menuOpen}
+        setMenuOpen={setMenuOpen}
+        onNavigate={scrollTo}
+        contactEmail={profile.email}
+      />
+
+      <Hero onNavigate={scrollTo} />
+      <Divider />
+      <About />
+      <Divider />
+      <Experience />
+      <Divider />
+      <Skills />
+      <Divider />
+      <Resume />
+      <Divider />
+      <Recommendations />
+      <Divider />
+      <Contact />
+      <Divider />
+      <Footer />
+
+      <AIAssistant />
+    </div>
   );
 }
 

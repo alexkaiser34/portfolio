@@ -1,86 +1,96 @@
-import { Container, Row, Col, Image } from "react-bootstrap";
-import { motion } from "framer-motion";
-import { Calendar, BriefcaseFill, CodeSlash } from "react-bootstrap-icons";
-import { ProjectType } from "./getProjects";
-import "./TemplateProject.css";
+import { motion } from 'framer-motion';
+import { Calendar, Briefcase, Code2 } from 'lucide-react';
+import { ProjectType } from '../../services/projects';
+import { TechTag } from '../shared/Primitives';
 
 export interface TemplateProjectProps {
-    project: ProjectType;
+  project: ProjectType;
 }
 
 function TemplateProject({ project }: TemplateProjectProps) {
-    return (
-        <Container fluid className="template-project">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="project-grid"
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35 }}
+      className="flex flex-col gap-8"
+    >
+      {project.image && (
+        <div className="rounded-xl overflow-hidden border border-border bg-muted">
+          <img src={project.image} alt={project.title} className="w-full object-cover" />
+        </div>
+      )}
+
+      <div className="flex flex-col gap-3">
+        <div className="flex flex-wrap items-center gap-2">
+          <TechTag label={project.category} />
+          {project.company && <TechTag label={project.company} />}
+        </div>
+        <h1 className="text-3xl font-semibold tracking-[-0.02em] text-foreground">
+          {project.title}
+        </h1>
+        <div className="flex items-center gap-2 text-sm text-muted-foreground font-mono">
+          <Calendar size={15} />
+          <span>{project.timeline}</span>
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-3">
+        <h2 className="text-lg font-semibold tracking-[-0.01em] text-foreground">
+          About the project
+        </h2>
+        <p className="text-[0.95rem] text-muted-foreground leading-[1.8]">
+          {project.longDescription}
+        </p>
+      </div>
+
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center gap-2">
+          <Briefcase size={16} className="text-primary" />
+          <h2 className="text-lg font-semibold tracking-[-0.01em] text-foreground">
+            Role: {project.role}
+          </h2>
+        </div>
+        <ul className="flex flex-col gap-2.5">
+          {project.responsibilities.map((item, index) => (
+            <motion.li
+              key={`resp-${index}`}
+              initial={{ opacity: 0, x: -12 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.05 }}
+              className="flex gap-3 text-sm text-muted-foreground leading-relaxed"
             >
-                <div className="project-media">
-                    <div className="image-container">
-                        <Image 
-                            src={project.image} 
-                            alt={project.title}
-                            fluid
-                            className="project-image"
-                        />
-                    </div>
-                </div>
+              <span className="mt-2 size-1.5 rounded-full bg-primary flex-shrink-0" />
+              {item}
+            </motion.li>
+          ))}
+        </ul>
+      </div>
 
-                <div className="project-header">
-                    <h1>{project.title}</h1>
-                    <div className="timeline">
-                        <Calendar size={20} />
-                        <span>{project.timeline}</span>
-                    </div>
-                </div>
-
-                <div className="description-section">
-                    <h2>About the Project</h2>
-                    <p>{project.LongDescription}</p>
-                </div>
-
-                <div className="role-section">
-                    <div className="section-header">
-                        <BriefcaseFill size={20} />
-                        <h2>Role: {project.role}</h2>
-                    </div>
-                    <ul className="feature-list">
-                        {project.responsibilities.map((item, index) => (
-                            <motion.li
-                                key={`resp-${index}`}
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.3, delay: index * 0.1 }}
-                            >
-                                {item}
-                            </motion.li>
-                        ))}
-                    </ul>
-                </div>
-
-                <div className="contributions-section">
-                    <div className="section-header">
-                        <CodeSlash size={20} />
-                        <h2>Technical Accomplishments</h2>
-                    </div>
-                    <ul className="feature-list">
-                        {project.contributions.map((item, index) => (
-                            <motion.li
-                                key={`cont-${index}`}
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.3, delay: index * 0.1 }}
-                            >
-                                {item}
-                            </motion.li>
-                        ))}
-                    </ul>
-                </div>
-            </motion.div>
-        </Container>
-    );
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center gap-2">
+          <Code2 size={16} className="text-primary" />
+          <h2 className="text-lg font-semibold tracking-[-0.01em] text-foreground">
+            Technical accomplishments
+          </h2>
+        </div>
+        <ul className="flex flex-col gap-2.5">
+          {project.contributions.map((item, index) => (
+            <motion.li
+              key={`cont-${index}`}
+              initial={{ opacity: 0, x: -12 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.05 }}
+              className="flex gap-3 text-sm text-muted-foreground leading-relaxed"
+            >
+              <span className="mt-2 size-1.5 rounded-full bg-primary flex-shrink-0" />
+              {item}
+            </motion.li>
+          ))}
+        </ul>
+      </div>
+    </motion.div>
+  );
 }
 
 export default TemplateProject;

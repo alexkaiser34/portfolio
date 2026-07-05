@@ -1,134 +1,116 @@
-import { useEffect, useState } from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
-import { useLocation, Link } from "react-router-dom";
-import { NavLinks } from "../../App";
-import Resume from "../Resume";
-import './styles.css';
-import ReactGA from 'react-ga';
-import { motion } from "framer-motion";
-import ThemeToggle from '../ThemeToggle';
+import { Menu, X, Sun, Moon, Mail } from 'lucide-react';
+import { useTheme } from '../../context/ThemeContext';
 
-interface NavBarProps {
-    linkActive: NavLinks | undefined,
-    setLinkActive: React.Dispatch<React.SetStateAction<NavLinks | undefined>>
+export interface NavLink {
+  label: string;
+  id: string;
 }
 
-function NavBar(props: NavBarProps) {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
-    const location = useLocation();
+interface NavBarProps {
+  links: NavLink[];
+  active: string;
+  scrolled: boolean;
+  menuOpen: boolean;
+  setMenuOpen: (open: boolean) => void;
+  onNavigate: (id: string) => void;
+  contactEmail: string;
+}
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+function NavBar({
+  links,
+  active,
+  scrolled,
+  menuOpen,
+  setMenuOpen,
+  onNavigate,
+  contactEmail,
+}: NavBarProps) {
+  const { theme, toggleTheme } = useTheme();
+  const dark = theme === 'dark';
 
-    useEffect(() => {
-        const routeName = location.pathname.slice(1);
-        if (routeName.length > 1) {
-            props.setLinkActive(routeName as NavLinks);
-        } else {
-            props.setLinkActive("home");
-        }
-    }, [location.pathname, props]);
-
-    useEffect(() => {
-        ReactGA.pageview(location.pathname + location.search);
-    }, [location.pathname, location.search]);
-
-    const navItems = [
-        { name: "home", number: "01" },
-        { name: "background", number: "02" },
-        { name: "experience", number: "03" },
-        { name: "contact", number: "04" },
-        { name: "recommendations", number: "05" }
-    ];
-
-    return (
-        <Navbar 
-            expand="xl"
-            fixed="top" 
-            className={`modern-navbar ${isScrolled ? 'scrolled' : ''}`}
+  return (
+    <header
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-background/85 backdrop-blur-2xl border-b border-border'
+          : 'bg-transparent border-b border-transparent'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between gap-8">
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="text-sm font-semibold tracking-tight hover:text-primary transition-colors flex-shrink-0"
         >
-            <Container>
-                <Link 
-                    to="/home"
-                    className="navbar-brand brand"
-                    onClick={() => {
-                        window.scrollTo(0, 0);
-                        setIsOpen(false);
-                        props.setLinkActive("home");
-                    }}
-                >
-                    <motion.div
-                        className="logo-container"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        <div className="monogram">
-                            <span className="monogram-letter">A</span>
-                            <span className="monogram-letter">K</span>
-                        </div>
-                    </motion.div>
-                </Link>
-                
-                <div className="toggle-button-wrapper-navbar">
-                    <div className="mx-auto">
-                        <ThemeToggle />
-                    </div>
-                </div>
+          Alex Kaiser
+        </button>
 
-                <Navbar.Toggle 
-                    aria-controls="navbar-nav"
-                    className="hamburger"
-                    onClick={() => setIsOpen(!isOpen)}
-                >
-                    <div className={`hamburger-lines ${isOpen ? 'open' : ''}`}>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </Navbar.Toggle>
+        <nav className="hidden md:flex items-center gap-0.5 flex-1 justify-center">
+          {links.map((link) => (
+            <button
+              key={link.id}
+              onClick={() => onNavigate(link.id)}
+              className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
+                active === link.id
+                  ? 'text-foreground font-medium'
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              {link.label}
+            </button>
+          ))}
+        </nav>
 
-                <Navbar.Collapse id="navbar-nav" in={isOpen}>
-                    <Nav className="ms-auto nav-links">
-                        {navItems.map((item, index) => (
-                            <motion.div
-                                key={item.name}
-                                initial={{ opacity: 0, y: -20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.1 * index }}
-                            >
-                                <Link
-                                    to={`/${item.name.toLowerCase()}`}
-                                    className={`nav-link nav-item ${props.linkActive === item.name.charAt(0).toLowerCase() + item.name.slice(1) ? 'active' : ''}`}
-                                    onClick={() => {
-                                        window.scrollTo(0,0);
-                                        props.setLinkActive((item.name.charAt(0).toLowerCase() + item.name.slice(1)) as NavLinks);
-                                        setIsOpen(false);
-                                    }}
-                                >
-                                    <span className="nav-number">{item.number}</span>
-                                    <span className="nav-text">{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</span>
-                                </Link>
-                            </motion.div>
-                        ))}
-                        <motion.div
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.6 }}
-                            className="resume-button-wrapper"
-                        >
-                            <Resume />
-                        </motion.div>
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
-    );
+        <div className="flex items-center gap-1.5 flex-shrink-0">
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+          >
+            {dark ? <Sun size={15} /> : <Moon size={15} />}
+          </button>
+          <button
+            onClick={() => onNavigate('contact')}
+            className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:opacity-90 transition-opacity"
+          >
+            <Mail size={13} />
+            Contact
+          </button>
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+            className="md:hidden p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+          >
+            {menuOpen ? <X size={17} /> : <Menu size={17} />}
+          </button>
+        </div>
+      </div>
+
+      {menuOpen && (
+        <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-2xl">
+          <div className="max-w-7xl mx-auto px-6 py-3 flex flex-col gap-0.5">
+            {links.map((link) => (
+              <button
+                key={link.id}
+                onClick={() => onNavigate(link.id)}
+                className="text-left px-3 py-2.5 text-sm rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+              >
+                {link.label}
+              </button>
+            ))}
+            <div className="border-t border-border mt-2 pt-3">
+              <a
+                href={`mailto:${contactEmail}`}
+                className="flex items-center gap-2 px-3 py-2.5 text-sm text-primary font-medium"
+              >
+                <Mail size={14} />
+                {contactEmail}
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+    </header>
+  );
 }
 
 export default NavBar;
