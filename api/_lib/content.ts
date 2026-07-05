@@ -1,7 +1,7 @@
 import { supabaseServer } from './supabase';
-import { fetchSingle, fetchList } from '@shared/repository';
-import { renderSection } from '@shared/model';
-import { CONTENT_MODELS, profileModel, type Profile } from '@shared/models';
+import { fetchSingle, fetchList } from '../../shared/repository';
+import { renderSection } from '../../shared/model';
+import { CONTENT_MODELS, profileModel, type Profile } from '../../shared/models';
 import { buildSystemPrompt } from './prompt';
 
 const TTL_MS = 5 * 60 * 1000;
