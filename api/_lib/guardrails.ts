@@ -1,5 +1,5 @@
 import type { UIMessage } from 'ai';
-import { CHAT_LIMITS } from '@shared/chat';
+import { CHAT_LIMITS } from '../../shared/chat';
 
 /** Thrown when an incoming chat request fails validation (maps to HTTP 400). */
 export class ChatValidationError extends Error {}
