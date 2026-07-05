@@ -1,12 +1,9 @@
-import { openai } from '@ai-sdk/openai';
-import { convertToModelMessages, streamText } from 'ai';
-import { loadSystemPrompt } from './_lib/content';
+import { convertToModelMessages, createUIMessageStreamResponse, toUIMessageStream } from 'ai';
+import { streamAssistantReply } from './_lib/assistant';
 import { checkRateLimit } from './_lib/ratelimit';
 import { ChatValidationError, parseChatRequest } from './_lib/guardrails';
 
 export const config = { runtime: 'edge' };
-
-const MODEL = 'gpt-4o-mini';
 
 function jsonError(message: string, status: number): Response {
   return Response.json({ error: message }, { status });
@@ -34,21 +31,15 @@ export default async function handler(req: Request): Promise<Response> {
     return jsonError('Invalid request body.', 400);
   }
 
-  let systemPrompt: string;
+  let result;
   try {
-    systemPrompt = await loadSystemPrompt();
+    result = await streamAssistantReply(await convertToModelMessages(messages));
   } catch (err) {
-    console.error('Failed to load portfolio context:', err);
+    console.error('Failed to generate assistant reply:', err);
     return jsonError('The assistant is temporarily unavailable. Please try again soon.', 503);
   }
 
-  const result = streamText({
-    model: openai(MODEL),
-    system: systemPrompt,
-    messages: await convertToModelMessages(messages),
-    temperature: 0.4,
-    maxOutputTokens: 700,
+  return createUIMessageStreamResponse({
+    stream: toUIMessageStream({ stream: result.stream }),
   });
-
-  return result.toUIMessageStreamResponse();
 }

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Bot, Send, X, ArrowUpRight } from 'lucide-react';
 import { useChat as useAIChat } from '@ai-sdk/react';
 import { DefaultChatTransport, type UIMessage } from 'ai';
+import { Streamdown } from 'streamdown';
 import { useTheme } from '../../context/ThemeContext';
 import { useChat } from '../../context/ChatContext';
 import { SUGGESTED_PROMPTS } from '../../services/aiAssistant';
@@ -178,9 +179,9 @@ function AIAssistant() {
               </div>
             ) : (
               <>
-                {messages.map((msg) => (
+                {messages.map((msg, index) => (
                   <div
-                    key={msg.id}
+                    key={msg.id || index}
                     className={`flex gap-2 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     {msg.role === 'assistant' && (
@@ -189,13 +190,19 @@ function AIAssistant() {
                       </div>
                     )}
                     <div
-                      className={`max-w-[80%] px-3.5 py-2.5 text-[13px] leading-relaxed whitespace-pre-wrap ${
+                      className={`max-w-[80%] px-3.5 py-2.5 text-[13px] leading-relaxed ${
                         msg.role === 'user'
-                          ? 'bg-primary text-primary-foreground rounded-2xl rounded-br-md'
+                          ? 'bg-primary text-primary-foreground rounded-2xl rounded-br-md whitespace-pre-wrap'
                           : 'bg-muted text-foreground rounded-2xl rounded-bl-md'
                       }`}
                     >
-                      {messageText(msg)}
+                      {msg.role === 'user' ? (
+                        messageText(msg)
+                      ) : (
+                        <Streamdown className="[&>:first-child]:mt-0 [&>:last-child]:mb-0 [&_a]:text-primary [&_a]:underline">
+                          {messageText(msg)}
+                        </Streamdown>
+                      )}
                     </div>
                   </div>
                 ))}
