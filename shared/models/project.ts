@@ -18,6 +18,7 @@ export const projectSchema = z.object({
     .nullable()
     .optional()
     .transform((v) => v ?? undefined),
+  sortOrder: z.number().int().default(0),
 });
 
 export type ProjectType = z.infer<typeof projectSchema>;

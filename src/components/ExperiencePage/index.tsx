@@ -29,21 +29,25 @@ function sortProjects(data: ProjectType[]): ProjectType[] {
   return [...data].sort((a, b) => {
     const aTimeline = a.timeline.split(' ');
     const bTimeLine = b.timeline.split(' ');
-    if (aTimeline.length < 4 || bTimeLine.length < 4) return 0;
 
-    const aYear = aTimeline[aTimeline.length - 1];
-    const aMonth = aTimeline[aTimeline.length - 2];
-    const bYear = bTimeLine[bTimeLine.length - 1];
-    const bMonth = bTimeLine[bTimeLine.length - 2];
+    let dateOrder = 0;
+    if (aTimeline.length >= 4 && bTimeLine.length >= 4) {
+      const aYear = aTimeline[aTimeline.length - 1];
+      const aMonth = aTimeline[aTimeline.length - 2];
+      const bYear = bTimeLine[bTimeLine.length - 1];
+      const bMonth = bTimeLine[bTimeLine.length - 2];
 
-    if (bYear === 'Present') return 1;
-    if (aYear === 'Present') return -1;
-    if (Number(aYear) > Number(bYear)) return -1;
-    if (Number(bYear) > Number(aYear)) return 1;
-    if (aMonth in monthDict && bMonth in monthDict) {
-      return monthDict[aMonth] > monthDict[bMonth] ? -1 : 1;
+      if (bYear === 'Present') dateOrder = 1;
+      else if (aYear === 'Present') dateOrder = -1;
+      else if (Number(aYear) > Number(bYear)) dateOrder = -1;
+      else if (Number(bYear) > Number(aYear)) dateOrder = 1;
+      else if (aMonth in monthDict && bMonth in monthDict) {
+        dateOrder = monthDict[aMonth] > monthDict[bMonth] ? -1 : 1;
+      }
     }
-    return 0;
+
+    if (dateOrder !== 0) return dateOrder;
+    return (a.sortOrder ?? 0) - (b.sortOrder ?? 0);
   });
 }
 
