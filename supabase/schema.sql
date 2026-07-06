@@ -18,7 +18,7 @@
 create table if not exists profile (
   id           smallint primary key default 1,
   "name"       text not null,
-  "title"      text not null,
+  "title"      text[] not null default '{}',
   "location"   text not null,
   "email"      text not null,
   "linkedin"   text not null,

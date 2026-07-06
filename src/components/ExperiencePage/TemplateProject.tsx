@@ -16,8 +16,12 @@ function TemplateProject({ project }: TemplateProjectProps) {
       className="flex flex-col gap-8"
     >
       {project.image && (
-        <div className="rounded-xl overflow-hidden border border-border bg-muted">
-          <img src={project.image} alt={project.title} className="w-full object-cover" />
+        <div className="rounded-xl overflow-hidden border border-border bg-gradient-to-br from-muted to-muted/60 flex items-center justify-center p-4">
+          <img
+            src={project.image}
+            alt={project.title}
+            className="max-w-full max-h-56 object-contain mx-auto"
+          />
         </div>
       )}
 

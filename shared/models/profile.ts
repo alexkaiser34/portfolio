@@ -3,7 +3,7 @@ import { defineSingle } from '../model';
 
 export const profileSchema = z.object({
   name: z.string(),
-  title: z.string(),
+  title: z.array(z.string()),
   location: z.string(),
   email: z.string(),
   linkedin: z.string(),
@@ -20,7 +20,7 @@ export const profileModel = defineSingle({
   render: (p) =>
     [
       `- Name: ${p.name}`,
-      `- Title: ${p.title}`,
+      `- Titles: ${p.title.join(', ')}`,
       `- Location: ${p.location}`,
       `- Email: ${p.email}`,
       `- LinkedIn: ${p.linkedin}`,

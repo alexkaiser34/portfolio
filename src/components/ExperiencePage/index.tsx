@@ -81,7 +81,7 @@ function CompanyDropdown({
         <ChevronDown size={14} className="text-muted-foreground" />
       </button>
       {open && (
-        <div className="absolute right-0 mt-1.5 z-20 min-w-[180px] max-h-64 overflow-auto rounded-md border border-border bg-popover shadow-lg p-1">
+        <div className="absolute left-0 sm:left-auto sm:right-0 mt-1.5 z-20 min-w-[180px] max-h-64 overflow-auto rounded-md border border-border bg-popover shadow-lg p-1">
           {companies.map((c) => (
             <button
               key={c}
@@ -159,10 +159,7 @@ function ExperiencePage() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-12">
           <SectionLabel>Experience</SectionLabel>
-          <h2 className="text-2xl font-semibold tracking-[-0.02em]">Selected work</h2>
-          <p className="text-sm text-muted-foreground mt-2">
-            Explore my journey through various projects and experiences.
-          </p>
+          <h2 className="text-2xl font-semibold tracking-[-0.02em]">Projects &amp; roles</h2>
         </div>
 
         {loading ? (
@@ -172,50 +169,85 @@ function ExperiencePage() {
           </div>
         ) : (
           <>
-            <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+            <div className="flex flex-wrap items-center gap-3 mb-8">
               <div className="inline-flex items-center gap-1 p-1 rounded-lg border border-border bg-card">
                 {CATEGORIES.map((c) => (
                   <button
                     key={c}
-                    onClick={() => setCategory(c)}
-                    className={`px-3.5 py-1.5 text-sm rounded-md transition-colors ${
+                    onClick={() => {
+                      setCategory(c);
+                      setCompany('All');
+                    }}
+                    className={`relative px-3.5 py-1.5 text-sm rounded-md transition-colors ${
                       category === c
-                        ? 'bg-primary text-primary-foreground font-medium'
+                        ? 'text-primary-foreground font-medium'
                         : 'text-muted-foreground hover:text-foreground'
                     }`}
                   >
-                    {c}
+                    {category === c && (
+                      <motion.span
+                        layoutId="active-tab"
+                        className="absolute inset-0 bg-primary rounded-md"
+                        transition={{ type: 'spring', stiffness: 400, damping: 35 }}
+                      />
+                    )}
+                    <span className="relative z-10">{c}</span>
                   </button>
                 ))}
               </div>
 
-              {category === 'Professional' && (
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-muted-foreground">Company</span>
-                  <CompanyDropdown
-                    companies={availableCompanies}
-                    company={company}
-                    setCompany={setCompany}
-                  />
-                </div>
-              )}
+              <AnimatePresence>
+                {category === 'Professional' && (
+                  <motion.div
+                    key="company-filter"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.18 }}
+                    className="flex items-center gap-3 w-full sm:flex-1 sm:w-auto"
+                  >
+                    <span className="hidden sm:block flex-1 h-px bg-border" />
+                    <CompanyDropdown
+                      companies={availableCompanies}
+                      company={company}
+                      setCompany={setCompany}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
-            {projectsToShow.length === 0 ? (
-              <p className="text-sm text-muted-foreground py-12 text-center">
-                No projects to show here yet.
-              </p>
-            ) : (
-              <div className="grid md:grid-cols-2 gap-3">
-                {projectsToShow.map((project) => (
-                  <ProjectCard
-                    key={project.title}
-                    project={project}
-                    onLearnMore={() => handleLearnMore(project)}
-                  />
-                ))}
-              </div>
-            )}
+            <AnimatePresence mode="wait">
+              {projectsToShow.length === 0 ? (
+                <motion.p
+                  key="empty"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                  className="text-sm text-muted-foreground py-12 text-center"
+                >
+                  No projects to show here yet.
+                </motion.p>
+              ) : (
+                <motion.div
+                  key={`${category}-${company}`}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
+                  className="grid md:grid-cols-2 gap-3"
+                >
+                  {projectsToShow.map((project) => (
+                    <ProjectCard
+                      key={project.title}
+                      project={project}
+                      onLearnMore={() => handleLearnMore(project)}
+                    />
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </>
         )}
       </div>

@@ -60,13 +60,15 @@ function Skills() {
                 return (
                   <motion.div
                     key={skill.title}
-                    className="flex gap-4 p-5 rounded-xl border border-border bg-card"
+                    className="group relative flex gap-4 p-5 rounded-xl border border-border bg-card overflow-hidden transition-colors duration-200 hover:border-primary/30 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
                     initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
+                    whileHover={{ y: -2 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.05, duration: 0.3 }}
                   >
-                    <div className="flex items-center justify-center size-10 rounded-lg bg-accent text-primary flex-shrink-0">
+                    <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
+                    <div className="flex items-center justify-center size-10 rounded-lg bg-accent text-primary flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-200">
                       <Icon size={18} />
                     </div>
                     <div className="flex flex-col gap-1.5">

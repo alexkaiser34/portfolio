@@ -18,13 +18,13 @@ function messageText(message: UIMessage): string {
 function AIAssistant() {
   const { theme } = useTheme();
   const dark = theme === 'dark';
-  const { open, closeChat, toggleChat } = useChat();
+  const { open, closeChat, toggleChat, pendingPrompt, clearPendingPrompt } = useChat();
 
   const { messages, sendMessage, status } = useAIChat({
     transport: new DefaultChatTransport({ api: CHAT_API_ROUTE }),
   });
   const [input, setInput] = useState('');
-  const [showHint, setShowHint] = useState(true);
+  const [showRing, setShowRing] = useState(false);
   const [size, setSize] = useState({ width: 390, height: 540 });
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -32,8 +32,9 @@ function AIAssistant() {
   const busy = status === 'submitted' || status === 'streaming';
 
   useEffect(() => {
-    const t = setTimeout(() => setShowHint(false), 6000);
-    return () => clearTimeout(t);
+    const t1 = setTimeout(() => setShowRing(true), 1500);
+    const t2 = setTimeout(() => setShowRing(false), 3500);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
   useEffect(() => {
@@ -41,11 +42,16 @@ function AIAssistant() {
   }, [messages, status]);
 
   useEffect(() => {
-    if (open) {
-      setShowHint(false);
-      setTimeout(() => inputRef.current?.focus(), 250);
-    }
+    if (open) setTimeout(() => inputRef.current?.focus(), 250);
   }, [open]);
+
+  useEffect(() => {
+    if (open && pendingPrompt) {
+      send(pendingPrompt);
+      clearPendingPrompt();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, pendingPrompt]);
 
   const send = (text: string) => {
     const trimmed = text.trim();
@@ -85,7 +91,7 @@ function AIAssistant() {
     : '0 4px 24px rgba(91,95,207,0.28), 0 2px 8px rgba(0,0,0,0.08)';
 
   return (
-    <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-3">
+    <div className="pointer-events-none fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-3">
       {/* Chat panel */}
       <div
         className="transition-all duration-300 ease-out origin-bottom-right"
@@ -262,47 +268,32 @@ function AIAssistant() {
         </div>
       </div>
 
-      {/* First-load hint bubble */}
-      {!open && (
-        <div
-          className="transition-all duration-500 ease-out origin-bottom-right"
-          style={{
-            opacity: showHint ? 1 : 0,
-            transform: showHint ? 'scale(1) translateY(0)' : 'scale(0.96) translateY(4px)',
-            pointerEvents: 'none',
-          }}
-        >
+      {/* Floating button — relative wrapper for attention ring */}
+      <div className="relative pointer-events-auto">
+        {showRing && !open && (
           <div
-            className="relative mr-1 mb-1 max-w-[240px] px-3.5 py-2.5 rounded-xl bg-card border border-border text-xs text-muted-foreground leading-relaxed"
-            style={{
-              boxShadow: dark ? '0 4px 20px rgba(0,0,0,0.4)' : '0 4px 16px rgba(0,0,0,0.08)',
-            }}
-          >
-            <span className="text-foreground font-medium">Recruiters:</span> paste a job
-            description to see how Alex fits your role.
-            <div className="absolute bottom-[-5px] right-7 size-2.5 rotate-45 bg-card border-r border-b border-border" />
-          </div>
-        </div>
-      )}
-
-      {/* Floating button */}
-      <button
-        onClick={toggleChat}
-        aria-label="Open Alex's AI assistant"
-        className="group flex items-center gap-3 py-3 pl-3.5 pr-4 rounded-2xl bg-primary text-primary-foreground transition-all duration-200 hover:opacity-95 hover:scale-[1.02]"
-        style={{ boxShadow: btnShadow }}
-      >
-        <div className="size-8 rounded-xl bg-white/15 flex items-center justify-center flex-shrink-0">
-          <Bot size={17} />
-        </div>
-        <div className="text-left">
-          <p className="text-sm font-semibold leading-none mb-1">Alex's AI Assistant</p>
-          <p className="text-[11px] opacity-70 leading-none">Ask about fit, skills, or paste a JD</p>
-        </div>
-        {hasMessages && !open && (
-          <span className="size-2 rounded-full bg-white animate-pulse ml-1" />
+            className="absolute inset-0 rounded-2xl bg-primary/35 animate-ping pointer-events-none"
+            aria-hidden
+          />
         )}
-      </button>
+        <button
+          onClick={toggleChat}
+          aria-label="Open Alex's AI assistant"
+          className="relative group flex items-center gap-3 py-3 pl-3.5 pr-4 rounded-2xl bg-primary text-primary-foreground transition-all duration-200 hover:opacity-95 hover:scale-[1.02]"
+          style={{ boxShadow: btnShadow }}
+        >
+          <div className="size-8 rounded-xl bg-white/15 flex items-center justify-center flex-shrink-0">
+            <Bot size={17} />
+          </div>
+          <div className="text-left">
+            <p className="text-sm font-semibold leading-none mb-1">Alex's AI Assistant</p>
+            <p className="text-[11px] opacity-70 leading-none">Ask about fit, skills, or paste a JD</p>
+          </div>
+          {hasMessages && !open && (
+            <span className="size-2 rounded-full bg-white animate-pulse ml-1" />
+          )}
+        </button>
+      </div>
     </div>
   );
 }

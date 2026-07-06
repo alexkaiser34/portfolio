@@ -17,7 +17,7 @@ function Footer() {
         <div className="flex flex-col gap-1.5">
           <p className="text-sm font-semibold tracking-tight">{profile.name}</p>
           <p className="text-sm text-muted-foreground">
-            {profile.title} · {profile.location}
+            {profile.location}
           </p>
         </div>
 

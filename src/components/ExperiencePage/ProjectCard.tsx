@@ -17,11 +17,11 @@ function ProjectCard({ project, onLearnMore }: ProjectCardProps) {
       {/* accent line on hover */}
       <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
       {project.image && (
-        <div className="rounded-lg overflow-hidden border border-border aspect-video bg-muted">
+        <div className="rounded-lg overflow-hidden border border-border h-40 bg-gradient-to-br from-muted to-muted/60 flex items-center justify-center p-3">
           <img
             src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
+            className="max-w-full max-h-full object-contain group-hover:scale-[1.02] transition-transform duration-300"
           />
         </div>
       )}
@@ -30,10 +30,10 @@ function ProjectCard({ project, onLearnMore }: ProjectCardProps) {
         <h3 className="text-[0.95rem] font-semibold tracking-[-0.01em] text-foreground leading-snug">
           {project.title}
         </h3>
-        <ArrowUpRight
-          size={15}
-          className="text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 mt-0.5"
-        />
+        <span className="inline-flex items-center gap-1 flex-shrink-0 mt-0.5 px-2 py-0.5 rounded-full text-[0.7rem] font-medium text-primary bg-accent opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+          View details
+          <ArrowUpRight size={11} />
+        </span>
       </div>
 
       <p className="text-sm text-muted-foreground leading-relaxed flex-1">

@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   Mail,
   ArrowUpRight,
   Download,
-  ChevronLeft,
-  ChevronRight,
   Bot,
   MapPin,
 } from 'lucide-react';
@@ -14,103 +12,161 @@ import { useTheme } from '../../context/ThemeContext';
 import { useChat } from '../../context/ChatContext';
 import { getProfile } from '../../services/profile';
 import { getExpertise } from '../../services/expertise';
+import { SUGGESTED_PROMPTS } from '../../services/aiAssistant';
 import { profileModel, expertiseModel } from '@shared/models';
 import { getIcon } from '../shared/icons';
 
-const ROTATE_MS = 4500;
+// ─── Typewriter hook ────────────────────────────────────────────────────────
 
-function ExpertiseCarousel() {
+function useTypewriter(strings: string[], typeSpeed = 75, deleteSpeed = 40, pauseMs = 1800) {
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (strings.length === 0) return;
+    const current = strings[index];
+
+    if (!isDeleting && displayText === current) {
+      const t = setTimeout(() => setIsDeleting(true), pauseMs);
+      return () => clearTimeout(t);
+    }
+    if (isDeleting && displayText === '') {
+      setIsDeleting(false);
+      setIndex((i) => (i + 1) % strings.length);
+      return;
+    }
+
+    const delay = isDeleting ? deleteSpeed : typeSpeed;
+    const next = isDeleting ? displayText.slice(0, -1) : current.slice(0, displayText.length + 1);
+    const t = setTimeout(() => setDisplayText(next), delay);
+    return () => clearTimeout(t);
+  }, [strings, displayText, isDeleting, index, typeSpeed, deleteSpeed, pauseMs]);
+
+  return displayText;
+}
+
+function TypedTitle({ strings }: { strings: string[] }) {
+  const text = useTypewriter(strings);
+  return (
+    <p className="text-xl md:text-2xl text-muted-foreground font-normal tracking-[-0.01em] min-h-7">
+      {text}
+      <span className="inline-block ml-0.5 text-primary animate-pulse select-none">|</span>
+    </p>
+  );
+}
+
+// ─── AI Feature Card ─────────────────────────────────────────────────────────
+
+function AIFeatureCard() {
+  const { theme } = useTheme();
+  const dark = theme === 'dark';
+  const { openChat, openChatWithPrompt } = useChat();
+
+  return (
+    <div className="w-full lg:w-[420px]">
+      <div
+        className="rounded-2xl border border-border bg-card p-7 flex flex-col gap-6 shadow-[0_2px_24px_rgba(0,0,0,0.05)] dark:shadow-[0_2px_24px_rgba(0,0,0,0.35)]"
+      >
+        {/* Header */}
+        <div className="flex items-center gap-2">
+          <span className="text-[0.7rem] font-mono font-medium uppercase tracking-[0.14em] text-muted-foreground">
+            AI-powered
+          </span>
+          <span className="size-1.5 rounded-full bg-emerald-500 inline-block animate-pulse" />
+        </div>
+
+        {/* Icon + headline + description */}
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center justify-center size-12 rounded-xl bg-primary/10 border border-primary/15 text-primary self-start">
+            <Bot size={22} />
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold tracking-[-0.01em] text-foreground mb-2">
+              Ask Alex's AI anything
+            </h3>
+            <p className="text-[0.9rem] text-muted-foreground leading-relaxed">
+              I built an AI assistant trained on my background. Ask about my experience,
+              technical skills, or paste a job description to see if I'm a good fit.
+            </p>
+          </div>
+        </div>
+
+        {/* Suggested prompts */}
+        <div className="flex flex-col gap-2">
+          <p className="text-[0.65rem] font-mono font-medium uppercase tracking-[0.14em] text-muted-foreground mb-0.5">
+            Try asking
+          </p>
+          {SUGGESTED_PROMPTS.slice(0, 3).map(({ text }) => (
+            <button
+              key={text}
+              onClick={() => openChatWithPrompt(text)}
+              className="group text-left text-xs px-3.5 py-2.5 rounded-xl border border-border bg-muted hover:border-primary/30 hover:bg-accent hover:text-accent-foreground text-muted-foreground transition-all duration-150 flex items-center gap-2"
+            >
+              <ArrowUpRight
+                size={11}
+                className="shrink-0 opacity-40 group-hover:opacity-70 transition-opacity"
+              />
+              {text}
+            </button>
+          ))}
+        </div>
+
+        {/* Primary CTA */}
+        <button
+          onClick={openChat}
+          className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-primary text-primary-foreground text-sm font-semibold hover:opacity-95 transition-all duration-200 hover:scale-[1.01]"
+          style={{
+            boxShadow: dark
+              ? '0 4px 20px rgba(0,0,0,0.4), 0 0 20px rgba(139,142,245,0.15)'
+              : '0 4px 16px rgba(91,95,207,0.25)',
+          }}
+        >
+          Start a conversation
+          <ArrowUpRight size={14} />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ─── Expertise Grid ───────────────────────────────────────────────────────────
+
+function ExpertiseGrid() {
   const [expertise, setExpertise] = useState(expertiseModel.empty);
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const total = expertise.length;
 
   useEffect(() => {
     getExpertise().then(setExpertise);
   }, []);
 
-  useEffect(() => {
-    if (paused || total === 0) return;
-    const id = setInterval(() => setActive((a) => (a + 1) % total), ROTATE_MS);
-    return () => clearInterval(id);
-  }, [paused, total]);
-
-  const go = (dir: number) => setActive((a) => (a + dir + total) % total);
-
-  if (total === 0) return null;
-
-  const current = expertise[active];
-  const Icon = getIcon(current.icon);
+  if (expertise.length === 0) return null;
 
   return (
-    <div
-      className="w-full lg:w-[420px]"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
-      <div className="relative rounded-2xl border border-border bg-card p-7 min-h-[300px] flex flex-col shadow-[0_2px_24px_rgba(0,0,0,0.05)] dark:shadow-[0_2px_24px_rgba(0,0,0,0.35)]">
-        <div className="flex items-center justify-between mb-5">
-          <span className="text-[0.7rem] font-mono font-medium uppercase tracking-[0.14em] text-muted-foreground">
-            Areas of expertise
-          </span>
-          <span className="text-xs font-mono text-muted-foreground tabular-nums">
-            {String(active + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
-          </span>
-        </div>
-
-        <div className="flex-1">
-          <AnimatePresence mode="wait">
+    <div className="max-w-7xl mx-auto px-6 pb-20">
+      <p className="text-[0.7rem] font-mono font-medium uppercase tracking-[0.14em] text-muted-foreground mb-6">
+        Areas of Expertise
+      </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {expertise.map((item, i) => {
+          const Icon = getIcon(item.icon);
+          return (
             <motion.div
-              key={active}
-              initial={{ opacity: 0, y: 10 }}
+              key={item.title}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              className="flex flex-col gap-4"
+              transition={{ duration: 0.4, delay: i * 0.07 }}
+              className="flex flex-col gap-3 p-5 rounded-xl border border-border bg-card/50 hover:bg-card hover:border-primary/20 transition-all duration-200"
             >
-              <div className="flex items-center justify-center size-12 rounded-xl bg-accent text-primary">
-                <Icon size={22} />
+              <div className="flex items-center justify-center size-10 rounded-lg bg-accent text-primary self-start">
+                <Icon size={18} />
               </div>
-              <h3 className="text-xl font-semibold tracking-[-0.01em] text-foreground">
-                {current.title}
-              </h3>
-              <p className="text-[0.95rem] text-muted-foreground leading-relaxed">
-                {current.description}
-              </p>
+              <div>
+                <p className="text-sm font-semibold text-foreground mb-1.5">{item.title}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">{item.description}</p>
+              </div>
             </motion.div>
-          </AnimatePresence>
-        </div>
-
-        <div className="flex items-center justify-between pt-6 mt-auto">
-          <div className="flex items-center gap-1.5">
-            {expertise.map((item, i) => (
-              <button
-                key={item.title}
-                onClick={() => setActive(i)}
-                aria-label={`Show ${item.title}`}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  i === active ? 'w-6 bg-primary' : 'w-1.5 bg-border hover:bg-muted-foreground/50'
-                }`}
-              />
-            ))}
-          </div>
-          <div className="flex items-center gap-1">
-            <button
-              onClick={() => go(-1)}
-              aria-label="Previous"
-              className="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-            >
-              <ChevronLeft size={16} />
-            </button>
-            <button
-              onClick={() => go(1)}
-              aria-label="Next"
-              className="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-            >
-              <ChevronRight size={16} />
-            </button>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -120,10 +176,9 @@ interface HeroProps {
   onNavigate: (id: string) => void;
 }
 
-function Hero({ onNavigate }: HeroProps) {
+function HeroSection({ onNavigate }: HeroProps) {
   const { theme } = useTheme();
   const dark = theme === 'dark';
-  const { openChat } = useChat();
   const [profile, setProfile] = useState(profileModel.empty);
 
   useEffect(() => {
@@ -173,9 +228,7 @@ function Hero({ onNavigate }: HeroProps) {
               <h1 className="text-[clamp(2.6rem,7vw,4.8rem)] font-semibold tracking-[-0.03em] leading-[1.06] text-foreground">
                 {profile.name}
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground font-normal tracking-[-0.01em]">
-                {profile.title}
-              </p>
+              <TypedTitle strings={profile.title} />
               <p className="flex items-center gap-1.5 text-sm text-muted-foreground mt-1">
                 <MapPin size={14} className="text-primary" />
                 {profile.location}
@@ -190,31 +243,6 @@ function Hero({ onNavigate }: HeroProps) {
             </p>
 
             <div className="flex flex-col gap-3">
-              {/* AI CTA — primary action */}
-              <button
-                onClick={openChat}
-                className="group inline-flex items-center gap-3 self-start pl-3 pr-5 py-3 rounded-2xl bg-primary text-primary-foreground hover:opacity-95 transition-all duration-200 hover:scale-[1.01]"
-                style={{
-                  boxShadow: dark
-                    ? '0 4px 28px rgba(0,0,0,0.5), 0 0 30px rgba(139,142,245,0.22)'
-                    : '0 4px 24px rgba(91,95,207,0.28), 0 2px 8px rgba(0,0,0,0.08)',
-                }}
-              >
-                <div className="size-8 rounded-xl bg-white/15 flex items-center justify-center flex-shrink-0">
-                  <Bot size={17} />
-                </div>
-                <div className="text-left">
-                  <p className="text-sm font-semibold leading-none mb-1">Chat with Alex's AI</p>
-                  <p className="text-[11px] opacity-70 leading-none">
-                    Ask about experience, skills, or paste a job description
-                  </p>
-                </div>
-                <ArrowUpRight
-                  size={14}
-                  className="ml-1 opacity-60 group-hover:opacity-100 transition-opacity"
-                />
-              </button>
-
               <div className="flex items-center gap-3 flex-wrap">
                 <button
                   onClick={() => onNavigate('experience')}
@@ -270,11 +298,20 @@ function Hero({ onNavigate }: HeroProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <ExpertiseCarousel />
+            <AIFeatureCard />
           </motion.div>
         </div>
       </div>
     </section>
+  );
+}
+
+function Hero({ onNavigate }: HeroProps) {
+  return (
+    <>
+      <HeroSection onNavigate={onNavigate} />
+      <ExpertiseGrid />
+    </>
   );
 }
 

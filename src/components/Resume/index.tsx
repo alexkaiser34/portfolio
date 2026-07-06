@@ -38,7 +38,7 @@ function Resume() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setShowModal(true)}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-sm border border-border rounded-md hover:bg-muted transition-colors text-foreground"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm border border-border rounded-md hover:bg-muted transition-colors text-foreground"
             >
               <FileText size={13} />
               View

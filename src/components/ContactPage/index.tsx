@@ -26,8 +26,8 @@ function ContactPage() {
   }, []);
 
   const contactLinks = [
-    { icon: Mail, label: profile.email, href: `mailto:${profile.email}` },
-    { icon: MapPin, label: profile.location, href: null },
+    { id: 'email', icon: Mail, label: profile.email, href: `mailto:${profile.email}` },
+    { id: 'location', icon: MapPin, label: profile.location, href: null },
   ];
 
   const notify = (s: ResultButton) => {
@@ -133,7 +133,7 @@ function ContactPage() {
                 );
                 return link.href ? (
                   <a
-                    key={link.label}
+                    key={link.id}
                     href={link.href}
                     target={link.href.startsWith('http') ? '_blank' : undefined}
                     rel="noopener noreferrer"
@@ -142,7 +142,7 @@ function ContactPage() {
                     {content}
                   </a>
                 ) : (
-                  <div key={link.label} className="group flex items-center gap-3">
+                  <div key={link.id} className="group flex items-center gap-3">
                     {content}
                   </div>
                 );

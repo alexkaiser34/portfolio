@@ -5,6 +5,9 @@ interface ChatContextType {
     openChat: () => void;
     closeChat: () => void;
     toggleChat: () => void;
+    pendingPrompt: string | null;
+    openChatWithPrompt: (text: string) => void;
+    clearPendingPrompt: () => void;
 }
 
 interface ChatProviderProps {
@@ -15,13 +18,19 @@ const ChatContext = createContext<ChatContextType | undefined>(undefined);
 
 export function ChatProvider({ children }: ChatProviderProps) {
     const [open, setOpen] = useState(false);
+    const [pendingPrompt, setPendingPrompt] = useState<string | null>(null);
 
     const openChat = () => setOpen(true);
     const closeChat = () => setOpen(false);
     const toggleChat = () => setOpen((prev) => !prev);
+    const openChatWithPrompt = (text: string) => {
+        setOpen(true);
+        setPendingPrompt(text);
+    };
+    const clearPendingPrompt = () => setPendingPrompt(null);
 
     return (
-        <ChatContext.Provider value={{ open, openChat, closeChat, toggleChat }}>
+        <ChatContext.Provider value={{ open, openChat, closeChat, toggleChat, pendingPrompt, openChatWithPrompt, clearPendingPrompt }}>
             {children}
         </ChatContext.Provider>
     );
