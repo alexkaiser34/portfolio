@@ -3,8 +3,8 @@ import { streamText, type ModelMessage } from 'ai';
 import { loadSystemPrompt } from './content';
 import { openaiEnv } from './env';
 
-/** Model used by the assistant. Cheap and capable for this Q&A workload. */
-export const ASSISTANT_MODEL = 'gpt-4o-mini';
+/** Model used by the assistant. Cheap, fast, and strong at instruction-following for this Q&A workload. */
+export const ASSISTANT_MODEL = 'gpt-4.1-mini';
 
 /**
  * Stream an assistant reply for a conversation. Loads the (cached) system prompt
@@ -20,7 +20,7 @@ export async function streamAssistantReply(messages: ModelMessage[]) {
     model: openai(ASSISTANT_MODEL),
     system,
     messages,
-    temperature: 0.4,
+    temperature: 0.5,
     maxOutputTokens: 700,
   });
 }

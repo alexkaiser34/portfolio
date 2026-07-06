@@ -15,6 +15,7 @@ import { getExpertise } from '../../services/expertise';
 import { SUGGESTED_PROMPTS } from '../../services/aiAssistant';
 import { profileModel, expertiseModel } from '@shared/models';
 import { getIcon } from '../shared/icons';
+import { SectionLabel } from '../shared/Primitives';
 
 // ─── Typewriter hook ────────────────────────────────────────────────────────
 
@@ -78,16 +79,21 @@ function AIFeatureCard() {
 
         {/* Icon + headline + description */}
         <div className="flex flex-col gap-4">
-          <div className="flex items-center justify-center size-12 rounded-xl bg-primary/10 border border-primary/15 text-primary self-start">
-            <Bot size={22} />
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center size-12 rounded-xl bg-primary/10 border border-primary/15 text-primary shrink-0">
+              <Bot size={22} />
+            </div>
+            <p className="text-lg font-semibold text-foreground tracking-[-0.01em]">Alex's AI assistant</p>
           </div>
           <div>
             <h3 className="text-xl font-semibold tracking-[-0.01em] text-foreground mb-2">
-              Ask Alex's AI anything
+              Skip the search. Just ask.
             </h3>
             <p className="text-[0.9rem] text-muted-foreground leading-relaxed">
-              I built an AI assistant trained on my background. Ask about my experience,
-              technical skills, or paste a job description to see if I'm a good fit.
+              Ask about my background, skills, past work and projects, current
+              availability, or paste a job description to check role fit - and get
+              a direct, reliable answer in seconds. Same information you'd find
+              going through the site yourself, just faster.
             </p>
           </div>
         </div>
@@ -130,48 +136,6 @@ function AIFeatureCard() {
   );
 }
 
-// ─── Expertise Grid ───────────────────────────────────────────────────────────
-
-function ExpertiseGrid() {
-  const [expertise, setExpertise] = useState(expertiseModel.empty);
-
-  useEffect(() => {
-    getExpertise().then(setExpertise);
-  }, []);
-
-  if (expertise.length === 0) return null;
-
-  return (
-    <div className="max-w-7xl mx-auto px-6 pb-20">
-      <p className="text-[0.7rem] font-mono font-medium uppercase tracking-[0.14em] text-muted-foreground mb-6">
-        Areas of Expertise
-      </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {expertise.map((item, i) => {
-          const Icon = getIcon(item.icon);
-          return (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
-              className="flex flex-col gap-3 p-5 rounded-xl border border-border bg-card/50 hover:bg-card hover:border-primary/20 transition-all duration-200"
-            >
-              <div className="flex items-center justify-center size-10 rounded-lg bg-accent text-primary self-start">
-                <Icon size={18} />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-foreground mb-1.5">{item.title}</p>
-                <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">{item.description}</p>
-              </div>
-            </motion.div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
 interface HeroProps {
   onNavigate: (id: string) => void;
 }
@@ -180,9 +144,11 @@ function HeroSection({ onNavigate }: HeroProps) {
   const { theme } = useTheme();
   const dark = theme === 'dark';
   const [profile, setProfile] = useState(profileModel.empty);
+  const [expertise, setExpertise] = useState(expertiseModel.empty);
 
   useEffect(() => {
     getProfile().then(setProfile);
+    getExpertise().then(setExpertise);
   }, []);
 
   return (
@@ -236,10 +202,10 @@ function HeroSection({ onNavigate }: HeroProps) {
             </div>
 
             <p className="text-base md:text-[1.05rem] text-muted-foreground leading-[1.75] max-w-[520px]">
-              I build across the full stack and down to the hardware — from full-stack
-              and embedded software to FPGA and electrical design, and increasingly AI
-              tooling and integrations. I bring a unique perspective to complex
-              engineering challenges.
+              I build practical AI tooling, full-stack applications, and embedded
+              software - from LLM integrations to firmware and hardware-adjacent
+              systems. My focus is on software that's correct, clear, and holds up
+              in real use.
             </p>
 
             <div className="flex flex-col gap-3">
@@ -301,18 +267,49 @@ function HeroSection({ onNavigate }: HeroProps) {
             <AIFeatureCard />
           </motion.div>
         </div>
+
+        {/* ─── Areas of Expertise ─────────────────────────────────────────── */}
+        {expertise.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+            className="mt-14"
+          >
+            <div className="h-px w-full bg-linear-to-r from-transparent via-border to-transparent mb-8" />
+            <SectionLabel>Areas of Expertise</SectionLabel>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-flow-col lg:auto-cols-fr gap-3 mt-4">
+              {expertise.map((item, i) => {
+                const Icon = getIcon(item.icon);
+                return (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.4 + i * 0.07 }}
+                    className="relative group flex items-center gap-3 p-4 rounded-xl border border-border bg-card/50 hover:bg-card hover:border-primary/20 hover:shadow-sm transition-all duration-200 cursor-default"
+                  >
+                    <div className="flex items-center justify-center size-8 rounded-lg bg-accent text-primary shrink-0">
+                      <Icon size={15} />
+                    </div>
+                    <p className="text-sm font-semibold text-foreground leading-tight">{item.title}</p>
+                    {/* Styled tooltip */}
+                    <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-50 w-52 px-3 py-2 rounded-lg border border-border bg-popover text-popover-foreground text-xs leading-relaxed shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
+                      {item.description}
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
       </div>
     </section>
   );
 }
 
 function Hero({ onNavigate }: HeroProps) {
-  return (
-    <>
-      <HeroSection onNavigate={onNavigate} />
-      <ExpertiseGrid />
-    </>
-  );
+  return <HeroSection onNavigate={onNavigate} />;
 }
 
 export default Hero;

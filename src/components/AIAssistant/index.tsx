@@ -8,6 +8,9 @@ import { useChat } from '../../context/ChatContext';
 import { SUGGESTED_PROMPTS } from '../../services/aiAssistant';
 import { CHAT_API_ROUTE } from '@shared/chat';
 
+/** Max input height ≈ 3 lines (13px text, leading-relaxed); grows to here, then scrolls. */
+const MAX_INPUT_HEIGHT = 64;
+
 function messageText(message: UIMessage): string {
   return message.parts
     .filter((part): part is { type: 'text'; text: string } => part.type === 'text')
@@ -24,18 +27,29 @@ function AIAssistant() {
     transport: new DefaultChatTransport({ api: CHAT_API_ROUTE }),
   });
   const [input, setInput] = useState('');
-  const [showRing, setShowRing] = useState(false);
+  const [isHopping, setIsHopping] = useState(false);
   const [size, setSize] = useState({ width: 390, height: 540 });
   const bottomRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const busy = status === 'submitted' || status === 'streaming';
 
+  // Grow the input up to ~3 lines, then let it scroll (iMessage-style).
   useEffect(() => {
-    const t1 = setTimeout(() => setShowRing(true), 1500);
-    const t2 = setTimeout(() => setShowRing(false), 3500);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
-  }, []);
+    const el = inputRef.current;
+    if (!el) return;
+    el.style.height = 'auto';
+    el.style.height = `${Math.min(el.scrollHeight, MAX_INPUT_HEIGHT)}px`;
+  }, [input]);
+
+  useEffect(() => {
+    if (open) return;
+    const interval = setInterval(() => {
+      setIsHopping(true);
+      setTimeout(() => setIsHopping(false), 700);
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [open]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -155,7 +169,7 @@ function AIAssistant() {
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-foreground">
-                      Hi — I'm Alex's AI assistant
+                      Hi, I'm Alex's AI assistant
                     </p>
                     <p className="text-xs text-muted-foreground mt-2 leading-relaxed max-w-[260px] mx-auto">
                       I can answer questions about Alex's background, technical skills, and
@@ -240,10 +254,10 @@ function AIAssistant() {
 
           {/* Input */}
           <div className="p-3 border-t border-border flex-shrink-0">
-            <div className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-muted border border-border focus-within:border-primary/35 transition-colors">
-              <input
+            <div className="flex items-end gap-2 px-3.5 py-2.5 rounded-xl bg-muted border border-border focus-within:border-primary/35 transition-colors">
+              <textarea
                 ref={inputRef}
-                type="text"
+                rows={1}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => {
@@ -252,8 +266,8 @@ function AIAssistant() {
                     send(input);
                   }
                 }}
-                placeholder="Ask a question or paste a job description…"
-                className="flex-1 bg-transparent text-[13px] text-foreground placeholder:text-muted-foreground outline-none border-none min-w-0"
+                placeholder="Ask a question or paste a job description..."
+                className="flex-1 resize-none bg-transparent text-[13px] leading-relaxed text-foreground placeholder:text-muted-foreground outline-none border-none min-w-0 overflow-y-auto"
               />
               <button
                 onClick={() => send(input)}
@@ -268,26 +282,20 @@ function AIAssistant() {
         </div>
       </div>
 
-      {/* Floating button — relative wrapper for attention ring */}
+      {/* Floating button */}
       <div className="relative pointer-events-auto">
-        {showRing && !open && (
-          <div
-            className="absolute inset-0 rounded-2xl bg-primary/35 animate-ping pointer-events-none"
-            aria-hidden
-          />
-        )}
         <button
           onClick={toggleChat}
           aria-label="Open Alex's AI assistant"
-          className="relative group flex items-center gap-3 py-3 pl-3.5 pr-4 rounded-2xl bg-primary text-primary-foreground transition-all duration-200 hover:opacity-95 hover:scale-[1.02]"
-          style={{ boxShadow: btnShadow }}
+          className="relative group flex items-center gap-2 sm:gap-3 p-2.5 sm:py-3 sm:pl-3.5 sm:pr-4 rounded-xl sm:rounded-2xl bg-primary text-primary-foreground transition-all duration-200 hover:opacity-95 hover:scale-[1.02]"
+          style={{ boxShadow: btnShadow, animation: isHopping ? 'btn-hop 0.7s ease-in-out' : undefined }}
         >
-          <div className="size-8 rounded-xl bg-white/15 flex items-center justify-center flex-shrink-0">
-            <Bot size={17} />
+          <div className="size-7 sm:size-8 rounded-lg sm:rounded-xl bg-white/15 flex items-center justify-center flex-shrink-0">
+            <Bot size={16} />
           </div>
           <div className="text-left">
-            <p className="text-sm font-semibold leading-none mb-1">Alex's AI Assistant</p>
-            <p className="text-[11px] opacity-70 leading-none">Ask about fit, skills, or paste a JD</p>
+            <p className="text-sm font-semibold leading-none mb-1 hidden sm:block">Alex's AI Assistant</p>
+            <p className="text-[11px] opacity-70 leading-none">Ask anything about Alex</p>
           </div>
           {hasMessages && !open && (
             <span className="size-2 rounded-full bg-white animate-pulse ml-1" />

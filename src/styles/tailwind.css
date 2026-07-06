@@ -4,3 +4,15 @@
 
 @import 'tw-animate-css';
 @import 'streamdown/styles.css';
+
+@keyframes btn-hop {
+  0%, 100% { transform: translateY(0) scale(1); }
+  25%       { transform: translateY(-12px) scale(1.03); }
+  50%       { transform: translateY(0) scale(0.98); }
+  65%       { transform: translateY(-5px) scale(1.01); }
+  80%       { transform: translateY(0) scale(1); }
+}
+
+@theme {
+  --animate-btn-hop: btn-hop 0.7s ease-in-out;
+}

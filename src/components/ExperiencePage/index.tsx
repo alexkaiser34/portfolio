@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronDown, Loader2 } from 'lucide-react';
+import { X, ChevronDown, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import ProjectCard from './ProjectCard';
 import TemplateProject from './TemplateProject';
 import { ProjectType, getAllProjects } from '../../services/projects';
@@ -10,45 +10,23 @@ type CategorySelect = 'Personal' | 'Professional' | 'Academic';
 
 const CATEGORIES: CategorySelect[] = ['Professional', 'Personal', 'Academic'];
 
-const monthDict: { [key: string]: number } = {
-  January: 1,
-  February: 2,
-  March: 3,
-  April: 4,
-  May: 5,
-  June: 6,
-  July: 7,
-  August: 8,
-  September: 9,
-  October: 10,
-  November: 11,
-  December: 12,
-};
-
 function sortProjects(data: ProjectType[]): ProjectType[] {
-  return [...data].sort((a, b) => {
-    const aTimeline = a.timeline.split(' ');
-    const bTimeLine = b.timeline.split(' ');
+  return [...data].sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0));
+}
 
-    let dateOrder = 0;
-    if (aTimeline.length >= 4 && bTimeLine.length >= 4) {
-      const aYear = aTimeline[aTimeline.length - 1];
-      const aMonth = aTimeline[aTimeline.length - 2];
-      const bYear = bTimeLine[bTimeLine.length - 1];
-      const bMonth = bTimeLine[bTimeLine.length - 2];
+function useMediaQuery(query: string): boolean {
+  const [matches, setMatches] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia(query).matches
+  );
 
-      if (bYear === 'Present') dateOrder = 1;
-      else if (aYear === 'Present') dateOrder = -1;
-      else if (Number(aYear) > Number(bYear)) dateOrder = -1;
-      else if (Number(bYear) > Number(aYear)) dateOrder = 1;
-      else if (aMonth in monthDict && bMonth in monthDict) {
-        dateOrder = monthDict[aMonth] > monthDict[bMonth] ? -1 : 1;
-      }
-    }
+  useEffect(() => {
+    const mq = window.matchMedia(query);
+    const handler = (e: MediaQueryListEvent) => setMatches(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, [query]);
 
-    if (dateOrder !== 0) return dateOrder;
-    return (a.sortOrder ?? 0) - (b.sortOrder ?? 0);
-  });
+  return matches;
 }
 
 function CompanyDropdown({
@@ -113,6 +91,18 @@ function ExperiencePage() {
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  const isDesktop = useMediaQuery('(min-width: 768px)');
+  const cardsPerPage = isDesktop ? 6 : 3;
+  const [page, setPage] = useState(1);
+  const prevPage = useRef(page);
+
+  useEffect(() => {
+    if (prevPage.current !== page) {
+      document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' });
+    }
+    prevPage.current = page;
+  }, [page]);
+
   useEffect(() => {
     getAllProjects()
       .then((data) => {
@@ -154,6 +144,10 @@ function ExperiencePage() {
     return project.category === category;
   });
 
+  const totalPages = Math.max(1, Math.ceil(projectsToShow.length / cardsPerPage));
+  const safePage = Math.min(page, totalPages);
+  const visibleProjects = projectsToShow.slice((safePage - 1) * cardsPerPage, safePage * cardsPerPage);
+
   return (
     <section id="experience" className="py-24">
       <div className="max-w-7xl mx-auto px-6">
@@ -177,6 +171,7 @@ function ExperiencePage() {
                     onClick={() => {
                       setCategory(c);
                       setCompany('All');
+                      setPage(1);
                     }}
                     className={`relative px-3.5 py-1.5 text-sm rounded-md transition-colors ${
                       category === c
@@ -210,7 +205,7 @@ function ExperiencePage() {
                     <CompanyDropdown
                       companies={availableCompanies}
                       company={company}
-                      setCompany={setCompany}
+                      setCompany={(c) => { setCompany(c); setPage(1); }}
                     />
                   </motion.div>
                 )}
@@ -231,16 +226,16 @@ function ExperiencePage() {
                 </motion.p>
               ) : (
                 <motion.div
-                  key={`${category}-${company}`}
+                  key={`${category}-${company}-${safePage}`}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
                   transition={{ duration: 0.2, ease: 'easeOut' }}
                   className="grid md:grid-cols-2 gap-3"
                 >
-                  {projectsToShow.map((project) => (
+                  {visibleProjects.map((project) => (
                     <ProjectCard
-                      key={project.title}
+                      key={`${project.title}-${project.id}`}
                       project={project}
                       onLearnMore={() => handleLearnMore(project)}
                     />
@@ -248,6 +243,32 @@ function ExperiencePage() {
                 </motion.div>
               )}
             </AnimatePresence>
+
+            {totalPages > 1 && (
+              <div className="mt-6 flex items-center justify-center gap-3">
+                <button
+                  onClick={() => setPage((p) => p - 1)}
+                  disabled={safePage === 1}
+                  aria-label="Previous page"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-md border border-border bg-card text-foreground hover:bg-muted transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  <ChevronLeft size={14} />
+                  Previous
+                </button>
+                <span className="text-sm text-muted-foreground font-mono">
+                  {safePage} / {totalPages}
+                </span>
+                <button
+                  onClick={() => setPage((p) => p + 1)}
+                  disabled={safePage === totalPages}
+                  aria-label="Next page"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-md border border-border bg-card text-foreground hover:bg-muted transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  Next
+                  <ChevronRight size={14} />
+                </button>
+              </div>
+            )}
           </>
         )}
       </div>

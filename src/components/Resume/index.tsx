@@ -63,7 +63,7 @@ function Resume() {
             <div className="flex flex-col gap-10">
               {resumeData.work.map((item, i) => (
                 <div
-                  key={item.company}
+                  key={`${item.company}-${i}`}
                   className={`grid md:grid-cols-[160px_1fr] gap-4 md:gap-10 ${
                     i < resumeData.work.length - 1 ? 'pb-10 border-b border-border' : ''
                   }`}
