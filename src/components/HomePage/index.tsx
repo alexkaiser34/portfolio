@@ -183,7 +183,7 @@ function HeroSection({ onNavigate }: HeroProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div>
+            <div className="hidden">
               <span className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-mono bg-card border border-border rounded-full text-muted-foreground">
                 <span className="size-1.5 rounded-full bg-emerald-500 inline-block animate-pulse" />
                 Open to new opportunities
