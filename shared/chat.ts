@@ -8,7 +8,7 @@ export const CHAT_API_ROUTE = '/api/chat';
 
 export const CHAT_LIMITS = {
   /** Max characters allowed in a single user message. */
-  maxMessageChars: 4000,
+  maxMessageChars: 12000,
   /** Max number of messages accepted in a conversation payload. */
   maxMessages: 24,
 } as const;

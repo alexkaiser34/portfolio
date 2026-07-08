@@ -6,7 +6,7 @@ import { Streamdown } from 'streamdown';
 import { useTheme } from '../../context/ThemeContext';
 import { useChat } from '../../context/ChatContext';
 import { SUGGESTED_PROMPTS } from '../../services/aiAssistant';
-import { CHAT_API_ROUTE } from '@shared/chat';
+import { CHAT_API_ROUTE, CHAT_LIMITS } from '@shared/chat';
 
 /** Max input height ≈ 3 lines (13px text, leading-relaxed); grows to here, then scrolls. */
 const MAX_INPUT_HEIGHT = 64;
@@ -33,6 +33,7 @@ function AIAssistant() {
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const busy = status === 'submitted' || status === 'streaming';
+  const tooLong = input.length > CHAT_LIMITS.maxMessageChars;
 
   // Grow the input up to ~3 lines, then let it scroll (iMessage-style).
   useEffect(() => {
@@ -271,13 +272,18 @@ function AIAssistant() {
               />
               <button
                 onClick={() => send(input)}
-                disabled={!input.trim() || busy}
+                disabled={!input.trim() || busy || tooLong}
                 aria-label="Send message"
                 className="p-1.5 rounded-lg bg-primary text-primary-foreground disabled:opacity-25 hover:opacity-85 transition-all flex-shrink-0"
               >
                 <Send size={12} />
               </button>
             </div>
+            {tooLong && (
+              <p className="mt-1.5 px-1 text-[11px] text-destructive">
+                Message is too long — please shorten it before sending.
+              </p>
+            )}
           </div>
         </div>
       </div>
