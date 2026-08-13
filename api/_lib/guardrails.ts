@@ -17,7 +17,8 @@ function textLength(message: UIMessage): number {
 /**
  * Validate and narrow an incoming request body into a typed `UIMessage[]`.
  * Enforces the shared conversation limits so oversized or malformed payloads
- * are rejected before they ever reach the model.
+ * are rejected before they ever reach the model. System instructions are
+ * server-owned and may never be supplied by the client.
  */
 export function parseChatRequest(body: unknown): UIMessage[] {
   if (!body || typeof body !== 'object' || !('messages' in body)) {
@@ -34,10 +35,7 @@ export function parseChatRequest(body: unknown): UIMessage[] {
   }
 
   for (const message of messages as UIMessage[]) {
-    if (
-      !message ||
-      (message.role !== 'user' && message.role !== 'assistant' && message.role !== 'system')
-    ) {
+    if (!message || (message.role !== 'user' && message.role !== 'assistant')) {
       throw new ChatValidationError('Invalid message role.');
     }
     if (textLength(message) > CHAT_LIMITS.maxMessageChars) {
