@@ -3,14 +3,14 @@ import { streamText, type ModelMessage } from 'ai';
 import { loadSystemPrompt } from './content';
 import { openaiEnv } from './env';
 
-/** Model used by the assistant. Cheap, fast, and strong at instruction-following for this Q&A workload. */
-export const ASSISTANT_MODEL = 'gpt-4.1-mini';
+/** Model used by the assistant. Optimized for efficient portfolio Q&A and job-fit analysis. */
+export const ASSISTANT_MODEL = 'gpt-5.6-luna';
 
 /**
- * Stream an assistant reply for a conversation. Loads the (cached) system prompt
+ * Stream an assistant reply for a conversation. Loads the cached system prompt
  * assembled from Supabase content and streams a completion. Shared by the
- * `/api/chat` endpoint and the local test script so the model configuration
- * lives in exactly one place.
+ * `/api/chat` endpoint and the local test script so model configuration lives
+ * in exactly one place.
  */
 export async function streamAssistantReply(messages: ModelMessage[]) {
   openaiEnv();
@@ -20,7 +20,11 @@ export async function streamAssistantReply(messages: ModelMessage[]) {
     model: openai(ASSISTANT_MODEL),
     system,
     messages,
-    temperature: 0.5,
     maxOutputTokens: 700,
+    providerOptions: {
+      openai: {
+        reasoningEffort: 'low',
+      },
+    },
   });
 }
