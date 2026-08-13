@@ -43,7 +43,7 @@ function TemplateProject({ project }: TemplateProjectProps) {
         <h2 className="text-lg font-semibold tracking-[-0.01em] text-foreground">
           About the project
         </h2>
-        <p className="text-[0.95rem] text-muted-foreground leading-[1.8]">
+        <p className="text-[0.95rem] text-muted-foreground leading-[1.8] whitespace-pre-line">
           {project.longDescription}
         </p>
       </div>
