@@ -28,7 +28,5 @@ export const projectsModel = defineList({
   schema: projectSchema,
   section: 'PROJECTS',
   renderItem: (p) =>
-    `- ${p.title}${p.company ? ` (${p.company})` : ''} — ${p.role}, ${p.category}, ${p.timeline}\n  ${p.shortDescription}\n  ${p.longDescription}\n  Contributions: ${p.contributions.join(
-      ', '
-    )}\n  Responsibilities: ${p.responsibilities.join(', ')}`,
+    `- ${p.title}${p.company ? ` (${p.company})` : ''} — ${p.role}, ${p.category}, ${p.timeline}\n  Summary: ${p.longDescription}\n  Key accomplishments: ${p.contributions.join(', ')}`,
 });
