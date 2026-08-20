@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Bot, Send, X, ArrowUpRight } from 'lucide-react';
+import { Bot, Send, X } from 'lucide-react';
 import { useChat as useAIChat } from '@ai-sdk/react';
 import { DefaultChatTransport, type UIMessage } from 'ai';
 import { Streamdown } from 'streamdown';
@@ -183,13 +183,13 @@ function AIAssistant() {
                   <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-1 px-0.5">
                     Suggested
                   </p>
-                  {SUGGESTED_PROMPTS.map(({ text }) => (
+                  {SUGGESTED_PROMPTS.map(({ icon: Icon, text }) => (
                     <button
                       key={text}
                       onClick={() => send(text)}
                       className="group text-left text-xs px-3.5 py-2.5 rounded-xl border border-border bg-muted hover:border-primary/30 hover:bg-accent hover:text-accent-foreground text-muted-foreground transition-all duration-150 flex items-center gap-2"
                     >
-                      <ArrowUpRight
+                      <Icon
                         size={11}
                         className="flex-shrink-0 opacity-40 group-hover:opacity-70 transition-opacity"
                       />
