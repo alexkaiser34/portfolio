@@ -103,13 +103,13 @@ function AIFeatureCard() {
           <p className="text-[0.65rem] font-mono font-medium uppercase tracking-[0.14em] text-muted-foreground mb-0.5">
             Try asking
           </p>
-          {SUGGESTED_PROMPTS.slice(0, 3).map(({ text }) => (
+          {SUGGESTED_PROMPTS.slice(0, 3).map(({ icon: Icon, text }) => (
             <button
               key={text}
               onClick={() => openChatWithPrompt(text)}
               className="group text-left text-xs px-3.5 py-2.5 rounded-xl border border-border bg-muted hover:border-primary/30 hover:bg-accent hover:text-accent-foreground text-muted-foreground transition-all duration-150 flex items-center gap-2"
             >
-              <ArrowUpRight
+              <Icon
                 size={11}
                 className="shrink-0 opacity-40 group-hover:opacity-70 transition-opacity"
               />
