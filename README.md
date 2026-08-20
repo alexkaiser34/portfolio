@@ -1,46 +1,65 @@
-# Getting Started with Create React App
+# Alex Kaiser Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Personal portfolio website showcasing my experience across embedded software, firmware, hardware, full-stack development, AI integrations, and engineering tooling.
 
-## Available Scripts
+**Live site:** [www.alexjkaiser.com](https://www.alexjkaiser.com)
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+- Responsive single-page portfolio built with React and TypeScript
+- Portfolio content is stored in Supabase so projects, experience, skills, and other information can be managed separately from the frontend
+- Interactive AI assistant answers questions about my background, projects, technical skills, and experience, and can evaluate alignment with a pasted job description
+- Deployed on Vercel with server-side API routes for the AI assistant
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## AI Assistant
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The site includes an AI assistant built around the same portfolio data shown throughout the application. Portfolio content is loaded from Supabase and assembled into the assistant context so it can answer questions about my experience, projects, skills, and background.
 
-### `npm test`
+The assistant streams responses through an API route deployed on Vercel using OpenAI and the Vercel AI SDK. Upstash Redis provides rate limiting for the public chat endpoint.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tech Stack
 
-### `npm run build`
+| Area | Technology |
+| --- | --- |
+| Frontend | React 19, TypeScript, Vite |
+| Styling and UI | Tailwind CSS, Framer Motion, Lucide React |
+| Data | Supabase, PostgreSQL |
+| AI | OpenAI, Vercel AI SDK |
+| Backend | Vercel Functions, Edge Runtime |
+| Rate limiting | Upstash Redis |
+| Hosting | Vercel |
+| Contact | EmailJS |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Local Development
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Install dependencies and start the Vite development server:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm install
+npm run dev
+```
 
-### `npm run eject`
+The project also includes scripts for production builds and type checking:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+npm run build
+npm run typecheck
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Environment Variables
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The application uses the following environment variables:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```text
+VITE_SUPABASE_URL
+VITE_SUPABASE_PUBLISHABLE_KEY
+OPENAI_API_KEY
+UPSTASH_REDIS_REST_URL
+UPSTASH_REDIS_REST_TOKEN
+```
 
-## Learn More
+The `VITE_` variables are available to the frontend. OpenAI and Upstash credentials are server-side only and should never be exposed in client code.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Deployment
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The application is deployed on Vercel and available at [www.alexjkaiser.com](https://www.alexjkaiser.com). Portfolio content and production data are managed through Supabase.
