@@ -202,10 +202,10 @@ function HeroSection({ onNavigate }: HeroProps) {
             </div>
 
             <p className="text-base md:text-[1.05rem] text-muted-foreground leading-[1.75] max-w-[520px]">
-              I build practical AI tooling, full-stack applications, and embedded
-              software - from LLM integrations to firmware and hardware-adjacent
-              systems. My focus is on software that's correct, clear, and holds up
-              in real use.
+              I build embedded software, integrate AI into applications and workflows,
+              and develop new AI tools and full-stack applications. With a background
+              across software, hardware, business, and management, I enjoy turning
+              complex engineering problems into practical solutions.
             </p>
 
             <div className="flex flex-col gap-3">
