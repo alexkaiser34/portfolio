@@ -9,6 +9,7 @@ import {
   Lightbulb,
   Layers,
   MessageSquare,
+  Target,
 } from 'lucide-react';
 
 /**
@@ -26,6 +27,7 @@ export const iconMap: Record<string, LucideIcon> = {
   Lightbulb,
   Layers,
   MessageSquare,
+  Target,
 };
 
 export function getIcon(name: string): LucideIcon {
