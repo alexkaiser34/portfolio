@@ -49,11 +49,12 @@ insert into about_stats ("value", "label", "sortOrder") values
 -- Expertise -----------------------------------------------------------------
 truncate expertise restart identity;
 insert into expertise ("title", "description", "icon", "sortOrder") values
-  ('AI Tooling & Integrations', 'Building with LLMs, agents, and AI-powered workflows to ship smarter developer and product experiences.', 'Sparkles', 0),
-  ('Full-Stack Engineering', 'End-to-end web applications with React, TypeScript, and modern, scalable backend services.', 'Boxes', 1),
-  ('Embedded Software Development', 'Firmware and real-time systems for microcontrollers, smart meters, and connected devices.', 'Cpu', 2),
-  ('Electrical Engineering', 'Digital design, PCB layout, and hardware bring-up — from schematic to working silicon.', 'Zap', 3),
-  ('Software Development', 'Clean, maintainable, well-tested software across many languages, platforms, and domains.', 'Code2', 4);
+  ('Embedded Software & Firmware', 'Developing embedded software, firmware, and low-level drivers for embedded systems and real-time operating systems.', 'Cpu', 0),
+  ('AI Tooling & Agentic Systems', 'Integrating AI into applications and engineering workflows, and building AI tools and agents for focused engineering and business needs.', 'Sparkles', 1),
+  ('FPGA, Hardware & PCB Design', 'Designing FPGA-based systems, digital hardware, and printed circuit boards, with experience taking hardware from initial design through implementation and testing.', 'CircuitBoard', 2),
+  ('Full-Stack Application Development', 'Designing and building full-stack applications, internal engineering tools, APIs, databases, and user interfaces.', 'Boxes', 3),
+  ('Product & Project Management', 'Helping define features, requirements, and project scope, organizing technical work, and using engineering and business context to make well-informed decisions throughout a project.', 'ClipboardList', 4),
+  ('Technical Leadership', 'Taking ownership of technical work, helping guide engineering decisions, communicating across teams, and keeping projects focused on the right technical goals.', 'Users', 5);
 
 -- Skills --------------------------------------------------------------------
 truncate skill_groups restart identity;
