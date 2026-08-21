@@ -10,6 +10,8 @@ import {
   Layers,
   MessageSquare,
   Target,
+  CircuitBoard,
+  Users,
 } from 'lucide-react';
 
 /**
@@ -28,6 +30,8 @@ export const iconMap: Record<string, LucideIcon> = {
   Layers,
   MessageSquare,
   Target,
+  CircuitBoard,
+  Users,
 };
 
 export function getIcon(name: string): LucideIcon {
