@@ -38,11 +38,13 @@ function About() {
             {about.paragraphs.map((paragraph, i) => (
               <div
                 key={paragraph}
-                className={`flex flex-col gap-2 ${i > 0 ? 'pt-6 border-t border-border' : ''}`}
+                className={`flex flex-col gap-3 ${i > 0 ? 'pt-6 border-t border-border' : ''}`}
               >
-                <div className="flex items-center gap-2">
-                  <span className="size-1.5 rounded-full bg-primary shrink-0" />
-                  <h3 className="text-sm font-semibold text-foreground leading-tight">
+                <div className="flex items-baseline gap-3">
+                  <span className="text-xs font-mono font-semibold text-primary tracking-[0.08em] shrink-0">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="text-lg font-semibold text-foreground tracking-[-0.01em] leading-tight">
                     {aboutSectionTitles[i] ?? `About ${i + 1}`}
                   </h3>
                 </div>
