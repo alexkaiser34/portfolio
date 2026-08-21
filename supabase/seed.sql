@@ -59,12 +59,12 @@ insert into expertise ("title", "description", "icon", "sortOrder") values
 -- Skills --------------------------------------------------------------------
 truncate skill_groups restart identity;
 insert into skill_groups ("label", "items", "sortOrder") values
-  ('Languages', array['Python', 'TypeScript', 'JavaScript', 'C', 'C++', 'C#', 'VHDL', 'Verilog'], 0),
-  ('AI & Machine Learning', array['LLM Integrations', 'LangChain', 'RAG Pipelines', 'AI Agents', 'Ollama', 'Prompt Engineering'], 1),
-  ('Backend & Infrastructure', array['FastAPI', 'Node.js', 'ASP.NET', 'REST APIs', 'Docker', 'AWS', 'CI/CD', 'Git'], 2),
-  ('Databases', array['PostgreSQL', 'MySQL', 'SQLite', 'Qdrant'], 3),
-  ('Frontend', array['React', 'Tailwind CSS', 'HTML & CSS'], 4),
-  ('Hardware & Embedded', array['FPGA Design', 'Embedded Systems', 'PCB Design', 'Digital Design', 'Firmware'], 5);
+  ('Languages', array['Python', 'TypeScript', 'JavaScript', 'C', 'C++', 'C#', 'VHDL', 'Verilog', 'Assembly'], 0),
+  ('AI & Agentic Systems', array['LLM APIs & Integrations', 'AI Agents', 'Agent Harnesses & Loops', 'Tool Calling', 'RAG & Hybrid Search', 'Microsoft Agent Framework', 'Azure AI Foundry', 'LangChain'], 1),
+  ('Backend & Infrastructure', array['FastAPI', 'Node.js', '.NET / ASP.NET', 'REST APIs', 'Docker', 'AWS', 'CI/CD', 'Git'], 2),
+  ('Databases', array['PostgreSQL', 'MySQL', 'SQLite', 'Qdrant', 'InfluxDB'], 3),
+  ('Frontend & Desktop', array['React', 'Tailwind CSS', 'HTML & CSS', 'Electron'], 4),
+  ('Embedded, FPGA & Hardware', array['Firmware', 'Low-Level Drivers', 'Kernel Drivers', 'RTOS', 'Embedded Linux', 'FPGA Design', 'PCB Design', 'Digital Design', 'seL4 / Hypervisors', 'Valgrind', 'QEMU'], 5);
 
 truncate soft_skills restart identity;
 insert into soft_skills ("title", "description", "icon", "sortOrder") values
